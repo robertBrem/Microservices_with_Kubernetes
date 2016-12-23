@@ -73,7 +73,7 @@ Download the `admin.conf` from your master:
 ```bash
 scp root@5.189.173.45:/etc/kubernetes/admin.conf .
 ```
-Create an alias for your cluster:  
+Create an alias for your cluster.  
 Create the file `.alias` in your home directory with the following content:
 ```bash
 alias kc='kubectl --kubeconfig /home/[HOST USER]/Desktop/admin.conf'
