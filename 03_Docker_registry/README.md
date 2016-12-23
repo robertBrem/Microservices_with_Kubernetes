@@ -13,12 +13,9 @@ ssh root@5.189.173.45
 ```
 On the server we've to create the folder structure that gets mounted to the host.
 In our case we have three folders one for the Docker images, one for our ssl certificates
-and the last for the authorization information.
+and the last for the authorization information.  
 ```
-mkdir registry
-mkdir registry/images
-mkdir registry/certs
-mkdir registry/auth
+mkdir -p registry/{images,certs,auth}
 sudo docker run --entrypoint htpasswd registry:2 -Bbn rob 1234 > registry/auth/htpasswd
 ```
 The last command creates a user with a password for the Docker registry.
