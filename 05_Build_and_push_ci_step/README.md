@@ -7,7 +7,7 @@ To create a new pipeline we've to create a `Jenkinsfile` similar to [this one](h
 withEnv(["VERSION=1.0.${currentBuild.number}", "REGISTRY_EMAIL=brem_robert@hotmail.com"]) {
   stage "checkout, build, test and publish"
   node {
-    git poll: true, url: "https://github.com/robertBrem/battleapp"
+    git url: "https://github.com/robertBrem/battleapp"
     def mvnHome = tool 'M3'
     sh "${mvnHome}/bin/mvn clean install"
     sh "./build.js"
@@ -50,6 +50,12 @@ function execute(command) {
     print($OUT);
     print($ERR);
 }
+```
+This script is available as live script.
+
+That the script can be executed it has to be executable:
+```
+chmod 750 build.js
 ```
 
 ## Create the pipeline in Jenkins
