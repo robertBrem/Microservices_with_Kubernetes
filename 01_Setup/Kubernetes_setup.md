@@ -30,6 +30,9 @@ If the connection is working our initial setup of the server is done.
 ## Setup the cluster with Ansible
 The setup with `kubeadm` is really simple, but still includes some manual steps that can be automated.
 Therefore a good friend of mine wrote a Ansible playbook that can be checked out from [here](https://github.com/pstauffer/kubernetes-setup)
+> In the following parts I'm using tools like Git and Ansible. [Here](Host_setup.md) I'm 
+> describing how to install the basic tools.
+
 ```bash
 git clone https://github.com/pstauffer/kubernetes-setup
 ```
