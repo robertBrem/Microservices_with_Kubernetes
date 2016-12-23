@@ -26,7 +26,9 @@ After the build you can start a container for this image:
 docker run -p 8081:8080 --name battleapp -d battleapp
 ```
 The service is now running on the port 8081:  
-`http://localhost:8081/battleapp/resources/users`.  
+```
+http://localhost:8081/battleapp/resources/users
+```  
 The output should be something like that:
 ```bash
 [{"name":"dan"},{"name":"robert"},{"name":"kevin"}]
