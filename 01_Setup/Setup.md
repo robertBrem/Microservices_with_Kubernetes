@@ -1,116 +1,98 @@
-# Aufgabe 0
-VMs in der Cloud aufsetzten, beispielsweise bei AWS.  
-Folgendes Ansible-Playbook von [Github](https://github.com/pstauffer/kubernetes-setup) herunterladen und ausführen.
+# Setup a Kubernetes cluster
 
----
+## Setup the servers for the cluster
+I am using 5 small servers from [contabo](https://contabo.com/?show=configurator&vserver_id=217).  
+For the setup with [`kubeadm`](http://kubernetes.io/docs/getting-started-guides/kubeadm/) 
+the OS has to be Ubuntu 16.04 or CentOS 7.x. In my case I am going with **Cent OS 7.3 (64 bit)**.  
 
-# Aufgabe 1
+![Contabo VPS](images/contabo.png)  
 
-## Cluster aufsetzen
-Key `team[A,B,C].pem` uf den Desktop kopieren.  
-* [Team1](https://www.adesso.de/tausch/exchange.pl?g=ev3eyym5)
-* [Team2](https://www.adesso.de/tausch/exchange.pl?g=8mbuakzg)
-* [Team3](https://www.adesso.de/tausch/exchange.pl?g=hfph9mfp)
+> The setup is working in the [AWS Cloud](https://aws.amazon.com) with 
+> **[Ubuntu 16.04 LTS - Xenial (HVM)](https://aws.amazon.com/marketplace/pp/B01JBL2M0O)** 
+> and **[CentOS 7 (x86_64) - with Updates HVM](https://aws.amazon.com/marketplace/pp/B00O7WM7QW)** 
+> as well.
+
+That the Kubernetes setup can access the servers we have to install our ssh keys to the servers.
+If you don't have a ssh key you can create one with the following command:
 ```bash
-chmod 400 team[A,B,C].pem
+ssh-keygen -t rsa -b 4096
 ```
-Testen ob man auf den Server connecten kann:
+Now we have to install our public key on every server:
 ```bash
-rob@teama:~/Desktop$ ssh -i team[A,B,C].pem ubuntu@[MASTER:IP]
-The authenticity of host '[MASTER:IP] ([MASTER:IP])' can't be established.
-ECDSA key fingerprint is SHA256:1WuIoToQUhYCeco87+tanj5trGe+UUH4SYwh9pfzHTk.
-Are you sure you want to continue connecting (yes/no)? yes
-Warning: Permanently added '[MASTER:IP]' (ECDSA) to the list of known hosts.
-Welcome to Ubuntu 16.04.1 LTS (GNU/Linux 4.4.0-45-generic x86_64)
-...
-Last login: Wed Nov  9 08:46:56 2016 from 62.2.43.87
-ubuntu@ip-172-30-0-70:~$ 
-  ``` 
----
-
-`kubectl` von Master Server auf den Desktop kopieren.
-```bash
-scp -i team[A,B,C].pem ubuntu@[MASTER:IP]:/usr/bin/kubectl .
+ssh-copy-id root@5.189.153.209
 ```
-`admin.conf` vom Master Server auf den Desktop kopieren.
+We can test the setup if we try to ssh into the server:
 ```bash
-ssh -i team[A,B,C].pem ubuntu@[MASTER:IP]
-ubuntu@MASTER:~# sudo su -
-root@MASTER:~# cp /etc/kubernetes/admin.conf /home/ubuntu
-root@MASTER:~# chown ubuntu /home/ubuntu/admin.conf
-root@MASTER:~# exit
-ubuntu@MASTER:~# exit
-scp -i team[A,B,C].pem ubuntu@[MASTER:IP]:/home/ubuntu/admin.conf .
+ssh root@5.189.153.209
 ```
+If the connection is working our initial setup of the server is done.
 
----
-
-
-Alias für `kubectl` erstellen:  
-File `.alias` im Home-Verzeichnis des Users erstellen mit folgendem Inhalt:
+## Setup the cluster with Ansible
+The setup with `kubeadm` is really simple, but still includes some manual steps that can be automated.
+Therefore a good friend of mine wrote a Ansible playbook that can be checked out from [here](https://github.com/pstauffer/kubernetes-setup)
 ```bash
-alias kc='/home/rob/Desktop/kubectl --kubeconfig /home/rob/Desktop/admin.conf'
+git clone https://github.com/pstauffer/kubernetes-setup
 ```
-`.bashrc` des Home-Verzeichnisses um folgende Zeile erweitern:
+Create an inventory file with the following content:
+```bash
+[master]
+5.189.173.45
+
+[minions]
+5.189.172.130
+5.189.172.129
+5.189.154.24
+5.189.153.209
+
+[cluster:children]
+master
+minions
+
+[cluster:vars]
+# kubernetes part
+kubemaster_token = abcdef.abcdefabcdefabcd
+
+# ansible part
+ansible_ssh_private_key_file = /home/battleapp/.ssh/id_rsa
+ansible_user = root
+
+# python part
+install_python_centos = true
+install_python_ubuntu = false
+```
+Start the setup playbook with this inventory:
+```bash
+ansible-playbook -i inventories/sample playbooks/setup.yml
+```
+Install `kubectl` like described [on this site](http://kubernetes.io/docs/getting-started-guides/kubeadm/) on your host machine. 
+Test the installation:
+```bash
+kubectl -h
+```
+Download the `admin.conf` from your master:
+```bash
+scp root@5.189.173.45:/etc/kubernetes/admin.conf .
+```
+Create an alias for your cluster:  
+Create the file `.alias` in your home directory with the following content:
+```bash
+alias kc='kubectl --kubeconfig /home/[HOST USER]/Desktop/admin.conf'
+```
+Extend the `.bashrc` of the home directory:
 ```bash
 . ~/.alias
 ```
-Danach den `alias` in der aktuellen Bash ausführen:
+Execute `alias` in the current bash:
 ```bash
 . .alias
 ```
----
- 
-Testen ob man die Kubernetes Nodes sieht:
+Test the cluster:
 ```bash
-rob@teama:~/Desktop$ kc get no
-NAME             STATUS    AGE
-ip-172-30-0-68   Ready     2h
-ip-172-30-0-69   Ready     2h
-ip-172-30-0-70   Ready     2h
-ip-172-30-0-71   Ready     2h
+kc get no
+NAME                    STATUS         AGE
+vmi71989.contabo.host   Ready          21m
+vmi71992.contabo.host   Ready          22m
+vmi74388.contabo.host   Ready          22m
+vmi74389.contabo.host   Ready          22m
+vmi74448.contabo.host   Ready,master   24m
 ```
-
----
-
-# Aufgabe 2
-
-## Gogs im Cluster starten
-Den Nodes Labels zuweisen:
-```bash
-kc label nodes ip-172-30-0-68 name=node68
-```
-Per SSH auf den entsprechenden Node zugreifen:
-```bash
-ssh -i "team[A,B,C].pem" ubuntu@[PUBLIC_IP]
-```
-Folgende Ordnerstruktur im Home-Verzeichnis anlegen:
-```bash
-gogs/data
-```
-
----
-
-Kubernetes-Deployment analog zu [GIST](https://gist.github.com/robertBrem/31b7ad46c8ee531c8dcd575989454825) erstellen.  
-Deployment starten:
-```bash
-kc create -f deployments/gogs.yml
-```
-Überprüfen ob das Deployment funktioniert hat:
-```bash
-rob@teama:~/Desktop$ kc get pods
-NAME                    READY     STATUS    RESTARTS   AGE
-gogs-1417829598-rr88g   1/1       Running   0          <invalid>
-```
-
----
-
-Kubernetes-Service analog zu [GIST](https://gist.github.com/robertBrem/68706f161388b7307bb0) erstellen.  
-Service starten:
-```bash
-kc create -f services/gogs.yml
-```
-* Gogs einrichten
-* Repository einrichten
-* Den REST Service ins Repository pushen
-
