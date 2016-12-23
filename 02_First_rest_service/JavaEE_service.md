@@ -1,0 +1,57 @@
+# Creating our first JavaEE microservice
+Our first microservice is a REST service written in Java. I'm using JavaEE and Wildfly
+as application server. JavaEE is the perfect combination with Docker.  
+Wildfly can be downloaded from [here](http://wildfly.org/downloads/).  
+As IDE I'm using IntelliJ.
+> IntelliJ and Maven is already installed during the [host setup](../01_Setup/Host_setup.md).
+
+## Setup a new maven project
+I'm using a minimalistic maven setup:  
+`com.airhacks:javaee7-essentials-archetype:1.3`  
+
+To create a project in IntelliJ with this Archetype you have to open IntelliJ and choose 
+`File -> New -> Project...`  
+And make the following settings:  
+![IntelliJ Archetype](images/archetype.png)
+
+If you creating a project with this Archetype for the first time you have to use `Add Archetype...`
+and insert the information from the Archetype.
+
+Now click `Next` and insert the project settings:  
+![Maven project settings](images/maven_project.png)
+
+Click `Next` `Next` `Finish`
+
+Now you can implement the REST service. I've made a simple service that can be cloned from  
+[here](https://github.com/robertBrem/battleapp).
+
+## Using Lombok
+I use Lombok in my example service. To use Lombok you have to add the dependency to the 
+`pom.xml` as well as to install the Lombok plugin in IntelliJ. You can install the plugin
+over `File -> Settings...` `Plugins` `Browse repositories...` and search for *Lombok*.  
+![Lombok plugin](images/lombok_plugin.png)
+
+Click `Install` `Restart`.
+
+## Wildfly in IntelliJ
+You can setup Wildfly in IntelliJ over the `Edit Configuration...` menu.  
+![Edit Configuration...](images/edit_config.png)
+
+Click on the `+`  
+![Add Wildfly](images/add_wildfly.png)
+
+In the `Server` tab make the following settings:  
+![Server tab](images/wildfly_basic.png)
+
+Change to the `Deployment` tab and add the artifact:  
+![Deployment tab](images/wildfly_deployment.png)
+
+## Test the service
+To test the service you simply have to push the play button:  
+![Play button](images/play_button.png)
+
+And call the following url: `http://localhost:8080/battleapp/resources/users`.
+The output should be something like that:
+```bash
+[{"name":"dan"},{"name":"robert"},{"name":"kevin"}]
+```
