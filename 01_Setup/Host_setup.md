@@ -27,3 +27,15 @@ If this is not the case you have to execute the following command:
 ```bash
 newgrp docker
 ```
+
+## IntelliJ live templates
+I'm using a lot of live templates that I've created for IntelliJ. This templates are 
+available on [GitHub](https://github.com/robertBrem/IntelliJ_Live_Templates).  
+To include them in IntelliJ we have to check out the repository in the IntelliJ 
+configuration folder.
+```
+cd ~/.IntelliJIdea2016.3/config/
+git clone https://github.com/robertBrem/IntelliJ_Live_Templates
+mv IntelliJ_Live_Templates/ templates
+```
+Now I can use my live templates everywhere.

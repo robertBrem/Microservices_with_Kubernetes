@@ -15,6 +15,12 @@ Now we create the Jenkins deployment without mounting the `jenkins_home`. I'm
 using [this file](https://gist.github.com/robertBrem/77e7a97b57565921792631f70088c706)
 as a reference.
 
+Later we want to be able the push Docker images in the Docker registry therefore Jenkins
+need to know a username and password. For this we can create another secret:
+```
+kc create secret generic registrykeygeneric --from-literal=username=rob --from-literal=password=1234
+```
+
 For our first deployment I'm going to comment the `jenkins_home` volume mount.
 ```
 apiVersion: extensions/v1beta1
@@ -31,7 +37,7 @@ spec:
       containers:
       - resources:
         name: jenkins
-        image: robertbrem/jenkins:1.0.2
+        image: robertbrem/jenkins:1.0.5
         ports:
         - name: ui
           containerPort: 8080
@@ -42,6 +48,17 @@ spec:
           name: docker-socket
 #        - mountPath: /var/jenkins_home
 #          name: jenkins-home
+        env:
+        - name: REGISTRY_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: registrykeygeneric
+              key: username
+        - name: REGISTRY_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: registrykeygeneric
+              key: password
       volumes:
       - name: docker-socket
         hostPath:
