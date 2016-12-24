@@ -7,7 +7,7 @@ Include the test in the Jenkins pipeline:
   node {
     git url: "https://github.com/robertBrem/BattleApp-UIT"
     def mvnHome = tool 'M3'
-    sh "${mvnHome}/bin/mvn clean install failsafe:integration-test"
+    sh "${mvnHome}/bin/mvn clean install failsafe:integration-test failsafe:verify"
     step([$class: 'JUnitResultArchiver', testResults: '**/target/failsafe-reports/TEST-*.xml'])
   }
 ```
