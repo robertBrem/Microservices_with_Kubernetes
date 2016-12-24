@@ -105,3 +105,5 @@ This script has to be added to the Jenkins pipeline:
     sh "./start.js"
   }
 ```
+
+Then `Build Now`.
