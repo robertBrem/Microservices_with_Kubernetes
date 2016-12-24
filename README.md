@@ -12,3 +12,4 @@
 * [Canary release](10_Canary_release)
 * [Full production release](11_Full_production_release)
 * [Own Git repository](12_Own_Gogs)
+* [Monitoring](13_Monitoring)
