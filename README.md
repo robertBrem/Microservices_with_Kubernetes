@@ -8,3 +8,4 @@
 * [Systemtest](06_Systemtest_ci_step)
 * [UI test](07_UI_test)
 * [Lasttest](08_Lasttest)
+* [Manual test](09_Manual_test)
