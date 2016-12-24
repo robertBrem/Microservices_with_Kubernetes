@@ -8,7 +8,7 @@ to create a crumb that have to be transmitted with the token as well. In this ex
 I'm simply deactivating CSRF in Jenkins.
 
 In Jenkins select `Manage Jenkins` `Configure Global Security` and deselect
-`Prevent Cross Site Request Forgery exploits` and `Save`. 
+`Prevent Cross Site Request Forgery exploits` and `Save`.  
 ![Deactivate CSRF](images/csrf.png)
 
 ## Create hook in GitHub
