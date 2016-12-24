@@ -9,3 +9,4 @@
 * [UI test](07_UI_test)
 * [Lasttest](08_Lasttest)
 * [Manual test](09_Manual_test)
+* [Canary release](10_Canary_release)
