@@ -10,3 +10,4 @@
 * [Lasttest](08_Lasttest)
 * [Manual test](09_Manual_test)
 * [Canary release](10_Canary_release)
+* [Full production release](11_Full_production_release)

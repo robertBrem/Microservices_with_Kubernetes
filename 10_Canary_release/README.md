@@ -162,3 +162,42 @@ battleapp-test-2013584858-kq2bg     1/1       Running   0          4m
 jenkins-3074977187-rcg1v            1/1       Running   0          15h
 registry-95525520-9rdvc             1/1       Running   0          20h
 ```
+
+## Create a readiness probe
+It can happen that the Kubernetes service is routing requests to the new service
+even if this service is not ready yet and we get `404` for a short period. To
+suppress this behavior we can create a `readiness probe` for our canary deployment:
+
+```
+var dfw = new FileWriter(deploymentFileName);
+dfw.write("apiVersion: extensions/v1beta1\n");
+dfw.write("kind: Deployment\n");
+dfw.write("metadata:\n");
+dfw.write("  name: " + nameWithVersion + "\n");
+dfw.write("spec:\n");
+dfw.write("  replicas: " + replicas + "\n");
+dfw.write("  template:\n");
+dfw.write("    metadata:\n");
+dfw.write("      labels:\n");
+dfw.write("        name: " + name + "\n");
+dfw.write("        version: " + version + "\n");
+dfw.write("    spec:\n");
+dfw.write("      containers:\n");
+dfw.write("      - resources:\n");
+dfw.write("        name: " + name + "\n");
+dfw.write("        image: " + image + "\n");
+dfw.write("        ports:\n");
+dfw.write("        - name: port\n");
+dfw.write("          containerPort: " + port + "\n");
+dfw.write("        readinessProbe:\n");
+dfw.write("          httpGet:\n");
+dfw.write("            path: " + relativeUrl + "\n");
+dfw.write("            port: " + port + "\n");
+dfw.write("          initialDelaySeconds: " + initialDelay + "\n");
+dfw.write("          timeoutSeconds: " + readinessProbeTimeout + "\n");
+dfw.write("      imagePullSecrets:\n");
+dfw.write("      - name: " + registrysecret + "\n");
+dfw.close();
+```
+
+Now there shouldn't be any `404` errors.
