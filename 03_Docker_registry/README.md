@@ -1,11 +1,11 @@
 # Setup a docker registry
 
 ## Create folders for the persistence
-The Docker registry has persistent data therefore we have to mount this data somewhere.
+The Docker registry has persistent data therefore we've to mount this data somewhere.
 The easiest way to do that is over a node selector. A more advanced solution would be
 to use GlusterFS, Flocker, NFS or something similar.
 
-If we use node selectors to for our persistence then we have to log in to the server
+If we use node selectors for our persistence then we've to log in to the server
 that ip is used in the DNS registry. In my case that's the master.
 
 ```
@@ -132,7 +132,7 @@ spec:
     name: registry
   type: NodePort
 ```
-To test the repository we can call the following url:
+To test the registry we can call the following url:
 ```
 https://disruptor.ninja:30500/v2/_catalog
 ```
