@@ -91,3 +91,43 @@ To test the repository we can call the following url:
 ```
 http://disruptor.ninja:30130
 ```
+
+## Disable register
+After you have created your own user you better should disable the register
+button. Otherwise everybody from the internet can create new users and repositories.
+To disable registration you have to connect to into your Kubernetes pod.
+To find the correct pod use this command:
+```
+kc get po | grep gogs
+```
+```
+gogs-2819519451-kmpgj                       1/1       Running   0          1h
+```
+
+Now connect into the container inside this pod:
+```
+kc exec -it gogs-2819519451-kmpgj bash
+```
+
+And open the following file:
+```
+vi /data/gogs/conf/app.ini
+```
+
+Search for `DISABLE_REGISTRATION` set it to `true` and add 
+`SHOW_REGISTRATION_BUTTON`:
+```
+DISABLE_REGISTRATION   = true
+SHOW_REGISTRATION_BUTTON = false
+```
+
+Now kill the running pod. Kubernetes will reschedule the GoGs and start it with
+the new settings:
+```
+kc delete pod gogs-2819519451-kmpgj
+```
+
+After the restart there is no more register button on the upper right next to
+`Sign In`.
+
+![Without register button](images/without_register.png)
