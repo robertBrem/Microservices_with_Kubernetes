@@ -13,3 +13,6 @@
 * [Full production release](11_Full_production_release)
 * [Own Git repository](12_Own_Gogs)
 * [Monitoring](13_Monitoring)
+* [Documentation of a REST service](14_Documentation_of_rest_service)
+* [Angular2 frontend](15_Angular2_frontend)
+* [SSO with Keycloak](16_SSO_with_Keycloak)
