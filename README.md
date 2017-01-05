@@ -16,3 +16,4 @@
 * [Documentation of a REST service](14_Documentation_of_rest_service)
 * [Angular2 frontend](15_Angular2_frontend)
 * [SSO with Keycloak](16_SSO_with_Keycloak)
+* [Use Cassandra for persistence](17_Event_Sourcing_with_Cassandra)

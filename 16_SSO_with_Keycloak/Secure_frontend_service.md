@@ -206,6 +206,14 @@ data:
       "host": "disruptor.ninja",
       "port": 31080
     }
+  keycloak.json: |
+    {
+      "realm": "battleapp-test",
+      "auth-server-url": "https://disruptor.ninja:30182/auth",
+      "ssl-required": "none",
+      "resource": "battleapp-frontend",
+      "public-client": true
+    }
 kind: ConfigMap
 metadata:
   creationTimestamp: 2016-12-31T15:54:44Z
