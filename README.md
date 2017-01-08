@@ -17,3 +17,4 @@
 * [Angular2 frontend](15_Angular2_frontend)
 * [SSO with Keycloak](16_SSO_with_Keycloak)
 * [Use Cassandra for persistence](17_Event_Sourcing_with_Cassandra)
+* [Connect Keycloak user with application user](18_Connect_keycloak_user_with_application_user)
