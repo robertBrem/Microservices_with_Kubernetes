@@ -1,0 +1,19 @@
+sudo: false
+language: python
+python: '3.5'
+
+env:
+  global:
+    - GITHUB_REPO: "robertbrem/Microservices_with_Kubernetes"
+    - secure: C4608o05EIvgLtyB9PtFrXda9Lh/9sQUqt8hJ/46naIlcwuE53moTv+f9Cjx0mYLjFpQUE54qc/YYahzv6ODFXp/mkpHRB7e1OdCHP1CdFn8zWraCsfxvgQFLnyAEnsWojJMCUTHaqMVzT/ZodBHGPsrttWDHMLIOV0PzYdcYU5mBCp3aRIC+U4ybqhtrxmpm2316GVacwAJ0M7WFDUfFdOQHkda3nbvdAJNF6LapQhIn0JZfUJdVYJWopC8GE8tvd69LaD/3UjWTZtUideZUWJ6Kmj34byt6xDPIeyezFC2la1Cmh5cq+Q6BAzG/510iLFedq024/dHviiAepd3rUG1tx41pqmiUB01BxksRc+Grc9J5uwr11fh4SgmdtyYOK8bpJsXlIgQSLz8FtXkh+QVlfIfHdHHjTiZFYPJhU0TKhS6ikecq7K1RMcwOs5rTGQm1NFAvwEPy3RL7u6hfOcIblUXxMQjYh8vEvx716TJQTf1BnJbdR9I1MZFZEvVOdsb8T49kmBWEev4uXUpERwNFWHVaP5hSmH1BjD41/uT2og78py1BFKzRJa1gszfMAOYxJqgQArCJDPzOhspMvVK/ta0CBEB/19+LNt/WnnQGwsI9f5bNYy5mANo5fgg6jsMPS0sCKooGWb6rIXBsqnfvq0BaCTe2rKqGV6lkmo=
+
+install:
+- pip install mkdocs
+
+script:
+- git config --global user.email "brem_robert@hotmail.com"
+- git config --global user.name "Travis CI"
+- cd mkdocs && mkdocs build
+- cd ../../site && ls -l
+- git init && git add . && git commit -m "Deploy to Github Pages"
+- git push --force --quiet https://${GITHUB_TOKEN}@github.com/${GITHUB_REPO}.git master:gh-pages

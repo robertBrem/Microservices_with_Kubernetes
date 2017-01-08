@@ -1,0 +1,5 @@
+site_name: Microservices with Kubernetes
+theme: readthedocs
+docs_dir: ../
+site_dir: ../../site
+repo_url: https://github.com/robertBrem/Microservices_with_Kubernetes
