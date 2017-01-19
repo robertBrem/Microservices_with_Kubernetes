@@ -70,6 +70,6 @@ The service is now running on the following url:
 http://disruptor.ninja:30080/battleapp/resources/users
 ```  
 The output should be something like that:
-```bash
+```
 [{"name":"dan"},{"name":"robert"},{"name":"kevin"}]
 ```

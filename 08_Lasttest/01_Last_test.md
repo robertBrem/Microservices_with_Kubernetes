@@ -1,4 +1,4 @@
-# Lasttest
+# Last test
 We're going to use JMeter for our last tests.
 
 ## Install JMeter

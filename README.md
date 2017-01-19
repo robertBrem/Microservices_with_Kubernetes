@@ -1,20 +1,4 @@
 # Microservices with Kubernetes
 
-* [Setup](01_Setup)
-* [First REST service](02_First_rest_service)
-* [Docker registry](03_Docker_registry)
-* [Jenkins](04_Jenkins)
-* [Build and push](05_Build_and_push_ci_step)
-* [Systemtest](06_Systemtest_ci_step)
-* [UI test](07_UI_test)
-* [Lasttest](08_Lasttest)
-* [Manual test](09_Manual_test)
-* [Canary release](10_Canary_release)
-* [Full production release](11_Full_production_release)
-* [Own Git repository](12_Own_Gogs)
-* [Monitoring](13_Monitoring)
-* [Documentation of a REST service](14_Documentation_of_rest_service)
-* [Angular2 frontend](15_Angular2_frontend)
-* [SSO with Keycloak](16_SSO_with_Keycloak)
-* [Use Cassandra for persistence](17_Event_Sourcing_with_Cassandra)
-* [Connect Keycloak user with application user](18_Connect_keycloak_user_with_application_user)
+Open this site on
+[http://robertbrem.github.io/Microservices_with_Kubernetes](http://robertbrem.github.io/Microservices_with_Kubernetes).
