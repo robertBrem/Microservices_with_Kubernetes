@@ -95,8 +95,23 @@ folder `src/main/webapp/WEB-INF`.
   "bearer-only": true,
   "auth-server-url": "${env.AUTH_SERVER_URL}",
   "ssl-required": "none",
-  "resource": "battleapp"
+  "resource": "battleapp",
+  "enable-cors": true
 }
+```
+
+Like you can see we tell Keycloak to handle CORS. Keycloak needs to add additional 
+headers anyway and therefore it makes sense to let Keycloak add the CORS
+headers as well.  
+This results in the deletion of the existing CORS dependency:
+
+```
+<dependency>
+    <groupId>com.airhacks</groupId>
+    <artifactId>jaxrs-cors</artifactId>
+    <version>0.0.2</version>
+    <scope>compile</scope>
+</dependency>
 ```
 
 That we can use the same `war` on different stages we have to set the realm
