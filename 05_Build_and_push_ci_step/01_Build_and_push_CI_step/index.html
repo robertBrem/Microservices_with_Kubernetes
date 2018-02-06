@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Build and push CI step - Microservices with Kubernetes</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/highlight.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Build and push CI step";
+    var mkdocs_page_input_path = "05_Build_and_push_ci_step/01_Build_and_push_CI_step.md";
+    var mkdocs_page_url = "/05_Build_and_push_ci_step/01_Build_and_push_CI_step/";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js"></script>
+  <script src="../../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> Microservices with Kubernetes</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">Microservices with Kubernetes</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../README/">Microservices with Kubernetes</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">01 Setup</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../01_Setup/01_Host_setup/">Setup your local host machine</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../01_Setup/02_Kubernetes_setup/">Setup a Kubernetes cluster</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">02 First rest service</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../02_First_rest_service/01_JavaEE_service/">Creating our first JavaEE microservice</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../02_First_rest_service/02_Dockerization/">Dockerization of the service</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../02_First_rest_service/03_Deploy_in_Kubernetes/">Deploy the Docker image of the service in Kubernetes</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">03 Docker registry</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../03_Docker_registry/01_Setup_a_docker_registry/">Setup a docker registry</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">04 Jenkins</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../04_Jenkins/01_Setup_Jenkins_in_Kubernetes/">Setup Jenkins in Kubernetes</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">05 Build and push ci step</span>
+    <ul class="subnav">
+                <li class=" current">
+                    
+    <a class="current" href="./">Build and push CI step</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#build-and-push-ci-step">Build and push CI step</a></li>
+    
+
+    <li class="toctree-l3"><a href="#create-a-jenkinsfile">Create a Jenkinsfile</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#install-maven-in-jenkins">Install Maven in Jenkins</a></li>
+        
+            <li><a class="toctree-l4" href="#create-the-build-script">Create the build script</a></li>
+        
+            <li><a class="toctree-l4" href="#create-the-pipeline-in-jenkins">Create the pipeline in Jenkins</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">06 Systemtest ci step</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../06_Systemtest_ci_step/01_Setup_test_env/">01 Setup test env</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../06_Systemtest_ci_step/02_Systemtest/">02 Systemtest</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../06_Systemtest_ci_step/03_Start_pipeline_on_every_push/">03 Start pipeline on every push</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">07 UI test</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../07_UI_test/01_UI_Test/">01 UI Test</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">08 Lasttest</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../08_Lasttest/01_Last_test/">01 Last test</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">09 Manual test</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../09_Manual_test/01_Create_manual_test/">01 Create manual test</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">10 Canary release</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../10_Canary_release/01_Create_a_canary_release/">01 Create a canary release</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">11 Full production release</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../11_Full_production_release/01_Go_full_production/">01 Go full production</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">12 Own Gogs</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../12_Own_Gogs/01_Use_your_own_Git_repository/">01 Use your own Git repository</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">13 Monitoring</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../13_Monitoring/01_Dashboard/">01 Dashboard</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../13_Monitoring/02_Prometheus/">02 Prometheus</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../13_Monitoring/03_Weave_scope/">03 Weave scope</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">14 Documentation of rest service</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../14_Documentation_of_rest_service/01_Documentation/">01 Documentation</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">15 Angular2 frontend</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../15_Angular2_frontend/01_Initial_setup/">01 Initial setup</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../15_Angular2_frontend/02_Test_and_prod_stage/">02 Test and prod stage</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../15_Angular2_frontend/03_First_view/">03 First view</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">16 SSO with Keycloak</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../16_SSO_with_Keycloak/01_Setup_Keycloak/">01 Setup Keycloak</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../16_SSO_with_Keycloak/02_Initial_setup_of_Keycloak/">02 Initial setup of Keycloak</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../16_SSO_with_Keycloak/03_Secure_REST_service/">03 Secure REST service</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../16_SSO_with_Keycloak/04_Secure_frontend_service/">04 Secure frontend service</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">17 Event Sourcing with Cassandra</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../17_Event_Sourcing_with_Cassandra/01_Setup_Cassandra/">01 Setup Cassandra</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../17_Event_Sourcing_with_Cassandra/02_REST_service_with_event_sourcing/">02 REST service with event sourcing</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../17_Event_Sourcing_with_Cassandra/03_Changes_to_the_frontend/">03 Changes to the frontend</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">18 Connect keycloak user with application user</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../18_Connect_keycloak_user_with_application_user/01_Setup_keycloak_with_a_provider/">01 Setup keycloak with a provider</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../18_Connect_keycloak_user_with_application_user/02_Changes_to_the_REST_service/">02 Changes to the REST service</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../18_Connect_keycloak_user_with_application_user/03_Changes_in_the_environment/">03 Changes in the environment</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">19 CQRS with Kafka</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../19_CQRS_with_Kafka/01_Setup_Kafka/">01 Setup Kafka</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../19_CQRS_with_Kafka/02_Command_service/">02 Command service</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../19_CQRS_with_Kafka/03_Query_service/">03 Query service</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../19_CQRS_with_Kafka/04_Frontend_service/">04 Frontend service</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../19_CQRS_with_Kafka/05_Other_updates/">05 Other updates</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">20 Fileuploader</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../20_Fileuploader/01_Create_fileuploader_service/">01 Create fileuploader service</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../20_Fileuploader/02_REST_service_adaptions/">02 REST service adaptions</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../20_Fileuploader/03_Query_service_adaptions/">03 Query service adaptions</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../20_Fileuploader/04_Frontend_adaptions/">04 Frontend adaptions</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">Microservices with Kubernetes</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>05 Build and push ci step &raquo;</li>
+        
+      
+    
+    <li>Build and push CI step</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/robertBrem/Microservices_with_Kubernetes/edit/master/docs/05_Build_and_push_ci_step/01_Build_and_push_CI_step.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="build-and-push-ci-step">Build and push CI step</h1>
+<p>The first step of the CI/CD pipeline is the creation of the service as a Docker image.  </p>
+<h1 id="create-a-jenkinsfile">Create a <code>Jenkinsfile</code></h1>
+<p>To create a new pipeline we've to create a <code>Jenkinsfile</code> similar to <a href="https://gist.github.com/robertBrem/b18dee521176a3d75026cbe902d16b2f">this one</a>.</p>
+<pre><code class="groovy">withEnv([&quot;VERSION=1.0.${currentBuild.number}&quot;, &quot;REGISTRY_EMAIL=brem_robert@hotmail.com&quot;]) {
+  stage &quot;checkout, build, test and publish&quot;
+  node {
+    git url: &quot;https://github.com/robertBrem/battleapp&quot;
+    def mvnHome = tool 'M3'
+    sh &quot;${mvnHome}/bin/mvn clean install&quot;
+    sh &quot;./build.js&quot;
+  }
+}
+</code></pre>
+
+<h2 id="install-maven-in-jenkins">Install Maven in Jenkins</h2>
+<p>Before we can execute this pipeline we have to install Maven in Jenkins.<br />
+<code>Manage Jenkins</code> <code>Global Tool Configuration</code> <code>Add Maven</code><br />
+There we set the name to <code>M3</code><br />
+<img alt="Install Maven" src="../images/jenkins_maven.png" />  </p>
+<h2 id="create-the-build-script">Create the build script</h2>
+<p>The script to build and push the Docker image is written in JavaScript and gets executed
+with Nashorn.</p>
+<pre><code>#!/usr/bin/jjs -fv
+
+var version = $ENV.VERSION;
+var username = $ENV.REGISTRY_USERNAME;
+var password = $ENV.REGISTRY_PASSWORD;
+var email = $ENV.REGISTRY_EMAIL;
+
+var registry = &quot;disruptor.ninja:30500&quot;;
+var image = &quot;robertbrem/battleapp&quot;;
+var completeImageName = registry + &quot;/&quot; + image + &quot;:&quot; + version;
+
+var dockerBuild = &quot;docker build -t &quot; + completeImageName + &quot; .&quot;;
+execute(dockerBuild);
+
+var dockerLogin = &quot;docker login --username=&quot; + username + &quot; --password=&quot; + password + &quot; --email=&quot; + email + &quot; &quot; + registry;
+execute(dockerLogin);
+
+var push = &quot;docker push &quot; + completeImageName;
+execute(push);
+
+function execute(command) {
+    $EXEC(command);
+    print($OUT);
+    print($ERR);
+}
+</code></pre>
+
+<p>This script is available as live script.</p>
+<p>That the script can be executed it has to be executable:</p>
+<pre><code>chmod 750 build.js
+</code></pre>
+
+<h2 id="create-the-pipeline-in-jenkins">Create the pipeline in Jenkins</h2>
+<p>Now create the Jenkins pipeline with the created <code>Jenkinsfile</code>.<br />
+Click in Jenkins on <code>New item</code> with the name <code>battleapp</code> and of type <code>Pipeline</code>.<br />
+<img alt="Jenkins Pipeline" src="../images/jenkins_pipeline.png" />  </p>
+<p>Choose <code>Trigger builds remotely (e.g., from scripts)</code> and set a token.<br />
+<img alt="Trigger build token" src="../images/build_triggers.png" />  </p>
+<p>Choose <code>Pipeline script from SCM</code> with the following settings:<br />
+<img alt="Pipeline from SCM" src="../images/pipeline_from_scm.png" />  </p>
+<p>Then <code>Save</code> and <code>Build Now</code>.  </p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../../06_Systemtest_ci_step/01_Setup_test_env/" class="btn btn-neutral float-right" title="01 Setup test env">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../../04_Jenkins/01_Setup_Jenkins_in_Kubernetes/" class="btn btn-neutral" title="Setup Jenkins in Kubernetes"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/robertBrem/Microservices_with_Kubernetes/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../../04_Jenkins/01_Setup_Jenkins_in_Kubernetes/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../../06_Systemtest_ci_step/01_Setup_test_env/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/require.js"></script>
+      <script src="../../search/search.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Changes we've to do in the fronend - Microservices with Kubernetes</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/highlight.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Changes we've to do in the fronend";
+    var mkdocs_page_input_path = "20_Fileuploader/04_Frontend_adaptions.md";
+    var mkdocs_page_url = "/20_Fileuploader/04_Frontend_adaptions/";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js"></script>
+  <script src="../../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> Microservices with Kubernetes</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">Microservices with Kubernetes</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../README/">Microservices with Kubernetes</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">01 Setup</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../01_Setup/01_Host_setup/">Setup your local host machine</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../01_Setup/02_Kubernetes_setup/">Setup a Kubernetes cluster</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">02 First rest service</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../02_First_rest_service/01_JavaEE_service/">Creating our first JavaEE microservice</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../02_First_rest_service/02_Dockerization/">Dockerization of the service</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../02_First_rest_service/03_Deploy_in_Kubernetes/">Deploy the Docker image of the service in Kubernetes</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">03 Docker registry</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../03_Docker_registry/01_Setup_a_docker_registry/">Setup a docker registry</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">04 Jenkins</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../04_Jenkins/01_Setup_Jenkins_in_Kubernetes/">Setup Jenkins in Kubernetes</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">05 Build and push ci step</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../05_Build_and_push_ci_step/01_Build_and_push_CI_step/">Build and push CI step</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">06 Systemtest ci step</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../06_Systemtest_ci_step/01_Setup_test_env/">Setup the test environment</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../06_Systemtest_ci_step/02_Systemtest/">Add a system test</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../06_Systemtest_ci_step/03_Start_pipeline_on_every_push/">Start the Jenkins pipeline on every push</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">07 UI test</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../07_UI_test/01_UI_Test/">UI Test</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">08 Lasttest</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../08_Lasttest/01_Last_test/">Last test</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">09 Manual test</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../09_Manual_test/01_Create_manual_test/">Create manual test</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">10 Canary release</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../10_Canary_release/01_Create_a_canary_release/">Create a canary release</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">11 Full production release</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../11_Full_production_release/01_Go_full_production/">Go full production with the new version</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">12 Own Gogs</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../12_Own_Gogs/01_Use_your_own_Git_repository/">Use your own Git repository</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">13 Monitoring</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../13_Monitoring/01_Dashboard/">Kubernetes dashboard</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../13_Monitoring/02_Prometheus/">Monitoring with Prometheus</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../13_Monitoring/03_Weave_scope/">Weave Scope</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">14 Documentation of rest service</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../14_Documentation_of_rest_service/01_Documentation/">Documentation of the `jax-rs` service</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">15 Angular2 frontend</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../15_Angular2_frontend/01_Initial_setup/">Create an Angular 2 frontend</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../15_Angular2_frontend/02_Test_and_prod_stage/">Create a test and production stage</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../15_Angular2_frontend/03_First_view/">Creation of the first view</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">16 SSO with Keycloak</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../16_SSO_with_Keycloak/01_Setup_Keycloak/">Setup Keycloak</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../16_SSO_with_Keycloak/02_Initial_setup_of_Keycloak/">Initial setup of Keycloak</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../16_SSO_with_Keycloak/03_Secure_REST_service/">Secure the `jax-rs` service</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../16_SSO_with_Keycloak/04_Secure_frontend_service/">Secure the Angular2 frontend service</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">17 Event Sourcing with Cassandra</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../17_Event_Sourcing_with_Cassandra/01_Setup_Cassandra/">Setup Cassandra</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../17_Event_Sourcing_with_Cassandra/02_REST_service_with_event_sourcing/">Change the REST service to use event sourcing and Cassandra</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../17_Event_Sourcing_with_Cassandra/03_Changes_to_the_frontend/">Change to the frontend service</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">18 Connect keycloak user with application user</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../18_Connect_keycloak_user_with_application_user/01_Setup_keycloak_with_a_provider/">Setup Keycloak with an event provider</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../18_Connect_keycloak_user_with_application_user/02_Changes_to_the_REST_service/">Changes we've to do in the REST service</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../18_Connect_keycloak_user_with_application_user/03_Changes_in_the_environment/">Changes in the environment scripts</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">19 CQRS with Kafka</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../19_CQRS_with_Kafka/01_Setup_Kafka/">Setup Kafka</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../19_CQRS_with_Kafka/02_Command_service/">The command REST service</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../19_CQRS_with_Kafka/03_Query_service/">The query REST service</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../19_CQRS_with_Kafka/04_Frontend_service/">Changes to the frontend</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../19_CQRS_with_Kafka/05_Other_updates/">Other updates</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">20 Fileuploader</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../01_Create_fileuploader_service/">Create the fileuploader service</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../02_REST_service_adaptions/">Changes we've to do in the REST service</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../03_Query_service_adaptions/">Changes we've to do in the query service</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">Changes we've to do in the fronend</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#changes-weve-to-do-in-the-fronend">Changes we've to do in the fronend</a></li>
+    
+
+    </ul>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">Microservices with Kubernetes</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>20 Fileuploader &raquo;</li>
+        
+      
+    
+    <li>Changes we've to do in the fronend</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/robertBrem/Microservices_with_Kubernetes/edit/master/docs/20_Fileuploader/04_Frontend_adaptions.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="changes-weve-to-do-in-the-fronend">Changes we've to do in the fronend</h1>
+<p>The following files have to be changed or created:</p>
+<p><code>fileupload.component.css</code></p>
+<pre><code>.button {
+    overflow: hidden;
+    position: relative;
+    background-color: #212121;
+    color: whitesmoke;
+    padding: 0.5em;
+}
+
+.button [type=file] {
+    cursor: inherit;
+    display: inline-block;
+    font-size: 999px;
+    filter: alpha(opacity=0);
+    min-height: 100%;
+    min-width: 100%;
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    text-align: right;
+    top: 0;
+}
+</code></pre>
+
+<p><code>fileupload.component.html</code></p>
+<pre><code>&lt;label class=&quot;button&quot;&gt;
+    Upload...
+    &lt;input
+            type=&quot;file&quot;
+            (change)=&quot;upload($event)&quot;
+            [multiple]=&quot;multiple&quot;/&gt;
+&lt;/label&gt;
+</code></pre>
+
+<p><code>fileupload.component.ts</code></p>
+<pre><code>import {Component, Input, Output, EventEmitter} from &quot;@angular/core&quot;;
+import {Headers, Http, RequestOptions} from &quot;@angular/http&quot;;
+import {UserService} from &quot;../users/users.service&quot;;
+import {User} from &quot;../users/user&quot;;
+
+@Component({
+    selector: 'file-upload',
+    templateUrl: './fileupload.component.html',
+    styleUrls: ['./fileupload.component.css']
+})
+export class FileUploadComponent {
+    @Input()
+    multiple: boolean = false;
+
+    @Input()
+    url: string = &quot;&quot;;
+
+    @Output()
+    notify: EventEmitter&lt;string&gt; = new EventEmitter&lt;string&gt;();
+
+    constructor(private http: Http, private service: UserService) {
+    }
+
+    public upload = (event: EventTarget) =&gt; {
+        let _self = this;
+        window['_keycloak']
+            .loadUserInfo()
+            .success(function (userInfo) {
+                _self.uploadWithUserId(userInfo.sub, _self.url, event);
+            });
+    };
+
+    public uploadWithUserId = (userId: string, url: string, event: EventTarget) =&gt; {
+        let eventObj: MSInputMethodContext = &lt;MSInputMethodContext&gt; event;
+        let target: HTMLInputElement = &lt;HTMLInputElement&gt; eventObj.target;
+        let files: FileList = target.files;
+        let fileCount: number = files.length;
+        let formData = new FormData();
+
+        if (fileCount &gt; 0) {
+            for (let i = 0; i &lt; fileCount; i++) {
+                let fileUrl = '/battleapp/users/' + userId + '/profilepicture';
+                formData.append(fileUrl, files.item(i));
+            }
+
+            let token = window['_keycloak'].token;
+            let headers = new Headers();
+            headers.append('Authorization', 'Bearer ' + token);
+            let options = new RequestOptions({headers: headers});
+
+            this.http
+                .post(url, formData, options)
+                .map(res =&gt; res.json())
+                .subscribe((data: any) =&gt; {
+                        for (var arrayKey in data) {
+                            for (var key in data[arrayKey]) {
+                                var value = data[arrayKey][key];
+                                let user: User = new User(userId, undefined, undefined, undefined, value);
+                                this.service
+                                    .update(userId, user)
+                                    .subscribe((updatedUser: User) =&gt; {
+                                            this.notify.emit(updatedUser.profilePicture);
+                                        },
+                                        error =&gt; console.log('ERROR: ' + error)
+                                    );
+                            }
+                        }
+                    },
+                    error =&gt; console.log('ERROR: ' + error)
+                );
+        }
+
+    }
+
+}
+</code></pre>
+
+<p><code>profile.component.css</code></p>
+<pre><code>md-card img {
+    max-width: 90%;
+    max-height: 300px;
+    height: auto;
+    width: auto;
+    margin: 1em auto;
+    display: block;
+}
+
+md-card {
+    max-width: 600px;
+}
+</code></pre>
+
+<p><code>profile.component.html</code></p>
+<pre><code>&lt;md-card&gt;
+    &lt;md-card-header&gt;
+        &lt;md-card-title&gt;{{ user.nickname }}&lt;/md-card-title&gt;
+        &lt;md-card-subtitle&gt;{{ user.firstName + ' ' + user.lastName }}&lt;/md-card-subtitle&gt;
+    &lt;/md-card-header&gt;
+    &lt;img md-card-image src=&quot;{{ user.profilePicture }}&quot;&gt;
+    &lt;md-card-content&gt;
+        &lt;p&gt;Upload a profile picture!&lt;/p&gt;
+        &lt;file-upload
+                (notify)=&quot;onUploadFinished($event)&quot;
+                [multiple]=&quot;true&quot;
+                [url]=&quot;getProfilePicture()&quot;&gt;&lt;/file-upload&gt;
+    &lt;/md-card-content&gt;
+&lt;/md-card&gt;
+</code></pre>
+
+<p><code>profile.component.ts</code></p>
+<pre><code>import {UserService} from &quot;../users/users.service&quot;;
+import {Component} from &quot;@angular/core&quot;;
+import {User} from &quot;../users/user&quot;;
+import {Observable} from &quot;rxjs&quot;;
+import {Http} from &quot;@angular/http&quot;;
+
+@Component({
+    selector: 'profile',
+    templateUrl: './profile.component.html',
+    styleUrls: ['./profile.component.css'],
+    providers: [UserService]
+})
+export class ProfileComponent {
+    private user: User = new User(undefined, undefined, undefined, undefined, undefined);
+    private environment: Observable&lt;any&gt;;
+
+    public url: string = &quot;&quot;;
+
+    constructor(private http: Http, private service: UserService) {
+        this.environment = this.http
+            .get('/environment/environment.json')
+            .map(res =&gt; res.json());
+
+        this.http
+            .get('/environment/environment.json')
+            .map(res =&gt; res.json())
+            .subscribe((env: any) =&gt; {
+                this.url = this.getFileuploaderUrl(env);
+            });
+    }
+
+    ngOnInit() {
+        this.getUser();
+    }
+
+    public getProfilePicture = () =&gt; {
+        return this.url;
+    };
+
+    public getFileuploaderUrl = (env: any): string =&gt; {
+        return 'http://' + env.host + ':' + env.fileuploader_port + '/battleapp/fileupload';
+    };
+
+    private getUser = () =&gt; {
+        let _self = this;
+        window['_keycloak']
+            .loadUserInfo()
+            .success(function (userInfo) {
+                _self.service
+                    .find(userInfo.sub)
+                    .subscribe((responseUser: User) =&gt; {
+                            _self.loadUser(responseUser);
+                        },
+                        error =&gt; console.log(error)
+                    );
+            });
+    };
+
+    public loadUser = (responseUser: User): void =&gt; {
+        this.user = new User(
+            responseUser.id,
+            responseUser.nickname,
+            responseUser.firstName,
+            responseUser.lastName,
+            undefined);
+        this.service
+            .getFullProfilePictureUrl(responseUser.profilePicture)
+            .subscribe((fullUrlArray: string) =&gt; {
+                    this.user.profilePicture = fullUrlArray;
+                },
+                error =&gt; console.log(error)
+            );
+    };
+
+    public onUploadFinished = (profilePicture: string): void =&gt; {
+        this.service
+            .getFullProfilePictureUrl(profilePicture)
+            .subscribe((fullUrlArray: string) =&gt; {
+                    this.user.profilePicture = fullUrlArray;
+                },
+                error =&gt; console.log(error)
+            );
+    };
+}
+</code></pre>
+
+<p><code>app.module.ts</code></p>
+<pre><code>...
+import {FileUploadComponent} from &quot;./fileupload/fileupload.component&quot;;
+import {ProfileComponent} from &quot;./profile/profile.component&quot;;
+...
+declarations: [
+    AppComponent,
+    UserComponent,
+    ProfileComponent,
+    NoContentComponent,
+    FileUploadComponent
+],
+...
+</code></pre>
+
+<p><code>environment.json</code></p>
+<pre><code>{
+    &quot;host&quot;: &quot;localhost&quot;,
+    &quot;command_port&quot;: 8083,
+    &quot;query_port&quot;: 8082,
+    &quot;fileuploader_port&quot;: 8084,
+    &quot;filedownloader_port&quot;: 8085
+}
+</code></pre>
+
+<p><code>user.ts</code></p>
+<pre><code>export class User {
+    public id: string;
+    public nickname: string;
+    public firstName: string;
+    public lastName: string;
+    public profilePicture: string;
+
+    constructor(id: string,
+                nickname: string,
+                firstName: string,
+                lastName: string,
+                profilePicture: string) {
+        this.id = id;
+        this.nickname = nickname;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.profilePicture = profilePicture;
+    }
+
+    public toString = (): string =&gt; {
+        return 'id: ' + this.id
+            + ', nickname: ' + this.nickname
+            + ', firstName: ' + this.firstName
+            + ', lastName: ' + this.lastName
+            + ', profilePicture: ' + this.profilePicture;
+    }
+
+}
+</code></pre>
+
+<p><code>app.component.html</code></p>
+<pre><code>...
+&lt;p&gt;
+    &lt;a [routerLink]=&quot; ['./profile'] &quot; (click)=&quot;sidenav.toggle()&quot;&gt;
+        Profile
+    &lt;/a&gt;
+&lt;/p&gt;
+...
+</code></pre>
+
+<p><code>app.routes.ts</code></p>
+<pre><code>...
+import {ProfileComponent} from &quot;./profile/profile.component&quot;;
+...
+export const ROUTES: Routes = [
+    {path: '', component: ProfileComponent},
+    {path: 'profile', component: ProfileComponent},
+    {path: 'users', component: UserComponent},
+    {path: '**', component: NoContentComponent},
+];
+...
+</code></pre>
+
+<p>We've to add the two new ports to the Kubernetes configmap of the <code>environment.json</code>:</p>
+<pre><code>{
+  &quot;host&quot;: &quot;disruptor.ninja&quot;,
+  &quot;command_port&quot;: 30080,
+  &quot;query_port&quot;: 30081,
+  &quot;fileuploader_port&quot;: 30082,
+  &quot;filedownloader_port&quot;: 30031
+}
+</code></pre>
+
+<p>And the same for the test configmap: </p>
+<pre><code>{
+  &quot;host&quot;: &quot;disruptor.ninja&quot;,
+  &quot;command_port&quot;: 31080,
+  &quot;query_port&quot;: 31081,
+  &quot;fileuploader_port&quot;: 31082,
+  &quot;filedownloader_port&quot;: 31031
+}
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="../03_Query_service_adaptions/" class="btn btn-neutral" title="Changes we've to do in the query service"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/robertBrem/Microservices_with_Kubernetes/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../03_Query_service_adaptions/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/require.js"></script>
+      <script src="../../search/search.js"></script>
+
+</body>
+</html>

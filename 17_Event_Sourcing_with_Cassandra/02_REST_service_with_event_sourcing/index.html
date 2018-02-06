@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Change the REST service to use event sourcing and Cassandra - Microservices with Kubernetes</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/highlight.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Change the REST service to use event sourcing and Cassandra";
+    var mkdocs_page_input_path = "17_Event_Sourcing_with_Cassandra/02_REST_service_with_event_sourcing.md";
+    var mkdocs_page_url = "/17_Event_Sourcing_with_Cassandra/02_REST_service_with_event_sourcing/";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js"></script>
+  <script src="../../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> Microservices with Kubernetes</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">Microservices with Kubernetes</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../README/">Microservices with Kubernetes</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">01 Setup</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../01_Setup/01_Host_setup/">Setup your local host machine</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../01_Setup/02_Kubernetes_setup/">Setup a Kubernetes cluster</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">02 First rest service</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../02_First_rest_service/01_JavaEE_service/">Creating our first JavaEE microservice</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../02_First_rest_service/02_Dockerization/">Dockerization of the service</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../02_First_rest_service/03_Deploy_in_Kubernetes/">Deploy the Docker image of the service in Kubernetes</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">03 Docker registry</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../03_Docker_registry/01_Setup_a_docker_registry/">Setup a docker registry</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">04 Jenkins</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../04_Jenkins/01_Setup_Jenkins_in_Kubernetes/">Setup Jenkins in Kubernetes</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">05 Build and push ci step</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../05_Build_and_push_ci_step/01_Build_and_push_CI_step/">Build and push CI step</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">06 Systemtest ci step</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../06_Systemtest_ci_step/01_Setup_test_env/">Setup the test environment</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../06_Systemtest_ci_step/02_Systemtest/">Add a system test</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../06_Systemtest_ci_step/03_Start_pipeline_on_every_push/">Start the Jenkins pipeline on every push</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">07 UI test</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../07_UI_test/01_UI_Test/">UI Test</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">08 Lasttest</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../08_Lasttest/01_Last_test/">Last test</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">09 Manual test</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../09_Manual_test/01_Create_manual_test/">Create manual test</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">10 Canary release</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../10_Canary_release/01_Create_a_canary_release/">Create a canary release</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">11 Full production release</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../11_Full_production_release/01_Go_full_production/">Go full production with the new version</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">12 Own Gogs</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../12_Own_Gogs/01_Use_your_own_Git_repository/">Use your own Git repository</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">13 Monitoring</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../13_Monitoring/01_Dashboard/">Kubernetes dashboard</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../13_Monitoring/02_Prometheus/">Monitoring with Prometheus</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../13_Monitoring/03_Weave_scope/">Weave Scope</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">14 Documentation of rest service</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../14_Documentation_of_rest_service/01_Documentation/">Documentation of the `jax-rs` service</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">15 Angular2 frontend</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../15_Angular2_frontend/01_Initial_setup/">Create an Angular 2 frontend</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../15_Angular2_frontend/02_Test_and_prod_stage/">Create a test and production stage</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../15_Angular2_frontend/03_First_view/">Creation of the first view</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">16 SSO with Keycloak</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../16_SSO_with_Keycloak/01_Setup_Keycloak/">Setup Keycloak</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../16_SSO_with_Keycloak/02_Initial_setup_of_Keycloak/">Initial setup of Keycloak</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../16_SSO_with_Keycloak/03_Secure_REST_service/">Secure the `jax-rs` service</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../16_SSO_with_Keycloak/04_Secure_frontend_service/">Secure the Angular2 frontend service</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">17 Event Sourcing with Cassandra</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../01_Setup_Cassandra/">Setup Cassandra</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">Change the REST service to use event sourcing and Cassandra</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#change-the-rest-service-to-use-event-sourcing-and-cassandra">Change the REST service to use event sourcing and Cassandra</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#event-sourcing-in-the-rest-service">Event Sourcing in the REST service</a></li>
+        
+            <li><a class="toctree-l4" href="#changes-to-the-test-environment">Changes to the test environment</a></li>
+        
+            <li><a class="toctree-l4" href="#changes-to-the-canary-release">Changes to the canary release</a></li>
+        
+            <li><a class="toctree-l4" href="#changes-to-the-consumer-driven-contract-test">Changes to the consumer driven contract test</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../03_Changes_to_the_frontend/">03 Changes to the frontend</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">18 Connect keycloak user with application user</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../18_Connect_keycloak_user_with_application_user/01_Setup_keycloak_with_a_provider/">01 Setup keycloak with a provider</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../18_Connect_keycloak_user_with_application_user/02_Changes_to_the_REST_service/">02 Changes to the REST service</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../18_Connect_keycloak_user_with_application_user/03_Changes_in_the_environment/">03 Changes in the environment</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">19 CQRS with Kafka</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../19_CQRS_with_Kafka/01_Setup_Kafka/">01 Setup Kafka</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../19_CQRS_with_Kafka/02_Command_service/">02 Command service</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../19_CQRS_with_Kafka/03_Query_service/">03 Query service</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../19_CQRS_with_Kafka/04_Frontend_service/">04 Frontend service</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../19_CQRS_with_Kafka/05_Other_updates/">05 Other updates</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">20 Fileuploader</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../20_Fileuploader/01_Create_fileuploader_service/">01 Create fileuploader service</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../20_Fileuploader/02_REST_service_adaptions/">02 REST service adaptions</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../20_Fileuploader/03_Query_service_adaptions/">03 Query service adaptions</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../20_Fileuploader/04_Frontend_adaptions/">04 Frontend adaptions</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">Microservices with Kubernetes</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>17 Event Sourcing with Cassandra &raquo;</li>
+        
+      
+    
+    <li>Change the REST service to use event sourcing and Cassandra</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/robertBrem/Microservices_with_Kubernetes/edit/master/docs/17_Event_Sourcing_with_Cassandra/02_REST_service_with_event_sourcing.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="change-the-rest-service-to-use-event-sourcing-and-cassandra">Change the REST service to use event sourcing and Cassandra</h1>
+<h2 id="event-sourcing-in-the-rest-service">Event Sourcing in the REST service</h2>
+<p>In the book 
+<a href="https://www.amazon.de/Implementing-Domain-Driven-Design-Vaughn-Vernon/dp/0321834577">Implementing Domain Driven Design</a>
+there's a chapter with a C# implementation of Event Sourcing. I've implemented
+my version of the Event Sourcing based on this example from the book.
+The implementation is under the following package 
+<code>ninja.disruptor.battleapp.eventstore</code> in 
+<a href="http://disruptor.ninja:30130/rob/battleapp/src/master/src/main/java/ninja/disruptor/battleapp/eventstore">this repository</a>.</p>
+<p>Under <code>ninja.disruptor.battleapp.user.entity.event</code> we've to create the needed events for the <code>User</code>.
+Our user has the following properties:</p>
+<pre><code>private String id;
+private String nickname;
+private String firstName;
+private String lastName;
+</code></pre>
+
+<p>Therefore we need these event classes:</p>
+<pre><code>@AllArgsConstructor
+@Getter
+public class UserEvent implements CoreEvent {
+    private final String id;
+}
+</code></pre>
+
+<pre><code>public class UserCreated extends UserEvent {
+    public UserCreated(String id) {
+        super(id);
+    }
+}
+</code></pre>
+
+<pre><code>public class UserDeleted extends UserEvent {
+    public UserDeleted(String id) {
+        super(id);
+    }
+}
+</code></pre>
+
+<pre><code>@Getter
+public class UserFirstNameChanged extends UserEvent {
+    private final String firstName;
+
+    public UserFirstNameChanged(String id, String firstName) {
+        super(id);
+        this.firstName = firstName;
+    }
+}
+</code></pre>
+
+<pre><code>@Getter
+public class UserLastNameChanged extends UserEvent {
+    private final String lastName;
+
+    public UserLastNameChanged(String id, String lastName) {
+        super(id);
+        this.lastName = lastName;
+    }
+
+}
+</code></pre>
+
+<pre><code>@Getter
+public class UserNicknameChanged extends UserEvent {
+    private final String nickname;
+
+    public UserNicknameChanged(String id, String nickname) {
+        super(id);
+        this.nickname = nickname;
+    }
+
+}
+</code></pre>
+
+<p>At next we've to adapt our <code>User</code> entity itself:</p>
+<pre><code>@NoArgsConstructor
+@ToString
+@XmlAccessorType(XmlAccessType.FIELD)
+@Data
+public class User {
+    private String id;
+    private String nickname;
+    private String firstName;
+    private String lastName;
+
+    @XmlTransient
+    private final List&lt;CoreEvent&gt; changes = new ArrayList&lt;&gt;();
+
+    public User(User copy) {
+        this.id = copy.getId();
+        this.nickname = copy.getNickname();
+        this.firstName = copy.getFirstName();
+        this.lastName = copy.getLastName();
+    }
+
+    public User(List&lt;CoreEvent&gt; events) {
+        for (CoreEvent event : events) {
+            mutate(event);
+        }
+    }
+
+    public void changeFirstName(String firstName) {
+        apply(new UserFirstNameChanged(id, firstName));
+    }
+
+    public void changeLastName(String lastName) {
+        apply(new UserLastNameChanged(id, lastName));
+    }
+
+    public void changeNickname(String nickname) {
+        apply(new UserNicknameChanged(id, nickname));
+    }
+
+    public void create(String id) {
+        apply(new UserCreated(id));
+    }
+
+    public void delete() {
+        apply(new UserDeleted(id));
+    }
+
+    public void mutate(CoreEvent event) {
+        when(event);
+    }
+
+    public void apply(CoreEvent event) {
+        changes.add(event);
+        mutate(event);
+    }
+
+    public void when(CoreEvent event) {
+        if (event instanceof UserCreated) {
+            this.id = event.getId();
+        } else if (event instanceof UserFirstNameChanged) {
+            this.firstName = ((UserFirstNameChanged) event).getFirstName();
+        } else if (event instanceof UserLastNameChanged) {
+            this.lastName = ((UserLastNameChanged) event).getLastName();
+        } else if (event instanceof UserNicknameChanged) {
+            this.nickname = ((UserNicknameChanged) event).getNickname();
+        }
+    }
+
+}
+</code></pre>
+
+<p>Implement a <code>createUser</code> method in our <code>UserService</code> EJB:</p>
+<pre><code>...
+
+@Inject
+EventStore store;
+
+public Supplier&lt;Response&gt; save(User user, UriInfo info) {
+    User saved = create(user.getId());
+    if (user.getFirstName() != null) {
+        saved = changeFirstName(saved.getId(), user.getFirstName());
+    }
+    if (user.getLastName() != null) {
+        saved = changeLastName(saved.getId(), user.getLastName());
+    }
+    if (user.getNickname() != null) {
+        saved = changeNickname(saved.getId(), user.getNickname());
+    }
+    String id = saved.getId();
+    URI uri = info
+            .getAbsolutePathBuilder()
+            .path(&quot;/&quot; + id)
+            .build();
+    final User postSaveUser = new User(saved);
+    return () -&gt; Response
+            .created(uri)
+            .entity(new User(postSaveUser))
+            .build();
+}
+
+public User create(String id) {
+    User player = new User(new ArrayList&lt;&gt;());
+    player.create(id);
+    store.appendToStream(new EventIdentity(User.class, id), 0L, player.getChanges());
+    return player;
+}
+
+public User changeFirstName(String id, String firstName) {
+    EventStream stream = store.loadEventStream(new EventIdentity(User.class, id));
+    User user = new User(stream.getEvents());
+    user.changeFirstName(firstName);
+    store.appendToStream(new EventIdentity(User.class, id), stream.getVersion(), user.getChanges());
+    return user;
+}
+
+public User changeLastName(String id, String lastName) {
+    EventStream stream = store.loadEventStream(new EventIdentity(User.class, id));
+    User user = new User(stream.getEvents());
+    user.changeLastName(lastName);
+    store.appendToStream(new EventIdentity(User.class, id), stream.getVersion(), user.getChanges());
+    return user;
+}
+
+public User changeNickname(String id, String nickname) {
+    EventStream stream = store.loadEventStream(new EventIdentity(User.class, id));
+    User user = new User(stream.getEvents());
+    user.changeNickname(nickname);
+    store.appendToStream(new EventIdentity(User.class, id), stream.getVersion(), user.getChanges());
+    return user;
+}
+
+...
+</code></pre>
+
+<p>To expose the <code>create</code> method we've to create a REST service method in the <code>UserResource</code> as well.</p>
+<pre><code>@POST
+public void save(@Suspended AsyncResponse response, @Context UriInfo info, User user) {
+    CompletableFuture
+            .supplyAsync(service.save(user, info), usersPool)
+            .thenAccept(response::resume);
+}
+</code></pre>
+
+<p>Our event sourcing implementation uses Cassandre therefore we've to add the following dependencies:</p>
+<pre><code>&lt;dependency&gt;
+    &lt;groupId&gt;com.datastax.cassandra&lt;/groupId&gt;
+    &lt;artifactId&gt;cassandra-driver-core&lt;/artifactId&gt;
+    &lt;version&gt;3.1.2&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;com.datastax.cassandra&lt;/groupId&gt;
+    &lt;artifactId&gt;cassandra-driver-mapping&lt;/artifactId&gt;
+    &lt;version&gt;3.1.2&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+
+<p>To configure Cassandra also have to create a <code>CassandraProvider</code>:</p>
+<pre><code>@Singleton
+public class CassandraProvider {
+    public static final String CASSANDRA_ADDRESS = &quot;CASSANDRA_ADDRESS&quot;;
+    public static final String KEYSPACE = &quot;battleapp&quot;;
+
+    private Session session;
+
+    @Produces
+    public Session getSession() {
+        if (session == null) {
+            String address = &quot;localhost&quot;;
+            String cassandraEnv = System.getenv(CASSANDRA_ADDRESS);
+            if (cassandraEnv != null &amp;&amp; !cassandraEnv.isEmpty()) {
+                address = cassandraEnv;
+            }
+            Cluster cluster = Cluster.builder()
+                    .addContactPoints(address)
+                    .build();
+            session = cluster.connect(KEYSPACE);
+        }
+        return session;
+    }
+
+}
+</code></pre>
+
+<p>To display the created events we need a database or in our case just a simple <code>Map</code> to store the
+users.</p>
+<pre><code>@Startup
+@Singleton
+@ConcurrencyManagement(ConcurrencyManagementType.BEAN)
+public class InMemoryCache {
+
+    @Getter
+    private Map&lt;String, User&gt; users = new HashMap&lt;&gt;();
+
+    @Inject
+    JsonConverter converter;
+
+    @Inject
+    EventRepository repository;
+
+    @PostConstruct
+    public void init() {
+        repository
+                .findAllUsers()
+                .parallelStream()
+                .forEach(u -&gt; users.put(u.getId(), u));
+    }
+
+    public void onEvent(@Observes String jsonEventString) {
+        List&lt;CoreEvent&gt; events = converter.convertToEvents(jsonEventString);
+        for (CoreEvent event : events) {
+            handle(event);
+        }
+    }
+
+    public void handle(CoreEvent event) {
+        if (event instanceof UserCreated) {
+            List&lt;CoreEvent&gt; events = new ArrayList&lt;&gt;();
+            events.add(event);
+            User user = new User(events);
+            users.put(event.getId(), user);
+        } else if (event instanceof UserDeleted) {
+            User user = users.get(event.getId());
+            if (user == null) {
+                System.out.println(&quot;rejected!&quot;);
+                return;
+            }
+            users.remove(user.getId());
+        } else if (event instanceof UserEvent) {
+            User user = users.get(event.getId());
+            if (user == null) {
+                System.out.println(&quot;rejected!&quot;);
+                return;
+            }
+            user.mutate(event);
+        } else {
+            System.out.println(&quot;Event not found: &quot; + event.toString());
+            throw new NotImplementedException();
+        }
+    }
+
+}
+</code></pre>
+
+<p>Now we can change our <code>users</code> REST service to use the users from the db instead the hardcoded
+test users. In the <code>UserService</code> we've to include the following parts:</p>
+<pre><code>...
+@Inject
+InMemoryCache cache;
+
+public Supplier&lt;GenericEntity&lt;Set&lt;User&gt;&gt;&gt; getUsersFilteredByNickname(String nickname) {
+    if (nickname == null || nickname.isEmpty()) {
+        return () -&gt; new GenericEntity&lt;Set&lt;User&gt;&gt;(getUsers()) {
+        };
+    } else {
+        return () -&gt; new GenericEntity&lt;Set&lt;User&gt;&gt;(getUsers()
+                .parallelStream()
+                .filter(u -&gt; u.getNickname().toLowerCase().contains(nickname.toLowerCase()))
+                .collect(Collectors.toSet())) {
+        };
+    }
+}
+
+public Set&lt;User&gt; getUsers() {
+    return new HashSet&lt;&gt;(cache.getUsers().values());
+}
+...
+</code></pre>
+
+<p>And in our <code>UserResource</code>:</p>
+<pre><code>@GET
+public void getUsers(@Suspended AsyncResponse response, @QueryParam(&quot;nickname&quot;) String nickname) {
+    CompletableFuture
+            .supplyAsync(service.getUsersFilteredByNickname(nickname), usersPool)
+            .thenAccept(response::resume);
+}
+</code></pre>
+
+<h2 id="changes-to-the-test-environment">Changes to the test environment</h2>
+<p>That we can use the Docker repository we've to create the same 
+<code>docker-registry</code> <code>secret</code> from the production environment for the 
+test environment too.</p>
+<pre><code>kc --namespace test create secret docker-registry registrykey --docker-username=rob --docker-password=1234 --docker-email=brem_robert@hotmail.com --docker-server=disruptor.ninja:30500
+</code></pre>
+
+<p>The following changes have to be made to the <code>start.js</code>:</p>
+<pre><code>...
+var name = &quot;battleapp&quot;;
+var cassandraHost = &quot;cassandra&quot;;
+var namespace = &quot;test&quot;;
+...
+var deleteDeployment = kubectl + &quot; --namespace &quot; + namespace + &quot; delete deployment &quot; + name;
+...
+dfw.write(&quot;metadata:\n&quot;);
+dfw.write(&quot;  namespace: &quot; + namespace + &quot;\n&quot;);
+...
+dfw.write(&quot;        - name: CASSANDRA_ADDRESS\n&quot;);
+dfw.write(&quot;          value: \&quot;&quot; + cassandraHost + &quot;\&quot;\n&quot;);
+...
+var deleteService = kubectl + &quot; --namespace &quot; + namespace + &quot; delete service &quot; + name;
+...
+sfw.write(&quot;metadata:\n&quot;);
+sfw.write(&quot;  name: &quot; + name + &quot;\n&quot;);
+sfw.write(&quot;  namespace: &quot; + namespace + &quot;\n&quot;);
+...
+</code></pre>
+
+<h2 id="changes-to-the-canary-release">Changes to the canary release</h2>
+<p>The following changes have to be made to the <code>start.js</code>:</p>
+<pre><code>...
+var cassandraHost = &quot;cassandra&quot;;
+...
+dfw.write(&quot;        - name: CASSANDRA_ADDRESS\n&quot;);
+dfw.write(&quot;          value: \&quot;&quot; + cassandraHost + &quot;\&quot;\n&quot;);
+...
+</code></pre>
+
+<h2 id="changes-to-the-consumer-driven-contract-test">Changes to the consumer driven contract test</h2>
+<p>We need the following two dependencies that we can call the create method of the REST service:</p>
+<pre><code>&lt;dependency&gt;
+    &lt;groupId&gt;org.glassfish&lt;/groupId&gt;
+    &lt;artifactId&gt;javax.json&lt;/artifactId&gt;
+    &lt;version&gt;1.0.4&lt;/version&gt;
+    &lt;scope&gt;test&lt;/scope&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.glassfish.jersey.media&lt;/groupId&gt;
+    &lt;artifactId&gt;jersey-media-json-processing&lt;/artifactId&gt;
+    &lt;version&gt;2.12&lt;/version&gt;
+    &lt;scope&gt;test&lt;/scope&gt;
+&lt;/dependency&gt;
+</code></pre>
+
+<p>The test itself has to be replaced with the following code:</p>
+<pre><code>@FixMethodOrder(MethodSorters.NAME_ASCENDING)
+public class BattleAppIT {
+
+    public static final String ID = &quot;id&quot;;
+    public static final String NICKNAME = &quot;nickname&quot;;
+    public static final String FIRST_NAME = &quot;firstName&quot;;
+    public static final String LAST_NAME = &quot;lastName&quot;;
+
+    public static final String LOCATION = &quot;Location&quot;;
+
+    @Rule
+    public JAXRSClientProvider provider = buildWithURI(&quot;http://&quot; + System.getenv(&quot;HOST&quot;) + &quot;:&quot; + System.getenv(&quot;PORT&quot;) + &quot;/battleapp/resources/users&quot;);
+
+    private String nickname = &quot;rob&quot;;
+    private String firstName = &quot;Robert&quot;;
+    private String lastName = &quot;Brem&quot;;
+
+
+    @Test
+    public void a01_shouldCreateRob() throws IOException {
+        JsonObjectBuilder userBuilder = Json.createObjectBuilder();
+        JsonObject playerToCreate = userBuilder
+                .add(ID, UUID.randomUUID().toString())
+                .add(NICKNAME, nickname)
+                .add(FIRST_NAME, firstName)
+                .add(LAST_NAME, lastName)
+                .build();
+
+        String token = KeycloakTokenCreator
+                .getTokenResponse(
+                        System.getenv(&quot;APPLICATION_USER_NAME&quot;),
+                        System.getenv(&quot;APPLICATION_PASSWORD&quot;))
+                .getToken();
+
+        Response postResponse = provider
+                .target()
+                .request()
+                .header(&quot;Authorization&quot;, &quot;Bearer &quot; + token)
+                .post(Entity.json(playerToCreate));
+        System.out.println(&quot;postResponse = &quot; + postResponse);
+        assertThat(postResponse.getStatus(), is(201));
+        String location = postResponse.getHeaderString(LOCATION);
+    }
+
+    @Test
+    public void a02_shouldReturnRob() throws IOException {
+        String token = KeycloakTokenCreator
+                .getTokenResponse(
+                        System.getenv(&quot;APPLICATION_USER_NAME&quot;),
+                        System.getenv(&quot;APPLICATION_PASSWORD&quot;))
+                .getToken();
+        String response = provider
+                .target()
+                .request()
+                .header(&quot;Authorization&quot;, &quot;Bearer &quot; + token)
+                .get(String.class);
+        assertThat(response, containsString(nickname));
+    }
+
+}
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../03_Changes_to_the_frontend/" class="btn btn-neutral float-right" title="03 Changes to the frontend">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../01_Setup_Cassandra/" class="btn btn-neutral" title="Setup Cassandra"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/robertBrem/Microservices_with_Kubernetes/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../01_Setup_Cassandra/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../03_Changes_to_the_frontend/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/require.js"></script>
+      <script src="../../search/search.js"></script>
+
+</body>
+</html>

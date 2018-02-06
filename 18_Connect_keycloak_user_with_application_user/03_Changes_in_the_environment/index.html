@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Changes in the environment scripts - Microservices with Kubernetes</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/highlight.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Changes in the environment scripts";
+    var mkdocs_page_input_path = "18_Connect_keycloak_user_with_application_user/03_Changes_in_the_environment.md";
+    var mkdocs_page_url = "/18_Connect_keycloak_user_with_application_user/03_Changes_in_the_environment/";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js"></script>
+  <script src="../../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> Microservices with Kubernetes</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">Microservices with Kubernetes</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../README/">Microservices with Kubernetes</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">01 Setup</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../01_Setup/01_Host_setup/">Setup your local host machine</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../01_Setup/02_Kubernetes_setup/">Setup a Kubernetes cluster</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">02 First rest service</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../02_First_rest_service/01_JavaEE_service/">Creating our first JavaEE microservice</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../02_First_rest_service/02_Dockerization/">Dockerization of the service</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../02_First_rest_service/03_Deploy_in_Kubernetes/">Deploy the Docker image of the service in Kubernetes</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">03 Docker registry</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../03_Docker_registry/01_Setup_a_docker_registry/">Setup a docker registry</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">04 Jenkins</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../04_Jenkins/01_Setup_Jenkins_in_Kubernetes/">Setup Jenkins in Kubernetes</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">05 Build and push ci step</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../05_Build_and_push_ci_step/01_Build_and_push_CI_step/">Build and push CI step</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">06 Systemtest ci step</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../06_Systemtest_ci_step/01_Setup_test_env/">Setup the test environment</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../06_Systemtest_ci_step/02_Systemtest/">Add a system test</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../06_Systemtest_ci_step/03_Start_pipeline_on_every_push/">Start the Jenkins pipeline on every push</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">07 UI test</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../07_UI_test/01_UI_Test/">UI Test</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">08 Lasttest</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../08_Lasttest/01_Last_test/">Last test</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">09 Manual test</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../09_Manual_test/01_Create_manual_test/">Create manual test</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">10 Canary release</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../10_Canary_release/01_Create_a_canary_release/">Create a canary release</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">11 Full production release</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../11_Full_production_release/01_Go_full_production/">Go full production with the new version</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">12 Own Gogs</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../12_Own_Gogs/01_Use_your_own_Git_repository/">Use your own Git repository</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">13 Monitoring</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../13_Monitoring/01_Dashboard/">Kubernetes dashboard</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../13_Monitoring/02_Prometheus/">Monitoring with Prometheus</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../13_Monitoring/03_Weave_scope/">Weave Scope</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">14 Documentation of rest service</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../14_Documentation_of_rest_service/01_Documentation/">Documentation of the `jax-rs` service</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">15 Angular2 frontend</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../15_Angular2_frontend/01_Initial_setup/">Create an Angular 2 frontend</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../15_Angular2_frontend/02_Test_and_prod_stage/">Create a test and production stage</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../15_Angular2_frontend/03_First_view/">Creation of the first view</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">16 SSO with Keycloak</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../16_SSO_with_Keycloak/01_Setup_Keycloak/">Setup Keycloak</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../16_SSO_with_Keycloak/02_Initial_setup_of_Keycloak/">Initial setup of Keycloak</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../16_SSO_with_Keycloak/03_Secure_REST_service/">Secure the `jax-rs` service</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../16_SSO_with_Keycloak/04_Secure_frontend_service/">Secure the Angular2 frontend service</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">17 Event Sourcing with Cassandra</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../17_Event_Sourcing_with_Cassandra/01_Setup_Cassandra/">Setup Cassandra</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../17_Event_Sourcing_with_Cassandra/02_REST_service_with_event_sourcing/">Change the REST service to use event sourcing and Cassandra</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../17_Event_Sourcing_with_Cassandra/03_Changes_to_the_frontend/">Change to the frontend service</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">18 Connect keycloak user with application user</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../01_Setup_keycloak_with_a_provider/">Setup Keycloak with an event provider</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../02_Changes_to_the_REST_service/">Changes we've to do in the REST service</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">Changes in the environment scripts</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#changes-in-the-environment-scripts">Changes in the environment scripts</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#changes-to-the-start-test-environment-script">Changes to the start test environment script</a></li>
+        
+            <li><a class="toctree-l4" href="#changes-to-the-start-canary-script">Changes to the start canary script</a></li>
+        
+            <li><a class="toctree-l4" href="#changes-to-the-pipeline">Changes to the pipeline</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">19 CQRS with Kafka</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../19_CQRS_with_Kafka/01_Setup_Kafka/">01 Setup Kafka</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../19_CQRS_with_Kafka/02_Command_service/">02 Command service</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../19_CQRS_with_Kafka/03_Query_service/">03 Query service</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../19_CQRS_with_Kafka/04_Frontend_service/">04 Frontend service</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../19_CQRS_with_Kafka/05_Other_updates/">05 Other updates</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">20 Fileuploader</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../20_Fileuploader/01_Create_fileuploader_service/">01 Create fileuploader service</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../20_Fileuploader/02_REST_service_adaptions/">02 REST service adaptions</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../20_Fileuploader/03_Query_service_adaptions/">03 Query service adaptions</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../20_Fileuploader/04_Frontend_adaptions/">04 Frontend adaptions</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">Microservices with Kubernetes</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>18 Connect keycloak user with application user &raquo;</li>
+        
+      
+    
+    <li>Changes in the environment scripts</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/robertBrem/Microservices_with_Kubernetes/edit/master/docs/18_Connect_keycloak_user_with_application_user/03_Changes_in_the_environment.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="changes-in-the-environment-scripts">Changes in the environment scripts</h1>
+<h2 id="changes-to-the-start-test-environment-script">Changes to the start test environment script</h2>
+<p>The new deployment in the <code>start.js</code> script have to look like
+the following snippet:</p>
+<pre><code>...
+var version = $ENV.VERSION;
+var kubectl = $ENV.KUBECTL;
+
+var name = &quot;battleapp&quot;;
+var image = &quot;disruptor.ninja:30500/robertbrem/battleapp:&quot; + version;
+var replicas = 1;
+var port = 8080;
+var clusterPort = 8088;
+var nodePort = 31080;
+var deploymentFileName = &quot;deployment.yml&quot;;
+var serviceFileName = &quot;service.yml&quot;;
+var registrysecret = &quot;registrykey&quot;;
+var url = &quot;http://disruptor.ninja:31080/battleapp/resources/health&quot;;
+var timeout = 2;
+var realmName = &quot;battleapp&quot;;
+var authServerUrl = &quot;https://disruptor.ninja:31182/auth&quot;;
+var cassandraHost = &quot;cassandra&quot;;
+var namespace = &quot;test&quot;;
+var keycloakMasterClientId = &quot;master&quot;;
+...
+var dfw = new FileWriter(deploymentFileName);
+dfw.write(&quot;apiVersion: extensions/v1beta1\n&quot;);
+dfw.write(&quot;kind: Deployment\n&quot;);
+dfw.write(&quot;metadata:\n&quot;);
+dfw.write(&quot;  name: &quot; + name + &quot;\n&quot;);
+dfw.write(&quot;  namespace: &quot; + namespace + &quot;\n&quot;);
+dfw.write(&quot;spec:\n&quot;);
+dfw.write(&quot;  replicas: &quot; + replicas + &quot;\n&quot;);
+dfw.write(&quot;  template:\n&quot;);
+dfw.write(&quot;    metadata:\n&quot;);
+dfw.write(&quot;      labels:\n&quot;);
+dfw.write(&quot;        name: &quot; + name + &quot;\n&quot;);
+dfw.write(&quot;    spec:\n&quot;);
+dfw.write(&quot;      containers:\n&quot;);
+dfw.write(&quot;      - resources:\n&quot;);
+dfw.write(&quot;        name: &quot; + name + &quot;\n&quot;);
+dfw.write(&quot;        image: &quot; + image + &quot;\n&quot;);
+dfw.write(&quot;        ports:\n&quot;);
+dfw.write(&quot;        - name: port\n&quot;);
+dfw.write(&quot;          containerPort: &quot; + port + &quot;\n&quot;);
+dfw.write(&quot;        env:\n&quot;);
+dfw.write(&quot;        - name: KEYCLOAK_MASTER_CLIENT_ID\n&quot;);
+dfw.write(&quot;          value: \&quot;&quot; + keycloakMasterClientId + &quot;\&quot;\n&quot;);
+dfw.write(&quot;        - name: KEYCLOAK_MASTER_USER_NAME\n&quot;);
+dfw.write(&quot;          valueFrom:\n&quot;);
+dfw.write(&quot;            secretKeyRef:\n&quot;);
+dfw.write(&quot;              name: keycloak-master\n&quot;);
+dfw.write(&quot;              key: username\n&quot;);
+dfw.write(&quot;        - name: KEYCLOAK_MASTER_PASSWORD\n&quot;);
+dfw.write(&quot;          valueFrom:\n&quot;);
+dfw.write(&quot;            secretKeyRef:\n&quot;);
+dfw.write(&quot;              name: keycloak-master\n&quot;);
+dfw.write(&quot;              key: password\n&quot;);
+dfw.write(&quot;        - name: REALM_NAME\n&quot;);
+dfw.write(&quot;          value: \&quot;&quot; + realmName + &quot;\&quot;\n&quot;);
+dfw.write(&quot;        - name: AUTH_SERVER_URL\n&quot;);
+dfw.write(&quot;          value: \&quot;&quot; + authServerUrl + &quot;\&quot;\n&quot;);
+dfw.write(&quot;        - name: CASSANDRA_ADDRESS\n&quot;);
+dfw.write(&quot;          value: \&quot;&quot; + cassandraHost + &quot;\&quot;\n&quot;);
+dfw.write(&quot;      imagePullSecrets:\n&quot;);
+dfw.write(&quot;      - name: &quot; + registrysecret + &quot;\n&quot;);
+dfw.close();
+...
+</code></pre>
+
+<p>We're using a new secret that we've to create:</p>
+<pre><code>kc create secret generic keycloak-master --from-literal=username=admin --from-literal=admin
+</code></pre>
+
+<h2 id="changes-to-the-start-canary-script">Changes to the start canary script</h2>
+<p>Similar to the test environment script we've to extend the
+deployment in the canary with the following parts:</p>
+<pre><code>...
+var keycloakMasterClientId = &quot;master&quot;;
+...
+dfw.write(&quot;        - name: KEYCLOAK_MASTER_CLIENT_ID\n&quot;);
+dfw.write(&quot;          value: \&quot;&quot; + keycloakMasterClientId + &quot;\&quot;\n&quot;);
+dfw.write(&quot;        - name: KEYCLOAK_MASTER_USER_NAME\n&quot;);
+dfw.write(&quot;          valueFrom:\n&quot;);
+dfw.write(&quot;            secretKeyRef:\n&quot;);
+dfw.write(&quot;              name: keycloak-master\n&quot;);
+dfw.write(&quot;              key: username\n&quot;);
+dfw.write(&quot;        - name: KEYCLOAK_MASTER_PASSWORD\n&quot;);
+dfw.write(&quot;          valueFrom:\n&quot;);
+dfw.write(&quot;            secretKeyRef:\n&quot;);
+dfw.write(&quot;              name: keycloak-master\n&quot;);
+dfw.write(&quot;              key: password\n&quot;);
+...
+</code></pre>
+
+<h2 id="changes-to-the-pipeline">Changes to the pipeline</h2>
+<p>The <code>Jenkisnfile</code> has to be changed to the following:</p>
+<pre><code>withEnv([   &quot;VERSION=1.0.${currentBuild.number}&quot;,
+            &quot;REGISTRY_EMAIL=brem_robert@hotmail.com&quot;,
+            &quot;KUBECTL=kubectl&quot;,
+            &quot;HOST=disruptor.ninja&quot;,
+            &quot;REALM_NAME=battleapp&quot;,
+            &quot;KEYCLOAK_URL=https://disruptor.ninja:31182/auth&quot;,
+             &quot;PORT=31080&quot;]) {
+
+  stage &quot;checkout, build, test and publish&quot;
+  node {
+    git url: &quot;http://disruptor.ninja:30130/rob/battleapp&quot;
+    def mvnHome = tool 'M3'
+    sh &quot;${mvnHome}/bin/mvn clean install&quot;
+    sh &quot;./build.js&quot;
+  }
+
+  stage &quot;start test environment&quot;
+  node {
+    git url: &quot;http://disruptor.ninja:30130/rob/battleapp-starttestenv&quot;
+    sh &quot;./start.js&quot;
+  }
+
+  stage &quot;system test&quot;
+  node {
+    git url: &quot;http://disruptor.ninja:30130/rob/battleapp-st&quot;
+    def mvnHome = tool 'M3'
+    sh &quot;${mvnHome}/bin/mvn clean install failsafe:integration-test failsafe:verify&quot;
+    step([$class: 'JUnitResultArchiver', testResults: '**/target/failsafe-reports/TEST-*.xml'])
+  }
+
+  stage &quot;ui test&quot;
+  node {
+    git url: &quot;http://disruptor.ninja:30130/rob/battleapp-uit&quot;
+    def mvnHome = tool 'M3'
+    sh &quot;${mvnHome}/bin/mvn clean install failsafe:integration-test failsafe:verify&quot;
+    step([$class: 'JUnitResultArchiver', testResults: '**/target/failsafe-reports/TEST-*.xml'])
+  }
+
+  stage &quot;last test&quot;
+  node {
+    git url: &quot;http://disruptor.ninja:30130/rob/battleapp-lt&quot;
+    def mvnHome = tool 'M3'
+    sh &quot;${mvnHome}/bin/mvn clean verify -Dperformancetest.webservice.host=disruptor.ninja -Dperformancetest.webservice.port=31080 -Dperformancetest.webservice.threads=5 -Dperformancetest.webservice.iterations=500 -Dperformancetest.webservice.url=/battleapp/resources/health&quot;
+    archiveArtifacts artifacts: 'target/reports/*.*', fingerprint: true
+  }
+
+  stage &quot;consumer driven contract test&quot;
+  node {
+    git url: &quot;http://disruptor.ninja:30130/rob/battleapp-cdct&quot;
+    def mvnHome = tool 'M3'
+    sh &quot;${mvnHome}/bin/mvn clean install failsafe:integration-test failsafe:verify&quot;
+    step([$class: 'JUnitResultArchiver', testResults: '**/target/failsafe-reports/TEST-*.xml'])
+  }
+
+  stage &quot;manual testing&quot;
+  input &quot;everything ok?&quot;
+
+  stage &quot;start canary&quot;
+  input &quot;deploy the canary?&quot;
+  node {
+    git url: &quot;http://disruptor.ninja:30130/rob/battleapp-canary&quot;
+    sh &quot;./start.js&quot;
+  }
+
+  stage &quot;go full production&quot;
+  input &quot;undeploy other versions?&quot;
+  node {
+    git url: &quot;http://disruptor.ninja:30130/rob/battleapp-prod&quot;
+    sh &quot;./start.js&quot;
+  }
+}
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../../19_CQRS_with_Kafka/01_Setup_Kafka/" class="btn btn-neutral float-right" title="01 Setup Kafka">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../02_Changes_to_the_REST_service/" class="btn btn-neutral" title="Changes we've to do in the REST service"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/robertBrem/Microservices_with_Kubernetes/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../02_Changes_to_the_REST_service/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../../19_CQRS_with_Kafka/01_Setup_Kafka/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/require.js"></script>
+      <script src="../../search/search.js"></script>
+
+</body>
+</html>

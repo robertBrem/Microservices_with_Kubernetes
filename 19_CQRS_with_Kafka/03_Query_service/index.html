@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>The query REST service - Microservices with Kubernetes</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/highlight.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "The query REST service";
+    var mkdocs_page_input_path = "19_CQRS_with_Kafka/03_Query_service.md";
+    var mkdocs_page_url = "/19_CQRS_with_Kafka/03_Query_service/";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js"></script>
+  <script src="../../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> Microservices with Kubernetes</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">Microservices with Kubernetes</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../README/">Microservices with Kubernetes</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">01 Setup</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../01_Setup/01_Host_setup/">Setup your local host machine</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../01_Setup/02_Kubernetes_setup/">Setup a Kubernetes cluster</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">02 First rest service</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../02_First_rest_service/01_JavaEE_service/">Creating our first JavaEE microservice</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../02_First_rest_service/02_Dockerization/">Dockerization of the service</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../02_First_rest_service/03_Deploy_in_Kubernetes/">Deploy the Docker image of the service in Kubernetes</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">03 Docker registry</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../03_Docker_registry/01_Setup_a_docker_registry/">Setup a docker registry</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">04 Jenkins</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../04_Jenkins/01_Setup_Jenkins_in_Kubernetes/">Setup Jenkins in Kubernetes</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">05 Build and push ci step</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../05_Build_and_push_ci_step/01_Build_and_push_CI_step/">Build and push CI step</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">06 Systemtest ci step</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../06_Systemtest_ci_step/01_Setup_test_env/">Setup the test environment</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../06_Systemtest_ci_step/02_Systemtest/">Add a system test</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../06_Systemtest_ci_step/03_Start_pipeline_on_every_push/">Start the Jenkins pipeline on every push</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">07 UI test</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../07_UI_test/01_UI_Test/">UI Test</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">08 Lasttest</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../08_Lasttest/01_Last_test/">Last test</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">09 Manual test</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../09_Manual_test/01_Create_manual_test/">Create manual test</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">10 Canary release</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../10_Canary_release/01_Create_a_canary_release/">Create a canary release</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">11 Full production release</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../11_Full_production_release/01_Go_full_production/">Go full production with the new version</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">12 Own Gogs</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../12_Own_Gogs/01_Use_your_own_Git_repository/">Use your own Git repository</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">13 Monitoring</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../13_Monitoring/01_Dashboard/">Kubernetes dashboard</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../13_Monitoring/02_Prometheus/">Monitoring with Prometheus</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../13_Monitoring/03_Weave_scope/">Weave Scope</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">14 Documentation of rest service</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../14_Documentation_of_rest_service/01_Documentation/">Documentation of the `jax-rs` service</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">15 Angular2 frontend</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../15_Angular2_frontend/01_Initial_setup/">Create an Angular 2 frontend</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../15_Angular2_frontend/02_Test_and_prod_stage/">Create a test and production stage</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../15_Angular2_frontend/03_First_view/">Creation of the first view</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">16 SSO with Keycloak</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../16_SSO_with_Keycloak/01_Setup_Keycloak/">Setup Keycloak</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../16_SSO_with_Keycloak/02_Initial_setup_of_Keycloak/">Initial setup of Keycloak</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../16_SSO_with_Keycloak/03_Secure_REST_service/">Secure the `jax-rs` service</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../16_SSO_with_Keycloak/04_Secure_frontend_service/">Secure the Angular2 frontend service</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">17 Event Sourcing with Cassandra</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../17_Event_Sourcing_with_Cassandra/01_Setup_Cassandra/">Setup Cassandra</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../17_Event_Sourcing_with_Cassandra/02_REST_service_with_event_sourcing/">Change the REST service to use event sourcing and Cassandra</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../17_Event_Sourcing_with_Cassandra/03_Changes_to_the_frontend/">Change to the frontend service</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">18 Connect keycloak user with application user</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../18_Connect_keycloak_user_with_application_user/01_Setup_keycloak_with_a_provider/">Setup Keycloak with an event provider</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../18_Connect_keycloak_user_with_application_user/02_Changes_to_the_REST_service/">Changes we've to do in the REST service</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../18_Connect_keycloak_user_with_application_user/03_Changes_in_the_environment/">Changes in the environment scripts</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">19 CQRS with Kafka</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../01_Setup_Kafka/">Setup Kafka</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../02_Command_service/">The command REST service</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">The query REST service</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#the-query-rest-service">The query REST service</a></li>
+    
+
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../04_Frontend_service/">04 Frontend service</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../05_Other_updates/">05 Other updates</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">20 Fileuploader</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../20_Fileuploader/01_Create_fileuploader_service/">01 Create fileuploader service</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../20_Fileuploader/02_REST_service_adaptions/">02 REST service adaptions</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../20_Fileuploader/03_Query_service_adaptions/">03 Query service adaptions</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../20_Fileuploader/04_Frontend_adaptions/">04 Frontend adaptions</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">Microservices with Kubernetes</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>19 CQRS with Kafka &raquo;</li>
+        
+      
+    
+    <li>The query REST service</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/robertBrem/Microservices_with_Kubernetes/edit/master/docs/19_CQRS_with_Kafka/03_Query_service.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="the-query-rest-service">The query REST service</h1>
+<p>We create a second REST service as the query service.
+The service contains the following files:</p>
+<p><code>pom.xml</code></p>
+<pre><code>&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+         xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;
+    &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+    &lt;groupId&gt;ninja.disruptor&lt;/groupId&gt;
+    &lt;artifactId&gt;battleapp.query&lt;/artifactId&gt;
+    &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;
+    &lt;packaging&gt;war&lt;/packaging&gt;
+    &lt;dependencies&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;javax&lt;/groupId&gt;
+            &lt;artifactId&gt;javaee-api&lt;/artifactId&gt;
+            &lt;version&gt;7.0&lt;/version&gt;
+            &lt;scope&gt;provided&lt;/scope&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.apache.kafka&lt;/groupId&gt;
+            &lt;artifactId&gt;kafka-clients&lt;/artifactId&gt;
+            &lt;version&gt;0.10.0.0&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.projectlombok&lt;/groupId&gt;
+            &lt;artifactId&gt;lombok&lt;/artifactId&gt;
+            &lt;version&gt;1.16.12&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;com.airhacks&lt;/groupId&gt;
+            &lt;artifactId&gt;porcupine&lt;/artifactId&gt;
+            &lt;version&gt;0.0.4&lt;/version&gt;
+        &lt;/dependency&gt;
+    &lt;/dependencies&gt;
+    &lt;build&gt;
+        &lt;finalName&gt;battleapp&lt;/finalName&gt;
+    &lt;/build&gt;
+    &lt;properties&gt;
+        &lt;maven.compiler.source&gt;1.8&lt;/maven.compiler.source&gt;
+        &lt;maven.compiler.target&gt;1.8&lt;/maven.compiler.target&gt;
+        &lt;failOnMissingWebXml&gt;false&lt;/failOnMissingWebXml&gt;
+    &lt;/properties&gt;
+&lt;/project&gt;
+</code></pre>
+
+<p><code>Dockerfile</code></p>
+<pre><code>FROM jboss/keycloak-adapter-wildfly:2.4.0.Final
+
+MAINTAINER Robert Brem &lt;brem_robert@hotmail.com&gt;
+
+ENV DEPLOYMENT_DIR ${JBOSS_HOME}/standalone/deployments/
+
+ADD target/battleapp.war ${DEPLOYMENT_DIR}
+</code></pre>
+
+<p><code>build.js</code></p>
+<pre><code>#!/usr/bin/jjs -fv
+
+var version = $ENV.VERSION;
+var username = $ENV.REGISTRY_USERNAME;
+var password = $ENV.REGISTRY_PASSWORD;
+var email = $ENV.REGISTRY_EMAIL;
+
+var registry = &quot;disruptor.ninja:30500&quot;;
+var image = &quot;robertbrem/battleapp-query&quot;;
+var completeImageName = registry + &quot;/&quot; + image + &quot;:&quot; + version;
+
+var dockerBuild = &quot;docker build -t &quot; + completeImageName + &quot; .&quot;;
+execute(dockerBuild);
+
+var dockerLogin = &quot;docker login --username=&quot; + username + &quot; --password=&quot; + password + &quot; --email=&quot; + email + &quot; &quot; + registry;
+execute(dockerLogin);
+
+var push = &quot;docker push &quot; + completeImageName;
+execute(push);
+
+function execute(command) {
+    $EXEC(command);
+    print($OUT);
+    print($ERR);
+}
+</code></pre>
+
+<p><code>beans.xml</code></p>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;beans xmlns=&quot;http://xmlns.jcp.org/xml/ns/javaee&quot;
+       xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+       xsi:schemaLocation=&quot;http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/beans_1_1.xsd&quot;
+       bean-discovery-mode=&quot;all&quot;&gt;
+&lt;/beans&gt;
+</code></pre>
+
+<p><code>keycloak.json</code></p>
+<pre><code>{
+  &quot;realm&quot;: &quot;${env.REALM_NAME}&quot;,
+  &quot;bearer-only&quot;: true,
+  &quot;auth-server-url&quot;: &quot;${env.AUTH_SERVER_URL}&quot;,
+  &quot;ssl-required&quot;: &quot;none&quot;,
+  &quot;resource&quot;: &quot;battleapp-query&quot;,
+  &quot;enable-cors&quot;: true
+}
+</code></pre>
+
+<p><code>web.xml</code></p>
+<pre><code>&lt;web-app xmlns=&quot;http://java.sun.com/xml/ns/javaee&quot;
+         xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+         xsi:schemaLocation=&quot;http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd&quot;
+         version=&quot;3.0&quot;&gt;
+
+    &lt;security-constraint&gt;
+        &lt;web-resource-collection&gt;
+            &lt;web-resource-name&gt;health&lt;/web-resource-name&gt;
+            &lt;url-pattern&gt;/resources/health&lt;/url-pattern&gt;
+        &lt;/web-resource-collection&gt;
+        &lt;!-- OMIT auth-constraint --&gt;
+    &lt;/security-constraint&gt;
+
+    &lt;security-constraint&gt;
+        &lt;web-resource-collection&gt;
+            &lt;web-resource-name&gt;cors&lt;/web-resource-name&gt;
+            &lt;url-pattern&gt;/*&lt;/url-pattern&gt;
+            &lt;http-method&gt;GET&lt;/http-method&gt;
+            &lt;http-method&gt;POST&lt;/http-method&gt;
+            &lt;http-method&gt;PUT&lt;/http-method&gt;
+            &lt;http-method&gt;DELETE&lt;/http-method&gt;
+        &lt;/web-resource-collection&gt;
+        &lt;auth-constraint&gt;
+            &lt;role-name&gt;user&lt;/role-name&gt;
+        &lt;/auth-constraint&gt;
+    &lt;/security-constraint&gt;
+
+    &lt;login-config&gt;
+        &lt;auth-method&gt;KEYCLOAK&lt;/auth-method&gt;
+        &lt;realm-name&gt;this is ignored currently&lt;/realm-name&gt;
+    &lt;/login-config&gt;
+
+    &lt;security-role&gt;
+        &lt;role-name&gt;admin&lt;/role-name&gt;
+    &lt;/security-role&gt;
+    &lt;security-role&gt;
+        &lt;role-name&gt;user&lt;/role-name&gt;
+    &lt;/security-role&gt;
+&lt;/web-app&gt;
+</code></pre>
+
+<p>Copy all the events under <code>ninja.disruptor.battleapp.user.entity.event</code> and
+the <code>CoreEvent</code>.</p>
+<blockquote>
+<p>All the events have to be in the same package as the events from the
+command side.</p>
+</blockquote>
+<p>Create the following classes:</p>
+<pre><code>package ninja.disruptor.battleapp.health.boundary;
+
+import com.airhacks.porcupine.execution.boundary.Dedicated;
+
+import javax.inject.Inject;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.container.AsyncResponse;
+import javax.ws.rs.container.Suspended;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutorService;
+
+@Path(&quot;health&quot;)
+public class HealthResource {
+
+    @Dedicated
+    @Inject
+    ExecutorService healthPool;
+
+    @GET
+    public void getHealth(@Suspended AsyncResponse response) {
+        CompletableFuture
+                .supplyAsync(() -&gt; &quot;everything OK!&quot;)
+                .thenAccept(response::resume);
+    }
+
+}
+</code></pre>
+
+<pre><code>package ninja.disruptor.battleapp.kafka.control;
+
+import org.apache.kafka.clients.consumer.KafkaConsumer;
+import org.apache.kafka.clients.producer.KafkaProducer;
+
+import javax.annotation.PostConstruct;
+import javax.ejb.ConcurrencyManagement;
+import javax.ejb.ConcurrencyManagementType;
+import javax.ejb.Singleton;
+import javax.enterprise.inject.Produces;
+import java.util.Arrays;
+import java.util.Properties;
+import java.util.UUID;
+
+@Singleton
+@ConcurrencyManagement(ConcurrencyManagementType.BEAN)
+public class KafkaProvider {
+    public static final String TOPIC = &quot;battleapp&quot;;
+    public static final String KAFKA_ADDRESS = System.getenv(&quot;KAFKA_ADDRESS&quot;);
+    public static final String GROUP_ID = &quot;battleapp&quot;;
+
+    private KafkaProducer&lt;String, String&gt; producer;
+    private KafkaConsumer&lt;String, String&gt; consumer;
+
+    @PostConstruct
+    public void init() {
+        this.producer = createProducer();
+        this.consumer = createConsumer();
+    }
+
+    @Produces
+    public KafkaProducer&lt;String, String&gt; getProducer() {
+        return producer;
+    }
+
+    @Produces
+    public KafkaConsumer&lt;String, String&gt; getConsumer() {
+        return consumer;
+    }
+
+    public KafkaProducer&lt;String, String&gt; createProducer() {
+        Properties properties = new Properties();
+        properties.put(&quot;bootstrap.servers&quot;, KAFKA_ADDRESS);
+        properties.put(&quot;key.serializer&quot;, &quot;org.apache.kafka.common.serialization.StringSerializer&quot;);
+        properties.put(&quot;value.serializer&quot;, &quot;org.apache.kafka.common.serialization.StringSerializer&quot;);
+        return new KafkaProducer&lt;&gt;(properties);
+    }
+
+    public KafkaConsumer&lt;String, String&gt; createConsumer() {
+        Properties properties = new Properties();
+        properties.put(&quot;bootstrap.servers&quot;, KAFKA_ADDRESS);
+        properties.put(&quot;group.id&quot;, GROUP_ID + UUID.randomUUID().toString());
+        properties.put(&quot;auto.offset.reset&quot;, &quot;earliest&quot;);
+        properties.put(&quot;key.deserializer&quot;, &quot;org.apache.kafka.common.serialization.StringDeserializer&quot;);
+        properties.put(&quot;value.deserializer&quot;, &quot;org.apache.kafka.common.serialization.StringDeserializer&quot;);
+
+        KafkaConsumer&lt;String, String&gt; consumer = new KafkaConsumer&lt;&gt;(properties);
+        consumer.subscribe(Arrays.asList(TOPIC));
+        return consumer;
+    }
+
+}
+</code></pre>
+
+<pre><code>package ninja.disruptor.battleapp.user.boundary;
+
+import com.airhacks.porcupine.execution.boundary.Dedicated;
+
+import javax.inject.Inject;
+import javax.ws.rs.*;
+import javax.ws.rs.container.AsyncResponse;
+import javax.ws.rs.container.Suspended;
+import javax.ws.rs.core.MediaType;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutorService;
+
+@Path(&quot;users&quot;)
+@Produces(MediaType.APPLICATION_JSON)
+@Consumes(MediaType.APPLICATION_JSON)
+public class UserResource {
+
+    @Dedicated
+    @Inject
+    ExecutorService usersPool;
+
+    @Inject
+    UserService service;
+
+    @GET
+    public void getUsers(@Suspended AsyncResponse response, @QueryParam(&quot;nickname&quot;) String nickname) {
+        CompletableFuture
+                .supplyAsync(service.getUsersFilteredByNickname(nickname), usersPool)
+                .thenAccept(response::resume);
+    }
+
+}
+</code></pre>
+
+<pre><code>package ninja.disruptor.battleapp.user.boundary;
+
+import ninja.disruptor.battleapp.InMemoryCache;
+import ninja.disruptor.battleapp.user.entity.User;
+
+import javax.ejb.Stateless;
+import javax.inject.Inject;
+import javax.ws.rs.core.GenericEntity;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.function.Supplier;
+import java.util.stream.Collectors;
+
+@Stateless
+public class UserService {
+
+    @Inject
+    InMemoryCache cache;
+
+    public Supplier&lt;GenericEntity&lt;Set&lt;User&gt;&gt;&gt; getUsersFilteredByNickname(String nickname) {
+        if (nickname == null || nickname.isEmpty()) {
+            return () -&gt; new GenericEntity&lt;Set&lt;User&gt;&gt;(getUsers()) {
+            };
+        } else {
+            return () -&gt; new GenericEntity&lt;Set&lt;User&gt;&gt;(getUsers()
+                    .parallelStream()
+                    .filter(u -&gt; u.getNickname().toLowerCase().contains(nickname.toLowerCase()))
+                    .collect(Collectors.toSet())) {
+            };
+        }
+    }
+
+    public Set&lt;User&gt; getUsers() {
+        return new HashSet&lt;&gt;(cache.getUsers().values());
+    }
+
+}
+</code></pre>
+
+<pre><code>package ninja.disruptor.battleapp.user.entity;
+
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+import ninja.disruptor.battleapp.eventstore.entity.CoreEvent;
+import ninja.disruptor.battleapp.user.entity.event.UserCreated;
+import ninja.disruptor.battleapp.user.entity.event.UserFirstNameChanged;
+import ninja.disruptor.battleapp.user.entity.event.UserLastNameChanged;
+import ninja.disruptor.battleapp.user.entity.event.UserNicknameChanged;
+
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import java.util.List;
+
+@NoArgsConstructor
+@ToString
+@XmlAccessorType(XmlAccessType.FIELD)
+@Data
+public class User {
+    private String id;
+    private String nickname;
+    private String firstName;
+    private String lastName;
+
+    public User(List&lt;CoreEvent&gt; events) {
+        for (CoreEvent event : events) {
+            mutate(event);
+        }
+    }
+
+    public void mutate(CoreEvent event) {
+        when(event);
+    }
+
+    public void when(CoreEvent event) {
+        if (event instanceof UserCreated) {
+            this.id = event.getId();
+        } else if (event instanceof UserFirstNameChanged) {
+            this.firstName = ((UserFirstNameChanged) event).getFirstName();
+        } else if (event instanceof UserLastNameChanged) {
+            this.lastName = ((UserLastNameChanged) event).getLastName();
+        } else if (event instanceof UserNicknameChanged) {
+            this.nickname = ((UserNicknameChanged) event).getNickname();
+        }
+    }
+
+}
+</code></pre>
+
+<pre><code>package ninja.disruptor.battleapp;
+
+import com.airhacks.porcupine.execution.boundary.Dedicated;
+import lombok.Getter;
+import ninja.disruptor.battleapp.eventstore.entity.CoreEvent;
+import ninja.disruptor.battleapp.kafka.control.KafkaProvider;
+import ninja.disruptor.battleapp.user.entity.User;
+import ninja.disruptor.battleapp.user.entity.event.UserCreated;
+import ninja.disruptor.battleapp.user.entity.event.UserDeleted;
+import ninja.disruptor.battleapp.user.entity.event.UserEvent;
+import org.apache.kafka.clients.consumer.ConsumerRecord;
+import org.apache.kafka.clients.consumer.ConsumerRecords;
+import org.apache.kafka.clients.consumer.KafkaConsumer;
+import org.apache.kafka.clients.producer.KafkaProducer;
+import org.apache.kafka.clients.producer.ProducerRecord;
+
+import javax.annotation.PostConstruct;
+import javax.ejb.ConcurrencyManagement;
+import javax.ejb.ConcurrencyManagementType;
+import javax.ejb.Singleton;
+import javax.ejb.Startup;
+import javax.inject.Inject;
+import javax.json.Json;
+import javax.json.JsonObject;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+import java.util.*;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutorService;
+
+@Startup
+@Singleton
+@ConcurrencyManagement(ConcurrencyManagementType.BEAN)
+public class InMemoryCache {
+
+    @Getter
+    private Map&lt;String, User&gt; users = new HashMap&lt;&gt;();
+
+    @Inject
+    KafkaConsumer&lt;String, String&gt; consumer;
+
+    @Inject
+    KafkaProducer&lt;String, String&gt; producer;
+
+    @Dedicated
+    @Inject
+    ExecutorService kafka;
+
+    @Inject
+    JsonConverter converter;
+
+    @PostConstruct
+    public void onInit() {
+        String topicName = getTopicName();
+        JsonObject event = Json.createObjectBuilder()
+                .add(&quot;topicName&quot;, topicName)
+                .build();
+
+        CompletableFuture
+                .runAsync(this::handleKafkaEvent, kafka);
+
+        consumer.subscribe(Arrays.asList(KafkaProvider.TOPIC, topicName));
+
+        producer.send(new ProducerRecord&lt;&gt;(
+                KafkaProvider.TOPIC,
+                event.toString()));
+    }
+
+    public String getTopicName() {
+        InetAddress localHost = null;
+        try {
+            localHost = InetAddress.getLocalHost();
+        } catch (UnknownHostException e) {
+            throw new RuntimeException(e);
+        }
+        return &quot;replayAllFromStore&quot; + localHost.getHostName();
+    }
+
+    public void handleKafkaEvent() {
+        while (true) {
+            ConsumerRecords&lt;String, String&gt; records = consumer.poll(200);
+            for (ConsumerRecord&lt;String, String&gt; record : records) {
+                switch (record.topic()) {
+                    case KafkaProvider.TOPIC:
+                        handeEvents(record);
+                        break;
+                    default:
+                        handeEvents(record);
+                        break;
+                }
+            }
+        }
+    }
+
+    private void handeEvents(ConsumerRecord&lt;String, String&gt; record) {
+        try {
+            String eventText = record.value();
+            System.out.println(&quot;eventText = &quot; + eventText);
+            List&lt;CoreEvent&gt; events = converter.convertToEvents(eventText);
+            for (CoreEvent event : events) {
+                handle(event);
+            }
+        } catch (Exception e) {
+            System.out.println(&quot;Error: &quot; + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    public void handle(CoreEvent event) {
+        if (event instanceof UserCreated) {
+            List&lt;CoreEvent&gt; events = new ArrayList&lt;&gt;();
+            events.add(event);
+            User user = new User(events);
+            users.put(event.getId(), user);
+        } else if (event instanceof UserDeleted) {
+            User user = users.get(event.getId());
+            if (user == null) {
+                System.out.println(&quot;rejected!&quot;);
+                return;
+            }
+            users.remove(user.getId());
+        } else if (event instanceof UserEvent) {
+            User user = users.get(event.getId());
+            if (user == null) {
+                System.out.println(&quot;rejected!&quot;);
+                return;
+            }
+            user.mutate(event);
+        } else {
+            System.out.println(&quot;Event not found: &quot; + event.toString());
+        }
+    }
+
+}
+</code></pre>
+
+<pre><code>package ninja.disruptor.battleapp;
+
+import javax.ws.rs.ApplicationPath;
+import javax.ws.rs.core.Application;
+
+@ApplicationPath(&quot;resources&quot;)
+public class JaxRsConfiguration extends Application {
+}
+</code></pre>
+
+<pre><code>package ninja.disruptor.battleapp;
+
+import ninja.disruptor.battleapp.eventstore.entity.CoreEvent;
+import ninja.disruptor.battleapp.user.entity.event.*;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+
+import javax.json.Json;
+import javax.json.JsonArray;
+import javax.json.JsonObject;
+import javax.json.JsonObjectBuilder;
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+import java.nio.charset.Charset;
+import java.util.ArrayList;
+import java.util.List;
+
+public class JsonConverter {
+
+    public JsonObjectBuilder convertToJson(CoreEvent event) {
+        JsonObjectBuilder jsonEvent = Json.createObjectBuilder()
+                .add(&quot;name&quot;, event.getClass().getName())
+                .add(&quot;id&quot;, event.getId());
+        if (event instanceof UserCreated) {
+            // no more to do
+        } else if (event instanceof UserDeleted) {
+            // no more to do
+        } else if (event instanceof UserFirstNameChanged) {
+            UserFirstNameChanged changedEvent = (UserFirstNameChanged) event;
+            jsonEvent = jsonEvent
+                    .add(&quot;firstName&quot;, changedEvent.getFirstName());
+        } else if (event instanceof UserLastNameChanged) {
+            UserLastNameChanged changedEvent = (UserLastNameChanged) event;
+            jsonEvent = jsonEvent
+                    .add(&quot;lastName&quot;, changedEvent.getLastName());
+        } else if (event instanceof UserNicknameChanged) {
+            UserNicknameChanged changedEvent = (UserNicknameChanged) event;
+            jsonEvent = jsonEvent
+                    .add(&quot;nickname&quot;, changedEvent.getNickname());
+        } else {
+            throw new NotImplementedException();
+        }
+        return jsonEvent;
+    }
+
+    public List&lt;CoreEvent&gt; convertToEvents(String jsonAsString) {
+        List&lt;CoreEvent&gt; events = new ArrayList&lt;&gt;();
+        InputStream inputStream = new ByteArrayInputStream(jsonAsString.getBytes(Charset.forName(&quot;UTF-8&quot;)));
+        JsonArray eventArray = Json.createReader(inputStream).readArray();
+        for (int i = 0; i &lt; eventArray.size(); i++) {
+            JsonObject eventObj = eventArray.getJsonObject(i);
+            String name = eventObj.getString(&quot;name&quot;);
+            String id = eventObj.getString(&quot;id&quot;);
+            if (UserCreated.class.getName().equals(name)) {
+                UserCreated event = new UserCreated(id);
+                events.add(event);
+            } else if (UserDeleted.class.getName().equals(name)) {
+                UserDeleted event = new UserDeleted(id);
+                events.add(event);
+            } else if (UserFirstNameChanged.class.getName().equals(name)) {
+                String firstName = eventObj.getString(&quot;firstName&quot;);
+                UserFirstNameChanged event = new UserFirstNameChanged(id, firstName);
+                events.add(event);
+            } else if (UserLastNameChanged.class.getName().equals(name)) {
+                String lastName = eventObj.getString(&quot;lastName&quot;);
+                UserLastNameChanged event = new UserLastNameChanged(id, lastName);
+                events.add(event);
+            } else if (UserNicknameChanged.class.getName().equals(name)) {
+                String nickname = eventObj.getString(&quot;nickname&quot;);
+                UserNicknameChanged event = new UserNicknameChanged(id, nickname);
+                events.add(event);
+            } else {
+                throw new NotImplementedException();
+            }
+        }
+        return events;
+    }
+}
+</code></pre>
+
+<p>Create also a Jenkins pipeline similar to the existing REST service pipeline.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../04_Frontend_service/" class="btn btn-neutral float-right" title="04 Frontend service">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../02_Command_service/" class="btn btn-neutral" title="The command REST service"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/robertBrem/Microservices_with_Kubernetes/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../02_Command_service/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../04_Frontend_service/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/require.js"></script>
+      <script src="../../search/search.js"></script>
+
+</body>
+</html>

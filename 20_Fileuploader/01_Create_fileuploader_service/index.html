@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Create the fileuploader service - Microservices with Kubernetes</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/highlight.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Create the fileuploader service";
+    var mkdocs_page_input_path = "20_Fileuploader/01_Create_fileuploader_service.md";
+    var mkdocs_page_url = "/20_Fileuploader/01_Create_fileuploader_service/";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js"></script>
+  <script src="../../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> Microservices with Kubernetes</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">Microservices with Kubernetes</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../README/">Microservices with Kubernetes</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">01 Setup</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../01_Setup/01_Host_setup/">Setup your local host machine</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../01_Setup/02_Kubernetes_setup/">Setup a Kubernetes cluster</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">02 First rest service</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../02_First_rest_service/01_JavaEE_service/">Creating our first JavaEE microservice</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../02_First_rest_service/02_Dockerization/">Dockerization of the service</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../02_First_rest_service/03_Deploy_in_Kubernetes/">Deploy the Docker image of the service in Kubernetes</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">03 Docker registry</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../03_Docker_registry/01_Setup_a_docker_registry/">Setup a docker registry</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">04 Jenkins</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../04_Jenkins/01_Setup_Jenkins_in_Kubernetes/">Setup Jenkins in Kubernetes</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">05 Build and push ci step</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../05_Build_and_push_ci_step/01_Build_and_push_CI_step/">Build and push CI step</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">06 Systemtest ci step</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../06_Systemtest_ci_step/01_Setup_test_env/">Setup the test environment</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../06_Systemtest_ci_step/02_Systemtest/">Add a system test</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../06_Systemtest_ci_step/03_Start_pipeline_on_every_push/">Start the Jenkins pipeline on every push</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">07 UI test</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../07_UI_test/01_UI_Test/">UI Test</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">08 Lasttest</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../08_Lasttest/01_Last_test/">Last test</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">09 Manual test</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../09_Manual_test/01_Create_manual_test/">Create manual test</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">10 Canary release</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../10_Canary_release/01_Create_a_canary_release/">Create a canary release</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">11 Full production release</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../11_Full_production_release/01_Go_full_production/">Go full production with the new version</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">12 Own Gogs</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../12_Own_Gogs/01_Use_your_own_Git_repository/">Use your own Git repository</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">13 Monitoring</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../13_Monitoring/01_Dashboard/">Kubernetes dashboard</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../13_Monitoring/02_Prometheus/">Monitoring with Prometheus</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../13_Monitoring/03_Weave_scope/">Weave Scope</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">14 Documentation of rest service</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../14_Documentation_of_rest_service/01_Documentation/">Documentation of the `jax-rs` service</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">15 Angular2 frontend</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../15_Angular2_frontend/01_Initial_setup/">Create an Angular 2 frontend</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../15_Angular2_frontend/02_Test_and_prod_stage/">Create a test and production stage</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../15_Angular2_frontend/03_First_view/">Creation of the first view</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">16 SSO with Keycloak</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../16_SSO_with_Keycloak/01_Setup_Keycloak/">Setup Keycloak</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../16_SSO_with_Keycloak/02_Initial_setup_of_Keycloak/">Initial setup of Keycloak</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../16_SSO_with_Keycloak/03_Secure_REST_service/">Secure the `jax-rs` service</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../16_SSO_with_Keycloak/04_Secure_frontend_service/">Secure the Angular2 frontend service</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">17 Event Sourcing with Cassandra</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../17_Event_Sourcing_with_Cassandra/01_Setup_Cassandra/">Setup Cassandra</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../17_Event_Sourcing_with_Cassandra/02_REST_service_with_event_sourcing/">Change the REST service to use event sourcing and Cassandra</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../17_Event_Sourcing_with_Cassandra/03_Changes_to_the_frontend/">Change to the frontend service</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">18 Connect keycloak user with application user</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../18_Connect_keycloak_user_with_application_user/01_Setup_keycloak_with_a_provider/">Setup Keycloak with an event provider</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../18_Connect_keycloak_user_with_application_user/02_Changes_to_the_REST_service/">Changes we've to do in the REST service</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../18_Connect_keycloak_user_with_application_user/03_Changes_in_the_environment/">Changes in the environment scripts</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">19 CQRS with Kafka</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../19_CQRS_with_Kafka/01_Setup_Kafka/">Setup Kafka</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../19_CQRS_with_Kafka/02_Command_service/">The command REST service</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../19_CQRS_with_Kafka/03_Query_service/">The query REST service</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../19_CQRS_with_Kafka/04_Frontend_service/">Changes to the frontend</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../19_CQRS_with_Kafka/05_Other_updates/">Other updates</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">20 Fileuploader</span>
+    <ul class="subnav">
+                <li class=" current">
+                    
+    <a class="current" href="./">Create the fileuploader service</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#create-the-fileuploader-service">Create the fileuploader service</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#fileuploader-service-implementation">Fileuploader service implementation</a></li>
+        
+            <li><a class="toctree-l4" href="#jenkins-pipeline">Jenkins pipeline</a></li>
+        
+            <li><a class="toctree-l4" href="#start-test-environment-script">Start test environment script</a></li>
+        
+            <li><a class="toctree-l4" href="#start-canary-script">Start canary script</a></li>
+        
+            <li><a class="toctree-l4" href="#go-full-production-script">Go full production script</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../02_REST_service_adaptions/">02 REST service adaptions</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../03_Query_service_adaptions/">03 Query service adaptions</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../04_Frontend_adaptions/">04 Frontend adaptions</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">Microservices with Kubernetes</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>20 Fileuploader &raquo;</li>
+        
+      
+    
+    <li>Create the fileuploader service</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/robertBrem/Microservices_with_Kubernetes/edit/master/docs/20_Fileuploader/01_Create_fileuploader_service.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="create-the-fileuploader-service">Create the fileuploader service</h1>
+<p>To upload files we've to create a fileupload and download service.  </p>
+<h2 id="fileuploader-service-implementation">Fileuploader service implementation</h2>
+<p>The creation of the health endpoint, <code>keycloak.json</code>, <code>web.xml</code>, <code>Dockerfile</code>,
+<code>build.js</code> and the <code>pom.xml</code> is straight forward like in the other projects.<br />
+The servlet itself looks like this:</p>
+<pre><code>import javax.json.Json;
+import javax.json.JsonArrayBuilder;
+import javax.json.JsonObject;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.UUID;
+
+@WebServlet(&quot;/fileupload&quot;)
+@MultipartConfig(
+        fileSizeThreshold = 1024 * 1024 * 10,  // 10 MB
+        maxFileSize = 1024 * 1024 * 50,        // 50 MB
+        maxRequestSize = 1024 * 1024 * 100)    // 100 MB
+public class FileUploadServlet extends HttpServlet {
+    private static final long serialVersionUID = -1L;
+
+    public static final String UPLOAD_DIR = System.getenv(&quot;UPLOAD_DIR&quot;);
+
+    protected void doPost(HttpServletRequest request,
+                          HttpServletResponse response) throws ServletException, IOException {
+
+        Set&lt;String&gt; paths = new HashSet&lt;&gt;();
+        for (Part part : request.getParts()) {
+            String relativePath = part.getName();
+            String fileName = UUID.randomUUID().toString();
+            String oldFileName = getFileName(part);
+            String extension = oldFileName.split(&quot;\\.&quot;)[1];
+            String relativeFilePath = relativePath + File.separator + fileName + &quot;.&quot; + extension;
+            String path = UPLOAD_DIR + relativeFilePath;
+            File fileSaveDir = new File(path);
+            if (!fileSaveDir.getParentFile().exists()) {
+                fileSaveDir.getParentFile().mkdirs();
+            }
+            part.write(path);
+
+            fileSaveDir.setExecutable(false, false);
+            fileSaveDir.setWritable(false, false);
+            fileSaveDir.setReadable(true, false);
+
+            paths.add(relativeFilePath);
+        }
+
+        JsonArrayBuilder pictureBuilder = Json.createArrayBuilder();
+        for (String path : paths) {
+            JsonObject pathObject = Json.createObjectBuilder()
+                    .add(&quot;path&quot;, path)
+                    .build();
+            pictureBuilder = pictureBuilder
+                    .add(pathObject);
+        }
+
+        response.setHeader(&quot;Location&quot;, paths.toString());
+        response.setContentType(&quot;application/json&quot;);
+        PrintWriter out = response.getWriter();
+        out.print(pictureBuilder.build().toString());
+        out.flush();
+        out.close();
+    }
+
+    private String getFileName(Part part) {
+        String contentDisp = part.getHeader(&quot;content-disposition&quot;);
+        String[] tokens = contentDisp.split(&quot;;&quot;);
+        for (String token : tokens) {
+            if (token.trim().startsWith(&quot;filename&quot;)) {
+                return token.substring(token.indexOf(&quot;=&quot;) + 2, token.length() - 1);
+            }
+        }
+        return &quot;&quot;;
+    }
+
+}
+</code></pre>
+
+<h2 id="jenkins-pipeline">Jenkins pipeline</h2>
+<p>The Jenkins pipeline looks like this:</p>
+<pre><code>withEnv([   &quot;VERSION=1.0.${currentBuild.number}&quot;,
+            &quot;REGISTRY_EMAIL=brem_robert@hotmail.com&quot;,
+            &quot;KUBECTL=kubectl&quot;,
+            &quot;HOST=disruptor.ninja&quot;,
+            &quot;REALM_NAME=battleapp&quot;,
+            &quot;KEYCLOAK_URL=https://disruptor.ninja:31182/auth&quot;,
+            &quot;PORT=31082&quot;]) {
+
+  stage &quot;checkout, build, test and publish&quot;
+  node {
+    git url: &quot;http://disruptor.ninja:30130/rob/battleapp-fileuploader&quot;
+    def mvnHome = tool 'M3'
+    sh &quot;${mvnHome}/bin/mvn clean install&quot;
+    sh &quot;./build.js&quot;
+  }
+
+  stage &quot;start test environment&quot;
+  node {
+    git url: &quot;http://disruptor.ninja:30130/rob/battleapp-fileuploader-starttestenv&quot;
+    sh &quot;./start.js&quot;
+  }
+
+  stage &quot;manual testing&quot;
+  input &quot;everything ok?&quot;
+
+  stage &quot;start canary&quot;
+  input &quot;deploy the canary?&quot;
+  node {
+    git url: &quot;http://disruptor.ninja:30130/rob/battleapp-fileuploader-canary&quot;
+    sh &quot;./start.js&quot;
+  }
+
+  stage &quot;go full production&quot;
+  input &quot;undeploy other versions?&quot;
+  node {
+    git url: &quot;http://disruptor.ninja:30130/rob/battleapp-fileuploader-prod&quot;
+    sh &quot;./start.js&quot;
+  }
+}
+</code></pre>
+
+<h2 id="start-test-environment-script">Start test environment script</h2>
+<p>The <code>start.js</code> script for the test environment looks like this:</p>
+<blockquote>
+<p>We create two deployments and two services one for the fileupload a
+Java EE application and for the filedownload a simple nginx.</p>
+</blockquote>
+<pre><code>#!/usr/bin/jjs -fv
+
+var FileWriter = Java.type(&quot;java.io.FileWriter&quot;);
+
+var version = $ENV.VERSION;
+var kubectl = $ENV.KUBECTL;
+
+var name = &quot;battleapp-fileuploader&quot;;
+var image = &quot;disruptor.ninja:30500/robertbrem/battleapp-fileuploader:&quot; + version;
+var replicas = 1;
+var port = 8080;
+var clusterPort = 8181;
+var nodePort = 31082;
+var deploymentFileName = &quot;deployment.yml&quot;;
+var serviceFileName = &quot;service.yml&quot;;
+var registrysecret = &quot;registrykey&quot;;
+var url = &quot;http://disruptor.ninja:&quot; + nodePort + &quot;/battleapp/resources/health&quot;;
+var timeout = 2;
+var realmName = &quot;battleapp&quot;;
+var authServerUrl = &quot;https://disruptor.ninja:31182/auth&quot;;
+var namespace = &quot;test&quot;;
+var kafkaAddress = &quot;kafka:9092&quot;;
+var uploadDir = &quot;/opt/jboss/uploads&quot;;
+var nodeSelector = &quot;vmi74389&quot;;
+var hostPath = &quot;/root/uploads&quot;;
+
+var downloadName = &quot;battleapp-filedownloader&quot;;
+var downloadImage = &quot;nginx&quot;;
+var downloadReplicas = 1;
+var downloadPort = 80;
+var downloadClusterPort = 81;
+var downloadNodePort = 31031;
+var downloadDeploymentFileName = &quot;downloadDeployment.yml&quot;;
+var downloadServiceFileName = &quot;downloadService.yml&quot;;
+var downloadDir = &quot;/usr/share/nginx/html&quot;;
+
+var deleteDeployment = kubectl + &quot; --namespace &quot; + namespace + &quot; delete deployment &quot; + name;
+execute(deleteDeployment);
+
+var dfw = new FileWriter(deploymentFileName);
+dfw.write(&quot;apiVersion: extensions/v1beta1\n&quot;);
+dfw.write(&quot;kind: Deployment\n&quot;);
+dfw.write(&quot;metadata:\n&quot;);
+dfw.write(&quot;  name: &quot; + name + &quot;\n&quot;);
+dfw.write(&quot;  namespace: &quot; + namespace + &quot;\n&quot;);
+dfw.write(&quot;spec:\n&quot;);
+dfw.write(&quot;  replicas: &quot; + replicas + &quot;\n&quot;);
+dfw.write(&quot;  template:\n&quot;);
+dfw.write(&quot;    metadata:\n&quot;);
+dfw.write(&quot;      labels:\n&quot;);
+dfw.write(&quot;        name: &quot; + name + &quot;\n&quot;);
+dfw.write(&quot;    spec:\n&quot;);
+dfw.write(&quot;      containers:\n&quot;);
+dfw.write(&quot;      - resources:\n&quot;);
+dfw.write(&quot;        name: &quot; + name + &quot;\n&quot;);
+dfw.write(&quot;        image: &quot; + image + &quot;\n&quot;);
+dfw.write(&quot;        ports:\n&quot;);
+dfw.write(&quot;        - name: port\n&quot;);
+dfw.write(&quot;          containerPort: &quot; + port + &quot;\n&quot;);
+dfw.write(&quot;        env:\n&quot;);
+dfw.write(&quot;        - name: REALM_NAME\n&quot;);
+dfw.write(&quot;          value: \&quot;&quot; + realmName + &quot;\&quot;\n&quot;);
+dfw.write(&quot;        - name: AUTH_SERVER_URL\n&quot;);
+dfw.write(&quot;          value: \&quot;&quot; + authServerUrl + &quot;\&quot;\n&quot;);
+dfw.write(&quot;        - name: KAFKA_ADDRESS\n&quot;);
+dfw.write(&quot;          value: \&quot;&quot; + kafkaAddress + &quot;\&quot;\n&quot;);
+dfw.write(&quot;        - name: UPLOAD_DIR\n&quot;);
+dfw.write(&quot;          value: \&quot;&quot; + uploadDir + &quot;\&quot;\n&quot;);
+dfw.write(&quot;        volumeMounts:\n&quot;);
+dfw.write(&quot;        - mountPath: &quot; + uploadDir + &quot;\n&quot;);
+dfw.write(&quot;          name: files\n&quot;);
+dfw.write(&quot;      volumes:\n&quot;);
+dfw.write(&quot;      - name: files\n&quot;);
+dfw.write(&quot;        hostPath:\n&quot;);
+dfw.write(&quot;          path: &quot; + hostPath + &quot;\n&quot;);
+dfw.write(&quot;      nodeSelector:\n&quot;);
+dfw.write(&quot;        name: &quot; + nodeSelector + &quot;\n&quot;);
+dfw.write(&quot;      imagePullSecrets:\n&quot;);
+dfw.write(&quot;      - name: &quot; + registrysecret + &quot;\n&quot;);
+dfw.close();
+
+var deploy = kubectl + &quot; create -f &quot; + deploymentFileName;
+execute(deploy);
+
+var deleteDownloadDeployment = kubectl + &quot; --namespace &quot; + namespace + &quot; delete deployment &quot; + downloadName;
+execute(deleteDownloadDeployment);
+
+var downfw = new FileWriter(downloadDeploymentFileName);
+downfw.write(&quot;apiVersion: extensions/v1beta1\n&quot;);
+downfw.write(&quot;kind: Deployment\n&quot;);
+downfw.write(&quot;metadata:\n&quot;);
+downfw.write(&quot;  name: &quot; + downloadName + &quot;\n&quot;);
+downfw.write(&quot;  namespace: &quot; + namespace + &quot;\n&quot;);
+downfw.write(&quot;spec:\n&quot;);
+downfw.write(&quot;  replicas: &quot; + downloadReplicas + &quot;\n&quot;);
+downfw.write(&quot;  template:\n&quot;);
+downfw.write(&quot;    metadata:\n&quot;);
+downfw.write(&quot;      labels:\n&quot;);
+downfw.write(&quot;        name: &quot; + downloadName + &quot;\n&quot;);
+downfw.write(&quot;    spec:\n&quot;);
+downfw.write(&quot;      containers:\n&quot;);
+downfw.write(&quot;      - resources:\n&quot;);
+downfw.write(&quot;        name: &quot; + downloadName + &quot;\n&quot;);
+downfw.write(&quot;        image: &quot; + downloadImage + &quot;\n&quot;);
+downfw.write(&quot;        ports:\n&quot;);
+downfw.write(&quot;        - name: port\n&quot;);
+downfw.write(&quot;          containerPort: &quot; + downloadPort + &quot;\n&quot;);
+downfw.write(&quot;        volumeMounts:\n&quot;);
+downfw.write(&quot;        - mountPath: &quot; + downloadDir + &quot;\n&quot;);
+downfw.write(&quot;          name: files\n&quot;);
+downfw.write(&quot;      volumes:\n&quot;);
+downfw.write(&quot;      - name: files\n&quot;);
+downfw.write(&quot;        hostPath:\n&quot;);
+downfw.write(&quot;          path: &quot; + hostPath + &quot;\n&quot;);
+downfw.write(&quot;      nodeSelector:\n&quot;);
+downfw.write(&quot;        name: &quot; + nodeSelector + &quot;\n&quot;);
+downfw.write(&quot;      imagePullSecrets:\n&quot;);
+downfw.write(&quot;      - name: &quot; + registrysecret + &quot;\n&quot;);
+downfw.close();
+
+var downloadDeploy = kubectl + &quot; create -f &quot; + downloadDeploymentFileName;
+execute(downloadDeploy);
+
+var sfw = new FileWriter(serviceFileName);
+sfw.write(&quot;apiVersion: v1\n&quot;);
+sfw.write(&quot;kind: Service\n&quot;);
+sfw.write(&quot;metadata:\n&quot;);
+sfw.write(&quot;  name: &quot; + name + &quot;\n&quot;);
+sfw.write(&quot;  labels:\n&quot;);
+sfw.write(&quot;    name: &quot; + name + &quot;\n&quot;);
+sfw.write(&quot;  namespace: &quot; + namespace + &quot;\n&quot;);
+sfw.write(&quot;spec:\n&quot;);
+sfw.write(&quot;  ports:\n&quot;);
+sfw.write(&quot;  - port: &quot; + clusterPort + &quot;\n&quot;);
+sfw.write(&quot;    targetPort: &quot; + port + &quot;\n&quot;);
+sfw.write(&quot;    nodePort: &quot; + nodePort + &quot;\n&quot;);
+sfw.write(&quot;  selector:\n&quot;);
+sfw.write(&quot;    name: &quot; + name + &quot;\n&quot;);
+sfw.write(&quot;  type: NodePort\n&quot;);
+sfw.close();
+
+var deployService = kubectl + &quot; create -f &quot; + serviceFileName;
+execute(deployService);
+
+var downsfw = new FileWriter(downloadServiceFileName);
+downsfw.write(&quot;apiVersion: v1\n&quot;);
+downsfw.write(&quot;kind: Service\n&quot;);
+downsfw.write(&quot;metadata:\n&quot;);
+downsfw.write(&quot;  name: &quot; + downloadName + &quot;\n&quot;);
+downsfw.write(&quot;  labels:\n&quot;);
+downsfw.write(&quot;    name: &quot; + downloadName + &quot;\n&quot;);
+downsfw.write(&quot;  namespace: &quot; + namespace + &quot;\n&quot;);
+downsfw.write(&quot;spec:\n&quot;);
+downsfw.write(&quot;  ports:\n&quot;);
+downsfw.write(&quot;  - port: &quot; + downloadClusterPort + &quot;\n&quot;);
+downsfw.write(&quot;    targetPort: &quot; + downloadPort + &quot;\n&quot;);
+downsfw.write(&quot;    nodePort: &quot; + downloadNodePort + &quot;\n&quot;);
+downsfw.write(&quot;  selector:\n&quot;);
+downsfw.write(&quot;    name: &quot; + downloadName + &quot;\n&quot;);
+downsfw.write(&quot;  type: NodePort\n&quot;);
+downsfw.close();
+
+var downloadDeployService = kubectl + &quot; create -f &quot; + downloadServiceFileName;
+execute(downloadDeployService);
+
+var testUrl = &quot;curl --write-out %{http_code} --silent --output /dev/null &quot; + url + &quot; --max-time &quot; + timeout;
+execute(testUrl);
+while ($OUT != &quot;200&quot;) {
+    $EXEC(&quot;sleep 1&quot;);
+    execute(testUrl);
+}
+
+function execute(command) {
+    $EXEC(command);
+    print($OUT);
+    print($ERR);
+}
+</code></pre>
+
+<h2 id="start-canary-script">Start canary script</h2>
+<p>Like in the test environment we create two deployments and two services one for
+the download and one for the upload:</p>
+<pre><code>#!/usr/bin/jjs -fv
+
+var FileWriter = Java.type(&quot;java.io.FileWriter&quot;);
+
+var version = $ENV.VERSION;
+var kubectl = $ENV.KUBECTL;
+
+var name = &quot;battleapp-fileuploader&quot;;
+var versionedName = name + &quot;-&quot; + version;
+var image = &quot;disruptor.ninja:30500/robertbrem/battleapp-fileuploader:&quot; + version;
+var replicas = 1;
+var port = 8080;
+var clusterPort = 8182;
+var nodePort = 30082;
+var deploymentFileName = &quot;deployment.yml&quot;;
+var serviceFileName = &quot;service.yml&quot;;
+var registrysecret = &quot;registrykey&quot;;
+var url = &quot;http://disruptor.ninja:&quot; + nodePort + &quot;/battleapp/resources/health&quot;;
+var timeout = 2;
+var realmName = &quot;battleapp&quot;;
+var authServerUrl = &quot;https://disruptor.ninja:30182/auth&quot;;
+var kafkaAddress = &quot;kafka:9092&quot;;
+var uploadDir = &quot;/opt/jboss/uploads&quot;;
+var nodeSelector = &quot;vmi100202&quot;;
+var hostPath = &quot;/root/uploads&quot;;
+
+var downloadName = &quot;battleapp-filedownloader&quot;;
+var versionedDownloadName = downloadName + &quot;-&quot; + version;
+var downloadImage = &quot;nginx&quot;;
+var downloadReplicas = 1;
+var downloadPort = 80;
+var downloadClusterPort = 82;
+var downloadNodePort = 30031;
+var downloadDeploymentFileName = &quot;downloadDeployment.yml&quot;;
+var downloadServiceFileName = &quot;downloadService.yml&quot;;
+var downloadDir = &quot;/usr/share/nginx/html&quot;;
+
+var dfw = new FileWriter(deploymentFileName);
+dfw.write(&quot;apiVersion: extensions/v1beta1\n&quot;);
+dfw.write(&quot;kind: Deployment\n&quot;);
+dfw.write(&quot;metadata:\n&quot;);
+dfw.write(&quot;  name: &quot; + versionedName + &quot;\n&quot;);
+dfw.write(&quot;spec:\n&quot;);
+dfw.write(&quot;  replicas: &quot; + replicas + &quot;\n&quot;);
+dfw.write(&quot;  template:\n&quot;);
+dfw.write(&quot;    metadata:\n&quot;);
+dfw.write(&quot;      labels:\n&quot;);
+dfw.write(&quot;        name: &quot; + name + &quot;\n&quot;);
+dfw.write(&quot;        version: &quot; + version + &quot;\n&quot;);
+dfw.write(&quot;    spec:\n&quot;);
+dfw.write(&quot;      containers:\n&quot;);
+dfw.write(&quot;      - resources:\n&quot;);
+dfw.write(&quot;        name: &quot; + name + &quot;\n&quot;);
+dfw.write(&quot;        image: &quot; + image + &quot;\n&quot;);
+dfw.write(&quot;        ports:\n&quot;);
+dfw.write(&quot;        - name: port\n&quot;);
+dfw.write(&quot;          containerPort: &quot; + port + &quot;\n&quot;);
+dfw.write(&quot;        env:\n&quot;);
+dfw.write(&quot;        - name: REALM_NAME\n&quot;);
+dfw.write(&quot;          value: \&quot;&quot; + realmName + &quot;\&quot;\n&quot;);
+dfw.write(&quot;        - name: AUTH_SERVER_URL\n&quot;);
+dfw.write(&quot;          value: \&quot;&quot; + authServerUrl + &quot;\&quot;\n&quot;);
+dfw.write(&quot;        - name: KAFKA_ADDRESS\n&quot;);
+dfw.write(&quot;          value: \&quot;&quot; + kafkaAddress + &quot;\&quot;\n&quot;);
+dfw.write(&quot;        - name: UPLOAD_DIR\n&quot;);
+dfw.write(&quot;          value: \&quot;&quot; + uploadDir + &quot;\&quot;\n&quot;);
+dfw.write(&quot;        volumeMounts:\n&quot;);
+dfw.write(&quot;        - mountPath: &quot; + uploadDir + &quot;\n&quot;);
+dfw.write(&quot;          name: files\n&quot;);
+dfw.write(&quot;      volumes:\n&quot;);
+dfw.write(&quot;      - name: files\n&quot;);
+dfw.write(&quot;        hostPath:\n&quot;);
+dfw.write(&quot;          path: &quot; + hostPath + &quot;\n&quot;);
+dfw.write(&quot;      nodeSelector:\n&quot;);
+dfw.write(&quot;        name: &quot; + nodeSelector + &quot;\n&quot;);
+dfw.write(&quot;      imagePullSecrets:\n&quot;);
+dfw.write(&quot;      - name: &quot; + registrysecret + &quot;\n&quot;);
+dfw.close();
+
+var deploy = kubectl + &quot; create -f &quot; + deploymentFileName;
+execute(deploy);
+
+var downfw = new FileWriter(downloadDeploymentFileName);
+downfw.write(&quot;apiVersion: extensions/v1beta1\n&quot;);
+downfw.write(&quot;kind: Deployment\n&quot;);
+downfw.write(&quot;metadata:\n&quot;);
+downfw.write(&quot;  name: &quot; + versionedDownloadName + &quot;\n&quot;);
+downfw.write(&quot;spec:\n&quot;);
+downfw.write(&quot;  replicas: &quot; + downloadReplicas + &quot;\n&quot;);
+downfw.write(&quot;  template:\n&quot;);
+downfw.write(&quot;    metadata:\n&quot;);
+downfw.write(&quot;      labels:\n&quot;);
+downfw.write(&quot;        name: &quot; + downloadName + &quot;\n&quot;);
+downfw.write(&quot;        version: &quot; + version + &quot;\n&quot;);
+downfw.write(&quot;    spec:\n&quot;);
+downfw.write(&quot;      containers:\n&quot;);
+downfw.write(&quot;      - resources:\n&quot;);
+downfw.write(&quot;        name: &quot; + downloadName + &quot;\n&quot;);
+downfw.write(&quot;        image: &quot; + downloadImage + &quot;\n&quot;);
+downfw.write(&quot;        ports:\n&quot;);
+downfw.write(&quot;        - name: port\n&quot;);
+downfw.write(&quot;          containerPort: &quot; + downloadPort + &quot;\n&quot;);
+downfw.write(&quot;        volumeMounts:\n&quot;);
+downfw.write(&quot;        - mountPath: &quot; + downloadDir + &quot;\n&quot;);
+downfw.write(&quot;          name: files\n&quot;);
+downfw.write(&quot;      volumes:\n&quot;);
+downfw.write(&quot;      - name: files\n&quot;);
+downfw.write(&quot;        hostPath:\n&quot;);
+downfw.write(&quot;          path: &quot; + hostPath + &quot;\n&quot;);
+downfw.write(&quot;      nodeSelector:\n&quot;);
+downfw.write(&quot;        name: &quot; + nodeSelector + &quot;\n&quot;);
+downfw.write(&quot;      imagePullSecrets:\n&quot;);
+downfw.write(&quot;      - name: &quot; + registrysecret + &quot;\n&quot;);
+downfw.close();
+
+var downloadDeploy = kubectl + &quot; create -f &quot; + downloadDeploymentFileName;
+execute(downloadDeploy);
+
+var sfw = new FileWriter(serviceFileName);
+sfw.write(&quot;apiVersion: v1\n&quot;);
+sfw.write(&quot;kind: Service\n&quot;);
+sfw.write(&quot;metadata:\n&quot;);
+sfw.write(&quot;  name: &quot; + name + &quot;\n&quot;);
+sfw.write(&quot;  labels:\n&quot;);
+sfw.write(&quot;    name: &quot; + name + &quot;\n&quot;);
+sfw.write(&quot;spec:\n&quot;);
+sfw.write(&quot;  ports:\n&quot;);
+sfw.write(&quot;  - port: &quot; + clusterPort + &quot;\n&quot;);
+sfw.write(&quot;    targetPort: &quot; + port + &quot;\n&quot;);
+sfw.write(&quot;    nodePort: &quot; + nodePort + &quot;\n&quot;);
+sfw.write(&quot;  selector:\n&quot;);
+sfw.write(&quot;    name: &quot; + name + &quot;\n&quot;);
+sfw.write(&quot;  type: NodePort\n&quot;);
+sfw.close();
+
+var deployService = kubectl + &quot; create -f &quot; + serviceFileName;
+execute(deployService);
+
+var downsfw = new FileWriter(downloadServiceFileName);
+downsfw.write(&quot;apiVersion: v1\n&quot;);
+downsfw.write(&quot;kind: Service\n&quot;);
+downsfw.write(&quot;metadata:\n&quot;);
+downsfw.write(&quot;  name: &quot; + downloadName + &quot;\n&quot;);
+downsfw.write(&quot;  labels:\n&quot;);
+downsfw.write(&quot;    name: &quot; + downloadName + &quot;\n&quot;);
+downsfw.write(&quot;spec:\n&quot;);
+downsfw.write(&quot;  ports:\n&quot;);
+downsfw.write(&quot;  - port: &quot; + downloadClusterPort + &quot;\n&quot;);
+downsfw.write(&quot;    targetPort: &quot; + downloadPort + &quot;\n&quot;);
+downsfw.write(&quot;    nodePort: &quot; + downloadNodePort + &quot;\n&quot;);
+downsfw.write(&quot;  selector:\n&quot;);
+downsfw.write(&quot;    name: &quot; + downloadName + &quot;\n&quot;);
+downsfw.write(&quot;  type: NodePort\n&quot;);
+downsfw.close();
+
+var downloadDeployService = kubectl + &quot; create -f &quot; + downloadServiceFileName;
+execute(downloadDeployService);
+
+var testUrl = &quot;curl --write-out %{http_code} --silent --output /dev/null &quot; + url + &quot; --max-time &quot; + timeout;
+execute(testUrl);
+while ($OUT != &quot;200&quot;) {
+    $EXEC(&quot;sleep 1&quot;);
+    execute(testUrl);
+}
+
+function execute(command) {
+    $EXEC(command);
+    print($OUT);
+    print($ERR);
+}
+</code></pre>
+
+<h2 id="go-full-production-script">Go full production script</h2>
+<p>The go full production with the current version script looks like this:</p>
+<pre><code>#!/usr/bin/jjs -fv
+
+var version = $ENV.VERSION;
+var kubectl = $ENV.KUBECTL;
+
+var name = &quot;battleapp-fileuploader&quot;;
+var url = &quot;http://disruptor.ninja:30082/battleapp/resources/health&quot;;
+var timeout = 2;
+
+var downloadName = &quot;battleapp-filedownloader&quot;;
+
+var deleteDeployment = kubectl + &quot; delete deployment -l name=&quot; + name + &quot;,version!=&quot; + version;
+execute(deleteDeployment);
+
+var deleteDownloadDeployment = kubectl + &quot; delete deployment -l name=&quot; + downloadName + &quot;,version!=&quot; + version;
+execute(deleteDownloadDeployment);
+
+var testUrl = &quot;curl --write-out %{http_code} --silent --output /dev/null &quot; + url + &quot; --max-time &quot; + timeout;
+execute(testUrl);
+while ($OUT != &quot;200&quot;) {
+    $EXEC(&quot;sleep 1&quot;);
+    execute(testUrl);
+}
+
+function execute(command) {
+    $EXEC(command);
+    print($OUT);
+    print($ERR);
+}
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../02_REST_service_adaptions/" class="btn btn-neutral float-right" title="02 REST service adaptions">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../../19_CQRS_with_Kafka/05_Other_updates/" class="btn btn-neutral" title="Other updates"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/robertBrem/Microservices_with_Kubernetes/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../../19_CQRS_with_Kafka/05_Other_updates/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../02_REST_service_adaptions/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/require.js"></script>
+      <script src="../../search/search.js"></script>
+
+</body>
+</html>

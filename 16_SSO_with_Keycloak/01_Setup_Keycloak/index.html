@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Setup Keycloak - Microservices with Kubernetes</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/highlight.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Setup Keycloak";
+    var mkdocs_page_input_path = "16_SSO_with_Keycloak/01_Setup_Keycloak.md";
+    var mkdocs_page_url = "/16_SSO_with_Keycloak/01_Setup_Keycloak/";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js"></script>
+  <script src="../../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> Microservices with Kubernetes</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">Microservices with Kubernetes</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../README/">Microservices with Kubernetes</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">01 Setup</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../01_Setup/01_Host_setup/">Setup your local host machine</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../01_Setup/02_Kubernetes_setup/">Setup a Kubernetes cluster</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">02 First rest service</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../02_First_rest_service/01_JavaEE_service/">Creating our first JavaEE microservice</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../02_First_rest_service/02_Dockerization/">Dockerization of the service</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../02_First_rest_service/03_Deploy_in_Kubernetes/">Deploy the Docker image of the service in Kubernetes</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">03 Docker registry</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../03_Docker_registry/01_Setup_a_docker_registry/">Setup a docker registry</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">04 Jenkins</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../04_Jenkins/01_Setup_Jenkins_in_Kubernetes/">Setup Jenkins in Kubernetes</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">05 Build and push ci step</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../05_Build_and_push_ci_step/01_Build_and_push_CI_step/">Build and push CI step</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">06 Systemtest ci step</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../06_Systemtest_ci_step/01_Setup_test_env/">Setup the test environment</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../06_Systemtest_ci_step/02_Systemtest/">Add a system test</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../06_Systemtest_ci_step/03_Start_pipeline_on_every_push/">Start the Jenkins pipeline on every push</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">07 UI test</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../07_UI_test/01_UI_Test/">UI Test</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">08 Lasttest</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../08_Lasttest/01_Last_test/">Last test</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">09 Manual test</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../09_Manual_test/01_Create_manual_test/">Create manual test</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">10 Canary release</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../10_Canary_release/01_Create_a_canary_release/">Create a canary release</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">11 Full production release</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../11_Full_production_release/01_Go_full_production/">Go full production with the new version</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">12 Own Gogs</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../12_Own_Gogs/01_Use_your_own_Git_repository/">Use your own Git repository</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">13 Monitoring</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../13_Monitoring/01_Dashboard/">Kubernetes dashboard</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../13_Monitoring/02_Prometheus/">Monitoring with Prometheus</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../13_Monitoring/03_Weave_scope/">Weave Scope</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">14 Documentation of rest service</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../14_Documentation_of_rest_service/01_Documentation/">Documentation of the `jax-rs` service</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">15 Angular2 frontend</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../15_Angular2_frontend/01_Initial_setup/">Create an Angular 2 frontend</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../15_Angular2_frontend/02_Test_and_prod_stage/">Create a test and production stage</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../15_Angular2_frontend/03_First_view/">Creation of the first view</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">16 SSO with Keycloak</span>
+    <ul class="subnav">
+                <li class=" current">
+                    
+    <a class="current" href="./">Setup Keycloak</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#setup-keycloak">Setup Keycloak</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#enable-ssl-on-keycloak">Enable SSL on Keycloak</a></li>
+        
+            <li><a class="toctree-l4" href="#create-a-kubernetes-deployment">Create a Kubernetes deployment</a></li>
+        
+            <li><a class="toctree-l4" href="#create-a-kubernetes-service">Create a Kubernetes service</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../02_Initial_setup_of_Keycloak/">02 Initial setup of Keycloak</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../03_Secure_REST_service/">03 Secure REST service</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../04_Secure_frontend_service/">04 Secure frontend service</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">17 Event Sourcing with Cassandra</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../17_Event_Sourcing_with_Cassandra/01_Setup_Cassandra/">01 Setup Cassandra</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../17_Event_Sourcing_with_Cassandra/02_REST_service_with_event_sourcing/">02 REST service with event sourcing</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../17_Event_Sourcing_with_Cassandra/03_Changes_to_the_frontend/">03 Changes to the frontend</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">18 Connect keycloak user with application user</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../18_Connect_keycloak_user_with_application_user/01_Setup_keycloak_with_a_provider/">01 Setup keycloak with a provider</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../18_Connect_keycloak_user_with_application_user/02_Changes_to_the_REST_service/">02 Changes to the REST service</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../18_Connect_keycloak_user_with_application_user/03_Changes_in_the_environment/">03 Changes in the environment</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">19 CQRS with Kafka</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../19_CQRS_with_Kafka/01_Setup_Kafka/">01 Setup Kafka</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../19_CQRS_with_Kafka/02_Command_service/">02 Command service</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../19_CQRS_with_Kafka/03_Query_service/">03 Query service</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../19_CQRS_with_Kafka/04_Frontend_service/">04 Frontend service</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../19_CQRS_with_Kafka/05_Other_updates/">05 Other updates</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">20 Fileuploader</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../20_Fileuploader/01_Create_fileuploader_service/">01 Create fileuploader service</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../20_Fileuploader/02_REST_service_adaptions/">02 REST service adaptions</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../20_Fileuploader/03_Query_service_adaptions/">03 Query service adaptions</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../20_Fileuploader/04_Frontend_adaptions/">04 Frontend adaptions</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">Microservices with Kubernetes</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>16 SSO with Keycloak &raquo;</li>
+        
+      
+    
+    <li>Setup Keycloak</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/robertBrem/Microservices_with_Kubernetes/edit/master/docs/16_SSO_with_Keycloak/01_Setup_Keycloak.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="setup-keycloak">Setup Keycloak</h1>
+<p>In a microservices environment we need to have the possibility for <a href="https://en.wikipedia.org/wiki/Single_sign-on">SSO
+(Single Sign On)</a>. We're 
+going to use <a href="http://www.keycloak.org/">Keycloak</a>. </p>
+<h2 id="enable-ssl-on-keycloak">Enable SSL on Keycloak</h2>
+<p>To use SSL we have to create a keystore that contains our 
+<a href="../../03_Docker_registry">previously created</a>
+SSL certificates. Therefore we connect to our master where the certificates are.</p>
+<pre><code>ssh root@5.189.173.45
+</code></pre>
+
+<p>On the server change in the directory with the certificates:</p>
+<pre><code>cd /etc/letsencrypt/live/disruptor.ninja/
+</code></pre>
+
+<p>Now we create a PKCS12 file based on 
+<a href="https://maximilian-boehm.com/hp2121/Create-a-Java-Keystore-JKS-from-Let-s-Encrypt-Certificates.htm">this article</a>.</p>
+<pre><code>openssl pkcs12 -export -in fullchain.pem -inkey privkey.pem -out pkcs.p12 -name test
+</code></pre>
+
+<pre><code>Enter Export Password:
+</code></pre>
+
+<pre><code>test
+</code></pre>
+
+<pre><code>Verifying - Enter Export Password:
+</code></pre>
+
+<pre><code>test
+</code></pre>
+
+<p>In the current folder there is a new file: <code>pkcs.p12</code>.<br />
+Copy this file on your local machine:</p>
+<pre><code>scp root@5.189.173.45:/etc/letsencrypt/live/disruptor.ninja/pkcs.p12 .
+</code></pre>
+
+<p>Now create a Java keystore based on this PKCS12 file:</p>
+<pre><code>keytool -importkeystore -deststorepass secret -destkeypass secret -destkeystore keycloak.jks -srckeystore pkcs.p12 -srcstoretype PKCS12 -srcstorepass test -alias test
+</code></pre>
+
+<p>Keycloak has persistent data therefore we have to mount this data somewhere.
+The easiest way to do that is over a node selector. A more advanced solution 
+would be to use GlusterFS, Flocker, NFS or something similar.</p>
+<p>If we use node selectors for our persistence then we have to label a node.
+In this case this is <code>5.189.153.209</code>.</p>
+<pre><code>kc label nodes vmi71989.contabo.host name=vmi71989
+</code></pre>
+
+<p>Now we connect to this server:</p>
+<pre><code>ssh root@5.189.153.209
+</code></pre>
+
+<p>And create an empty folder <code>keycloakdata</code>.</p>
+<pre><code>mkdir keycloakdata
+</code></pre>
+
+<p>In this folder we copy our keystore:</p>
+<pre><code>scp keycloak.jks root@5.189.153.209:/root/keycloakdata
+</code></pre>
+
+<p>Now we change the rights of the folder and its content:</p>
+<pre><code>chown -R 1000:1000 keycloakdata/
+</code></pre>
+
+<p>Now we've to tell Keycloak to use this keystore. Therefore I've created an own
+Docker image:</p>
+<pre><code>FROM jboss/keycloak:2.4.0.Final
+
+MAINTAINER Robert Brem &lt;brem_robert@hotmail.com&gt;
+
+RUN sed -i 's~&lt;security-realms&gt;~&lt;security-realms&gt;&lt;security-realm name=&quot;UndertowRealm&quot;&gt;&lt;server-identities&gt;&lt;ssl&gt;&lt;keystore path=&quot;/opt/jboss/keycloak/standalone/data/keycloak.jks&quot; keystore-password=&quot;${env.KEYSTORE_PASSWORD}&quot; /&gt;&lt;/ssl&gt;&lt;/server-identities&gt;&lt;/security-realm&gt;~g' /opt/jboss/keycloak/standalone/configuration/standalone.xml
+RUN sed -i 's~&lt;server name=&quot;default-server&quot;&gt;~&lt;server name=&quot;default-server&quot;&gt;&lt;https-listener name=&quot;https&quot; socket-binding=&quot;https&quot; security-realm=&quot;UndertowRealm&quot;/&gt;~g' /opt/jboss/keycloak/standalone/configuration/standalone.xml
+
+ENTRYPOINT [ &quot;/opt/jboss/docker-entrypoint.sh&quot; ]
+CMD [&quot;-b&quot;, &quot;0.0.0.0&quot;]
+</code></pre>
+
+<blockquote>
+<p>This Docker image is also available on Docker Hub <code>robertbrem\keycloak:1.0.3</code></p>
+</blockquote>
+<p>It changes the <code>standalone.xml</code> based on <a href="https://keycloak.gitbooks.io/server-installation-and-configuration/content/topics/network/https.html">this article</a>
+and uses an environment variable <code>KEYSTORE_PASSWORD</code> as keystore password.  </p>
+<h2 id="create-a-kubernetes-deployment">Create a Kubernetes deployment</h2>
+<p>For our deployment we need a secret with the Keycloak user, the Keycloak
+password for the user and the password for our keystore:</p>
+<pre><code>kc create secret generic keycloak --from-literal=keycloak_user=admin --from-literal=keycloak_password=admin --from-literal=keystore_password=secret
+</code></pre>
+
+<p>Our deployment looks like that:</p>
+<pre><code>apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: keycloak
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: keycloak
+    spec:
+      nodeSelector:
+        name: vmi71989
+      containers:
+      - name: keycloak
+        image: robertbrem/keycloak:1.0.3
+        env:
+        - name: KEYCLOAK_USER
+          valueFrom:
+            secretKeyRef:
+              name: keycloak
+              key: keycloak_user
+        - name: KEYCLOAK_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: keycloak
+              key: keycloak_password
+        - name: KEYSTORE_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: keycloak
+              key: keystore_password
+        volumeMounts:
+          - mountPath: /opt/jboss/keycloak/standalone/data
+            name: keycloakdata
+        ports:
+          - name: http
+            containerPort: 8080
+          - name: https
+            containerPort: 8443
+      volumes:
+        - name: keycloakdata
+          hostPath:
+            path: /root/keycloakdata
+</code></pre>
+
+<p>Start the deployment:</p>
+<pre><code>kc create -f deployment.yml
+</code></pre>
+
+<h2 id="create-a-kubernetes-service">Create a Kubernetes service</h2>
+<p>To access Keycloak from outside the cluster we've to create a service:</p>
+<pre><code>apiVersion: v1
+kind: Service
+metadata:
+  name: keycloak
+  labels:
+    name: keycloak
+spec:
+  ports:
+  - name: http
+    port: 8383
+    targetPort: 8080
+    nodePort: 30181
+  - name: https
+    port: 8443
+    targetPort: 8443
+    nodePort: 30182
+  selector:
+    name: keycloak
+  type: NodePort
+</code></pre>
+
+<p>Start the service:</p>
+<pre><code>kc create -f service.yml
+</code></pre>
+
+<p>Test if Keycloak is up and running:</p>
+<pre><code>https://disruptor.ninja:30182
+</code></pre>
+
+<p><img alt="Keycloak" src="../images/keycloak.png" /></p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../02_Initial_setup_of_Keycloak/" class="btn btn-neutral float-right" title="02 Initial setup of Keycloak">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../../15_Angular2_frontend/03_First_view/" class="btn btn-neutral" title="Creation of the first view"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/robertBrem/Microservices_with_Kubernetes/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../../15_Angular2_frontend/03_First_view/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../02_Initial_setup_of_Keycloak/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/require.js"></script>
+      <script src="../../search/search.js"></script>
+
+</body>
+</html>

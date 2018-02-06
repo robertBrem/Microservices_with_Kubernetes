@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Create a test and production stage - Microservices with Kubernetes</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/highlight.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Create a test and production stage";
+    var mkdocs_page_input_path = "15_Angular2_frontend/02_Test_and_prod_stage.md";
+    var mkdocs_page_url = "/15_Angular2_frontend/02_Test_and_prod_stage/";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js"></script>
+  <script src="../../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> Microservices with Kubernetes</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">Microservices with Kubernetes</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../README/">Microservices with Kubernetes</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">01 Setup</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../01_Setup/01_Host_setup/">Setup your local host machine</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../01_Setup/02_Kubernetes_setup/">Setup a Kubernetes cluster</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">02 First rest service</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../02_First_rest_service/01_JavaEE_service/">Creating our first JavaEE microservice</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../02_First_rest_service/02_Dockerization/">Dockerization of the service</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../02_First_rest_service/03_Deploy_in_Kubernetes/">Deploy the Docker image of the service in Kubernetes</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">03 Docker registry</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../03_Docker_registry/01_Setup_a_docker_registry/">Setup a docker registry</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">04 Jenkins</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../04_Jenkins/01_Setup_Jenkins_in_Kubernetes/">Setup Jenkins in Kubernetes</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">05 Build and push ci step</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../05_Build_and_push_ci_step/01_Build_and_push_CI_step/">Build and push CI step</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">06 Systemtest ci step</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../06_Systemtest_ci_step/01_Setup_test_env/">Setup the test environment</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../06_Systemtest_ci_step/02_Systemtest/">Add a system test</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../06_Systemtest_ci_step/03_Start_pipeline_on_every_push/">Start the Jenkins pipeline on every push</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">07 UI test</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../07_UI_test/01_UI_Test/">UI Test</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">08 Lasttest</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../08_Lasttest/01_Last_test/">Last test</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">09 Manual test</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../09_Manual_test/01_Create_manual_test/">Create manual test</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">10 Canary release</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../10_Canary_release/01_Create_a_canary_release/">Create a canary release</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">11 Full production release</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../11_Full_production_release/01_Go_full_production/">Go full production with the new version</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">12 Own Gogs</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../12_Own_Gogs/01_Use_your_own_Git_repository/">Use your own Git repository</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">13 Monitoring</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../13_Monitoring/01_Dashboard/">Kubernetes dashboard</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../13_Monitoring/02_Prometheus/">Monitoring with Prometheus</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../13_Monitoring/03_Weave_scope/">Weave Scope</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">14 Documentation of rest service</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../14_Documentation_of_rest_service/01_Documentation/">Documentation of the `jax-rs` service</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">15 Angular2 frontend</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../01_Initial_setup/">Create an Angular 2 frontend</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">Create a test and production stage</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#create-a-test-and-production-stage">Create a test and production stage</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#creation-of-kubernetes-configmap">Creation of Kubernetes ConfigMap</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../03_First_view/">03 First view</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">16 SSO with Keycloak</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../16_SSO_with_Keycloak/01_Setup_Keycloak/">01 Setup Keycloak</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../16_SSO_with_Keycloak/02_Initial_setup_of_Keycloak/">02 Initial setup of Keycloak</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../16_SSO_with_Keycloak/03_Secure_REST_service/">03 Secure REST service</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../16_SSO_with_Keycloak/04_Secure_frontend_service/">04 Secure frontend service</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">17 Event Sourcing with Cassandra</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../17_Event_Sourcing_with_Cassandra/01_Setup_Cassandra/">01 Setup Cassandra</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../17_Event_Sourcing_with_Cassandra/02_REST_service_with_event_sourcing/">02 REST service with event sourcing</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../17_Event_Sourcing_with_Cassandra/03_Changes_to_the_frontend/">03 Changes to the frontend</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">18 Connect keycloak user with application user</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../18_Connect_keycloak_user_with_application_user/01_Setup_keycloak_with_a_provider/">01 Setup keycloak with a provider</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../18_Connect_keycloak_user_with_application_user/02_Changes_to_the_REST_service/">02 Changes to the REST service</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../18_Connect_keycloak_user_with_application_user/03_Changes_in_the_environment/">03 Changes in the environment</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">19 CQRS with Kafka</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../19_CQRS_with_Kafka/01_Setup_Kafka/">01 Setup Kafka</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../19_CQRS_with_Kafka/02_Command_service/">02 Command service</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../19_CQRS_with_Kafka/03_Query_service/">03 Query service</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../19_CQRS_with_Kafka/04_Frontend_service/">04 Frontend service</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../19_CQRS_with_Kafka/05_Other_updates/">05 Other updates</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">20 Fileuploader</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../20_Fileuploader/01_Create_fileuploader_service/">01 Create fileuploader service</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../20_Fileuploader/02_REST_service_adaptions/">02 REST service adaptions</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../20_Fileuploader/03_Query_service_adaptions/">03 Query service adaptions</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../20_Fileuploader/04_Frontend_adaptions/">04 Frontend adaptions</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">Microservices with Kubernetes</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>15 Angular2 frontend &raquo;</li>
+        
+      
+    
+    <li>Create a test and production stage</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/robertBrem/Microservices_with_Kubernetes/edit/master/docs/15_Angular2_frontend/02_Test_and_prod_stage.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="create-a-test-and-production-stage">Create a test and production stage</h1>
+<p>We create a test environment similar to the test environment of the REST service.</p>
+<pre><code>#!/usr/bin/jjs -fv
+
+var FileWriter = Java.type(&quot;java.io.FileWriter&quot;);
+
+var version = $ENV.VERSION;
+var kubectl = $ENV.KUBECTL;
+
+var name = &quot;battleapp-frontend-test&quot;;
+var baseUrl = &quot;disruptor.ninja&quot;;
+var image = baseUrl + &quot;:30500/robertbrem/battleapp-frontend:&quot; + version;
+var replicas = 1;
+var port = 80;
+var clusterPort = 3001;
+var nodePort = 31030;
+var deploymentFileName = &quot;deployment.yml&quot;;
+var serviceFileName = &quot;service.yml&quot;;
+var registrysecret = &quot;registrykey&quot;;
+var url = &quot;http://&quot; + baseUrl + &quot;:&quot; + nodePort;
+var timeout = 2;
+
+var deleteDeployment = kubectl + &quot; delete deployment &quot; + name;
+execute(deleteDeployment);
+
+var dfw = new FileWriter(deploymentFileName);
+dfw.write(&quot;apiVersion: extensions/v1beta1\n&quot;);
+dfw.write(&quot;kind: Deployment\n&quot;);
+dfw.write(&quot;metadata:\n&quot;);
+dfw.write(&quot;  name: &quot; + name + &quot;\n&quot;);
+dfw.write(&quot;spec:\n&quot;);
+dfw.write(&quot;  replicas: &quot; + replicas + &quot;\n&quot;);
+dfw.write(&quot;  template:\n&quot;);
+dfw.write(&quot;    metadata:\n&quot;);
+dfw.write(&quot;      labels:\n&quot;);
+dfw.write(&quot;        name: &quot; + name + &quot;\n&quot;);
+dfw.write(&quot;    spec:\n&quot;);
+dfw.write(&quot;      containers:\n&quot;);
+dfw.write(&quot;      - resources:\n&quot;);
+dfw.write(&quot;        name: &quot; + name + &quot;\n&quot;);
+dfw.write(&quot;        image: &quot; + image + &quot;\n&quot;);
+dfw.write(&quot;        ports:\n&quot;);
+dfw.write(&quot;        - name: port\n&quot;);
+dfw.write(&quot;          containerPort: &quot; + port + &quot;\n&quot;);
+dfw.write(&quot;        volumeMounts:\n&quot;);
+dfw.write(&quot;        - name: environment\n&quot;);
+dfw.write(&quot;          mountPath: /usr/share/nginx/html/environment\n&quot;);
+dfw.write(&quot;      volumes:\n&quot;);
+dfw.write(&quot;      - name: environment\n&quot;);
+dfw.write(&quot;        configMap:\n&quot;);
+dfw.write(&quot;          name: battleapp-frontend-test\n&quot;);
+dfw.write(&quot;          items:\n&quot;);
+dfw.write(&quot;          - key: environment.json\n&quot;);
+dfw.write(&quot;            path: environment.json\n&quot;);
+dfw.write(&quot;      imagePullSecrets:\n&quot;);
+dfw.write(&quot;      - name: &quot; + registrysecret + &quot;\n&quot;);
+dfw.close();
+
+var deploy = kubectl + &quot; create -f &quot; + deploymentFileName;
+execute(deploy);
+
+var deleteService = kubectl + &quot; delete service &quot; + name;
+execute(deleteService);
+
+var sfw = new FileWriter(serviceFileName);
+sfw.write(&quot;apiVersion: v1\n&quot;);
+sfw.write(&quot;kind: Service\n&quot;);
+sfw.write(&quot;metadata:\n&quot;);
+sfw.write(&quot;  name: &quot; + name + &quot;\n&quot;);
+sfw.write(&quot;  labels:\n&quot;);
+sfw.write(&quot;    name: &quot; + name + &quot;\n&quot;);
+sfw.write(&quot;spec:\n&quot;);
+sfw.write(&quot;  ports:\n&quot;);
+sfw.write(&quot;  - port: &quot; + clusterPort + &quot;\n&quot;);
+sfw.write(&quot;    targetPort: &quot; + port + &quot;\n&quot;);
+sfw.write(&quot;    nodePort: &quot; + nodePort + &quot;\n&quot;);
+sfw.write(&quot;  selector:\n&quot;);
+sfw.write(&quot;    name: &quot; + name + &quot;\n&quot;);
+sfw.write(&quot;  type: NodePort\n&quot;);
+sfw.close();
+
+var deployService = kubectl + &quot; create -f &quot; + serviceFileName;
+execute(deployService);
+
+var testUrl = &quot;curl --write-out %{http_code} --silent --output /dev/null &quot; + url + &quot; --max-time &quot; + timeout;
+execute(testUrl);
+while ($OUT != &quot;200&quot;) {
+    $EXEC(&quot;sleep 1&quot;);
+    execute(testUrl);
+}
+
+function execute(command) {
+    $EXEC(command);
+    print($OUT);
+    print($ERR);
+}
+</code></pre>
+
+<p>It is important to make this script file executable:</p>
+<pre><code>chmod 750 start.js
+</code></pre>
+
+<p>And the corresponding pipeline entry:</p>
+<pre><code>stage &quot;start test environment&quot;
+node {
+  git url: &quot;http://disruptor.ninja:30130/rob/battleapp-frontend-starttestenv&quot;
+  sh &quot;./start.js&quot;
+}
+</code></pre>
+
+<p>After the test environment we add a manual pipeline step:</p>
+<pre><code>stage &quot;manual testing&quot;
+input &quot;everything ok?&quot;
+</code></pre>
+
+<p>The next step is the canary release:</p>
+<pre><code>#!/usr/bin/jjs -fv
+
+var FileWriter = Java.type(&quot;java.io.FileWriter&quot;);
+
+var version = $ENV.VERSION;
+var kubectl = $ENV.KUBECTL;
+
+var name = &quot;battleapp-frontend&quot;;
+var nameWithVersion = name + &quot;-&quot; + version;
+var image = &quot;disruptor.ninja:30500/robertbrem/&quot; + name + &quot;:&quot; + version;
+var replicas = 1;
+var port = 80;
+var clusterPort = 3002;
+var nodePort = 30030;
+var deploymentFileName = &quot;deployment.yml&quot;;
+var serviceFileName = &quot;service.yml&quot;;
+var registrysecret = &quot;registrykey&quot;;
+var relativeUrl = &quot;/&quot;;
+var url = &quot;http://disruptor.ninja:&quot; + nodePort;
+var timeout = 2;
+var initialDelay = 15;
+var readinessProbeTimeout = 10;
+
+var dfw = new FileWriter(deploymentFileName);
+dfw.write(&quot;apiVersion: extensions/v1beta1\n&quot;);
+dfw.write(&quot;kind: Deployment\n&quot;);
+dfw.write(&quot;metadata:\n&quot;);
+dfw.write(&quot;  name: &quot; + nameWithVersion + &quot;\n&quot;);
+dfw.write(&quot;spec:\n&quot;);
+dfw.write(&quot;  replicas: &quot; + replicas + &quot;\n&quot;);
+dfw.write(&quot;  template:\n&quot;);
+dfw.write(&quot;    metadata:\n&quot;);
+dfw.write(&quot;      labels:\n&quot;);
+dfw.write(&quot;        name: &quot; + name + &quot;\n&quot;);
+dfw.write(&quot;        version: &quot; + version + &quot;\n&quot;);
+dfw.write(&quot;    spec:\n&quot;);
+dfw.write(&quot;      containers:\n&quot;);
+dfw.write(&quot;      - resources:\n&quot;);
+dfw.write(&quot;        name: &quot; + name + &quot;\n&quot;);
+dfw.write(&quot;        image: &quot; + image + &quot;\n&quot;);
+dfw.write(&quot;        ports:\n&quot;);
+dfw.write(&quot;        - name: port\n&quot;);
+dfw.write(&quot;          containerPort: &quot; + port + &quot;\n&quot;);
+dfw.write(&quot;        readinessProbe:\n&quot;);
+dfw.write(&quot;          httpGet:\n&quot;);
+dfw.write(&quot;            path: &quot; + relativeUrl + &quot;\n&quot;);
+dfw.write(&quot;            port: &quot; + port + &quot;\n&quot;);
+dfw.write(&quot;          initialDelaySeconds: &quot; + initialDelay + &quot;\n&quot;);
+dfw.write(&quot;          timeoutSeconds: &quot; + readinessProbeTimeout + &quot;\n&quot;);
+dfw.write(&quot;        volumeMounts:\n&quot;);
+dfw.write(&quot;        - name: environment\n&quot;);
+dfw.write(&quot;          mountPath: /usr/share/nginx/html/environment\n&quot;);
+dfw.write(&quot;      volumes:\n&quot;);
+dfw.write(&quot;      - name: environment\n&quot;);
+dfw.write(&quot;        configMap:\n&quot;);
+dfw.write(&quot;          name: battleapp-frontend\n&quot;);
+dfw.write(&quot;          items:\n&quot;);
+dfw.write(&quot;          - key: environment.json\n&quot;);
+dfw.write(&quot;            path: environment.json\n&quot;);
+dfw.write(&quot;      imagePullSecrets:\n&quot;);
+dfw.write(&quot;      - name: &quot; + registrysecret + &quot;\n&quot;);
+dfw.close();
+
+var deploy = kubectl + &quot; create -f &quot; + deploymentFileName;
+execute(deploy);
+
+var sfw = new FileWriter(serviceFileName);
+sfw.write(&quot;apiVersion: v1\n&quot;);
+sfw.write(&quot;kind: Service\n&quot;);
+sfw.write(&quot;metadata:\n&quot;);
+sfw.write(&quot;  name: &quot; + name + &quot;\n&quot;);
+sfw.write(&quot;  labels:\n&quot;);
+sfw.write(&quot;    name: &quot; + name + &quot;\n&quot;);
+sfw.write(&quot;spec:\n&quot;);
+sfw.write(&quot;  ports:\n&quot;);
+sfw.write(&quot;  - port: &quot; + clusterPort + &quot;\n&quot;);
+sfw.write(&quot;    targetPort: &quot; + port + &quot;\n&quot;);
+sfw.write(&quot;    nodePort: &quot; + nodePort + &quot;\n&quot;);
+sfw.write(&quot;  selector:\n&quot;);
+sfw.write(&quot;    name: &quot; + name + &quot;\n&quot;);
+sfw.write(&quot;  type: NodePort\n&quot;);
+sfw.close();
+
+var deployService = kubectl + &quot; create -f &quot; + serviceFileName;
+execute(deployService);
+
+var testUrl = &quot;curl --write-out %{http_code} --silent --output /dev/null &quot; + url + &quot; --max-time &quot; + timeout;
+execute(testUrl);
+while ($OUT != &quot;200&quot;) {
+    $EXEC(&quot;sleep 1&quot;);
+    execute(testUrl);
+}
+
+function execute(command) {
+    $EXEC(command);
+    print($OUT);
+    print($ERR);
+}
+</code></pre>
+
+<p>Make the script file executable:</p>
+<pre><code>chmod 750 start.js
+</code></pre>
+
+<p>The corresponding pipeline entry:</p>
+<pre><code>stage &quot;start canary&quot;
+input &quot;deploy the canary?&quot;
+node {
+  git url: &quot;http://disruptor.ninja:30130/rob/battleapp-frontend-canary&quot;
+  sh &quot;./start.js&quot;
+}
+</code></pre>
+
+<p>The last step is the production step with the following script:</p>
+<pre><code>#!/usr/bin/jjs -fv
+
+var version = $ENV.VERSION;
+var kubectl = $ENV.KUBECTL;
+
+var name = &quot;battleapp-frontend&quot;;
+var url = &quot;http://disruptor.ninja:30030&quot;;
+var timeout = 2;
+
+var deleteDeployment = kubectl + &quot; delete deployment -l name=&quot; + name + &quot;,version!=&quot; + version;
+execute(deleteDeployment);
+
+var testUrl = &quot;curl --write-out %{http_code} --silent --output /dev/null &quot; + url + &quot; --max-time &quot; + timeout;
+execute(testUrl);
+while ($OUT != &quot;200&quot;) {
+    $EXEC(&quot;sleep 1&quot;);
+    execute(testUrl);
+}
+
+function execute(command) {
+    $EXEC(command);
+    print($OUT);
+    print($ERR);
+}
+</code></pre>
+
+<p>Make the script file executable:</p>
+<pre><code>chmod 750 start.js
+</code></pre>
+
+<p>The corresponding pipeline entry:</p>
+<pre><code>stage &quot;go full production&quot;
+input &quot;undeploy other versions?&quot;
+node {
+  git url: &quot;http://disruptor.ninja:30130/rob/battleapp-frontend-prod&quot;
+  sh &quot;./start.js&quot;
+}
+</code></pre>
+
+<h2 id="creation-of-kubernetes-configmap">Creation of Kubernetes ConfigMap</h2>
+<p>In both the test and the production stage we referenced a Kubernetes
+ConfigMap that we've to create first. Therefore we have to create a folder
+on the local machine with the name <code>battleapp-frontend</code> and a file 
+<code>environment.json</code> with the following content:</p>
+<pre><code>{
+  &quot;host&quot;: &quot;disruptor.ninja&quot;,
+  &quot;port&quot;: 30080
+}
+</code></pre>
+
+<p>We need also a <code>environment.json</code> file for the test stage. Therefore we 
+create a folder <code>battleapp-frontend-test</code> and a file <code>environment.json</code>
+with the following content:</p>
+<pre><code>{
+  &quot;host&quot;: &quot;disruptor.ninja&quot;,
+  &quot;port&quot;: 31080
+}
+</code></pre>
+
+<p>Now we create the two ConfigMaps:</p>
+<pre><code>kc create configmap battleapp-frontend-test --from-file=battleapp-frontend-test
+kc create configmap battleapp-frontend --from-file=battleapp-frontend
+</code></pre>
+
+<p>We can test display the ConfigMaps with the following command:</p>
+<pre><code>kc get configmap battleapp-frontend-test -o yaml
+</code></pre>
+
+<pre><code>apiVersion: v1
+data:
+  environment.json: |
+    {
+      &quot;host&quot;: &quot;disruptor.ninja&quot;,
+      &quot;port&quot;: 31080
+    }
+kind: ConfigMap
+metadata:
+  creationTimestamp: 2016-12-31T15:54:44Z
+  name: battleapp-frontend-test
+  namespace: default
+  resourceVersion: &quot;1049486&quot;
+  selfLink: /api/v1/namespaces/default/configmaps/battleapp-frontend-test
+  uid: 72a5399b-cf71-11e6-a836-0050563cad2a
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../03_First_view/" class="btn btn-neutral float-right" title="03 First view">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../01_Initial_setup/" class="btn btn-neutral" title="Create an Angular 2 frontend"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/robertBrem/Microservices_with_Kubernetes/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../01_Initial_setup/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../03_First_view/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/require.js"></script>
+      <script src="../../search/search.js"></script>
+
+</body>
+</html>

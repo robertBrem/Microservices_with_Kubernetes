@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Secure the `jax-rs` service - Microservices with Kubernetes</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/highlight.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Secure the `jax-rs` service";
+    var mkdocs_page_input_path = "16_SSO_with_Keycloak/03_Secure_REST_service.md";
+    var mkdocs_page_url = "/16_SSO_with_Keycloak/03_Secure_REST_service/";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js"></script>
+  <script src="../../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> Microservices with Kubernetes</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">Microservices with Kubernetes</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../README/">Microservices with Kubernetes</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">01 Setup</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../01_Setup/01_Host_setup/">Setup your local host machine</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../01_Setup/02_Kubernetes_setup/">Setup a Kubernetes cluster</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">02 First rest service</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../02_First_rest_service/01_JavaEE_service/">Creating our first JavaEE microservice</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../02_First_rest_service/02_Dockerization/">Dockerization of the service</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../02_First_rest_service/03_Deploy_in_Kubernetes/">Deploy the Docker image of the service in Kubernetes</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">03 Docker registry</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../03_Docker_registry/01_Setup_a_docker_registry/">Setup a docker registry</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">04 Jenkins</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../04_Jenkins/01_Setup_Jenkins_in_Kubernetes/">Setup Jenkins in Kubernetes</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">05 Build and push ci step</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../05_Build_and_push_ci_step/01_Build_and_push_CI_step/">Build and push CI step</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">06 Systemtest ci step</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../06_Systemtest_ci_step/01_Setup_test_env/">Setup the test environment</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../06_Systemtest_ci_step/02_Systemtest/">Add a system test</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../06_Systemtest_ci_step/03_Start_pipeline_on_every_push/">Start the Jenkins pipeline on every push</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">07 UI test</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../07_UI_test/01_UI_Test/">UI Test</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">08 Lasttest</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../08_Lasttest/01_Last_test/">Last test</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">09 Manual test</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../09_Manual_test/01_Create_manual_test/">Create manual test</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">10 Canary release</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../10_Canary_release/01_Create_a_canary_release/">Create a canary release</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">11 Full production release</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../11_Full_production_release/01_Go_full_production/">Go full production with the new version</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">12 Own Gogs</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../12_Own_Gogs/01_Use_your_own_Git_repository/">Use your own Git repository</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">13 Monitoring</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../13_Monitoring/01_Dashboard/">Kubernetes dashboard</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../13_Monitoring/02_Prometheus/">Monitoring with Prometheus</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../13_Monitoring/03_Weave_scope/">Weave Scope</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">14 Documentation of rest service</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../14_Documentation_of_rest_service/01_Documentation/">Documentation of the `jax-rs` service</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">15 Angular2 frontend</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../15_Angular2_frontend/01_Initial_setup/">Create an Angular 2 frontend</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../15_Angular2_frontend/02_Test_and_prod_stage/">Create a test and production stage</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../15_Angular2_frontend/03_First_view/">Creation of the first view</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">16 SSO with Keycloak</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../01_Setup_Keycloak/">Setup Keycloak</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../02_Initial_setup_of_Keycloak/">Initial setup of Keycloak</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">Secure the `jax-rs` service</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#secure-the-jax-rs-service">Secure the jax-rs service</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#patch-wildfly-with-the-keycloak-adapter">Patch Wildfly with the Keycloak adapter</a></li>
+        
+            <li><a class="toctree-l4" href="#setup-the-project-with-keycloak">Setup the project with Keycloak</a></li>
+        
+            <li><a class="toctree-l4" href="#create-the-health-check">Create the health check</a></li>
+        
+            <li><a class="toctree-l4" href="#secure-test-environment">Secure test environment</a></li>
+        
+            <li><a class="toctree-l4" href="#secure-prod-environment">Secure prod environment</a></li>
+        
+            <li><a class="toctree-l4" href="#system-test-of-the-secured-service">System test of the secured service</a></li>
+        
+            <li><a class="toctree-l4" href="#ui-test-of-the-secured-service">UI test of the secured service</a></li>
+        
+            <li><a class="toctree-l4" href="#last-test-of-the-secured-service">Last test of the secured service</a></li>
+        
+            <li><a class="toctree-l4" href="#consumer-driven-contract-test-of-the-secured-service">Consumer driven contract test of the secured service</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../04_Secure_frontend_service/">04 Secure frontend service</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">17 Event Sourcing with Cassandra</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../17_Event_Sourcing_with_Cassandra/01_Setup_Cassandra/">01 Setup Cassandra</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../17_Event_Sourcing_with_Cassandra/02_REST_service_with_event_sourcing/">02 REST service with event sourcing</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../17_Event_Sourcing_with_Cassandra/03_Changes_to_the_frontend/">03 Changes to the frontend</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">18 Connect keycloak user with application user</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../18_Connect_keycloak_user_with_application_user/01_Setup_keycloak_with_a_provider/">01 Setup keycloak with a provider</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../18_Connect_keycloak_user_with_application_user/02_Changes_to_the_REST_service/">02 Changes to the REST service</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../18_Connect_keycloak_user_with_application_user/03_Changes_in_the_environment/">03 Changes in the environment</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">19 CQRS with Kafka</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../19_CQRS_with_Kafka/01_Setup_Kafka/">01 Setup Kafka</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../19_CQRS_with_Kafka/02_Command_service/">02 Command service</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../19_CQRS_with_Kafka/03_Query_service/">03 Query service</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../19_CQRS_with_Kafka/04_Frontend_service/">04 Frontend service</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../19_CQRS_with_Kafka/05_Other_updates/">05 Other updates</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">20 Fileuploader</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../20_Fileuploader/01_Create_fileuploader_service/">01 Create fileuploader service</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../20_Fileuploader/02_REST_service_adaptions/">02 REST service adaptions</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../20_Fileuploader/03_Query_service_adaptions/">03 Query service adaptions</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../20_Fileuploader/04_Frontend_adaptions/">04 Frontend adaptions</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">Microservices with Kubernetes</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>16 SSO with Keycloak &raquo;</li>
+        
+      
+    
+    <li>Secure the `jax-rs` service</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/robertBrem/Microservices_with_Kubernetes/edit/master/docs/16_SSO_with_Keycloak/03_Secure_REST_service.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="secure-the-jax-rs-service">Secure the <code>jax-rs</code> service</h1>
+<h2 id="patch-wildfly-with-the-keycloak-adapter">Patch Wildfly with the Keycloak adapter</h2>
+<p>The first thing we've to change is the <code>Dockerfile</code> of the REST service.
+Wildfly need the Keyclaok adapter that it can use Keycloak. Luckily there's
+already a Docker image for that <code>jboss/keycloak-adapter-wildfly</code>. Our whole
+Dockerimage looks like the flowing:</p>
+<pre><code>FROM jboss/keycloak-adapter-wildfly:2.4.0.Final
+
+MAINTAINER Robert Brem &lt;brem_robert@hotmail.com&gt;
+
+ENV DEPLOYMENT_DIR ${JBOSS_HOME}/standalone/deployments/
+
+ADD target/battleapp.war ${DEPLOYMENT_DIR}
+</code></pre>
+
+<p>That we can test our service locally as well we've to patch our local Wildfly
+as well. We've to do exactly the same as 
+<a href="https://hub.docker.com/r/jboss/keycloak-adapter-wildfly/~/dockerfile/">the Docker image</a> 
+does.</p>
+<p>Change into the local Wildfly directory and execute the following command:</p>
+<pre><code>KEYCLOAK_VERSION=2.4.0.Final curl -L https://downloads.jboss.org/keycloak/$KEYCLOAK_VERSION/adapters/keycloak-oidc/keycloak-wildfly-adapter-dist-$KEYCLOAK_VERSION.tar.gz | tar zx
+</code></pre>
+
+<p>Then execute the following command:</p>
+<pre><code>sed -i -e 's/&lt;extensions&gt;/&amp;\n        &lt;extension module=&quot;org.keycloak.keycloak-adapter-subsystem&quot;\/&gt;/' standalone/configuration/standalone.xml &amp;&amp; \
+sed -i -e 's/&lt;profile&gt;/&amp;\n        &lt;subsystem xmlns=&quot;urn:jboss:domain:keycloak:1.1&quot;\/&gt;/' standalone/configuration/standalone.xml &amp;&amp; \
+sed -i -e 's/&lt;security-domains&gt;/&amp;\n                &lt;security-domain name=&quot;keycloak&quot;&gt;\n                    &lt;authentication&gt;\n                        &lt;login-module code=&quot;org.keycloak.adapters.jboss.KeycloakLoginModule&quot; flag=&quot;required&quot;\/&gt;\n                    &lt;\/authentication&gt;\n                &lt;\/security-domain&gt;/' standalone/configuration/standalone.xml
+</code></pre>
+
+<h2 id="setup-the-project-with-keycloak">Setup the project with Keycloak</h2>
+<p>To secure the REST service we've to create a <code>web.xml</code> file like we would do it
+for normal basic authentication. The flowing <code>web.xml</code> is located in the 
+<code>src/main/webapp/WEB-INF</code> folder.</p>
+<pre><code>&lt;web-app xmlns=&quot;http://java.sun.com/xml/ns/javaee&quot;
+         xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+         xsi:schemaLocation=&quot;http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd&quot;
+         version=&quot;3.0&quot;&gt;
+
+    &lt;security-constraint&gt;
+        &lt;web-resource-collection&gt;
+            &lt;web-resource-name&gt;health&lt;/web-resource-name&gt;
+            &lt;url-pattern&gt;/resources/health&lt;/url-pattern&gt;
+        &lt;/web-resource-collection&gt;
+        &lt;!-- OMIT auth-constraint --&gt;
+    &lt;/security-constraint&gt;
+
+    &lt;security-constraint&gt;
+        &lt;web-resource-collection&gt;
+            &lt;web-resource-name&gt;cors&lt;/web-resource-name&gt;
+            &lt;url-pattern&gt;/*&lt;/url-pattern&gt;
+            &lt;http-method&gt;GET&lt;/http-method&gt;
+            &lt;http-method&gt;POST&lt;/http-method&gt;
+            &lt;http-method&gt;PUT&lt;/http-method&gt;
+            &lt;http-method&gt;DELETE&lt;/http-method&gt;
+        &lt;/web-resource-collection&gt;
+        &lt;auth-constraint&gt;
+            &lt;role-name&gt;user&lt;/role-name&gt;
+        &lt;/auth-constraint&gt;
+    &lt;/security-constraint&gt;
+
+    &lt;login-config&gt;
+        &lt;auth-method&gt;KEYCLOAK&lt;/auth-method&gt;
+        &lt;realm-name&gt;this is ignored currently&lt;/realm-name&gt;
+    &lt;/login-config&gt;
+
+    &lt;security-role&gt;
+        &lt;role-name&gt;admin&lt;/role-name&gt;
+    &lt;/security-role&gt;
+    &lt;security-role&gt;
+        &lt;role-name&gt;user&lt;/role-name&gt;
+    &lt;/security-role&gt;
+&lt;/web-app&gt;
+</code></pre>
+
+<p>Here we can see the roles <code>admin</code> and <code>user</code> we've previously created in the
+Keycloak console. Additionally there's a <code>health</code> endpoint that's not secured.
+This is the endpoint on which Kubernetes checks if the application is deployed
+and therefore ready. We're going to create this endpoint later.</p>
+<p>Now we've to define where our Keycloak server is running and which realm we
+want to use. This can be done in a <code>keycloak.json</code> that's located in the same
+folder <code>src/main/webapp/WEB-INF</code>.</p>
+<pre><code>{
+  &quot;realm&quot;: &quot;${env.REALM_NAME}&quot;,
+  &quot;bearer-only&quot;: true,
+  &quot;auth-server-url&quot;: &quot;${env.AUTH_SERVER_URL}&quot;,
+  &quot;ssl-required&quot;: &quot;none&quot;,
+  &quot;resource&quot;: &quot;battleapp&quot;,
+  &quot;enable-cors&quot;: true
+}
+</code></pre>
+
+<p>Like you can see we tell Keycloak to handle CORS. Keycloak needs to add additional 
+headers anyway and therefore it makes sense to let Keycloak add the CORS
+headers as well.<br />
+This results in the deletion of the existing CORS dependency:</p>
+<pre><code>&lt;dependency&gt;
+    &lt;groupId&gt;com.airhacks&lt;/groupId&gt;
+    &lt;artifactId&gt;jaxrs-cors&lt;/artifactId&gt;
+    &lt;version&gt;0.0.2&lt;/version&gt;
+    &lt;scope&gt;compile&lt;/scope&gt;
+&lt;/dependency&gt;
+</code></pre>
+
+<p>That we can use the same <code>war</code> on different stages we have to set the realm
+name and the server url over environment variables. For the local setup we've
+to open the Wildfly configuration:</p>
+<p><img alt="Keycloak Wildfly config" src="../images/keycloak_wildfly_config.png" /></p>
+<p>Change in the <code>Startup/Connection</code> tab and add the two environment variables.</p>
+<p><img alt="Wildfly envrionment variables" src="../images/wildfly_env_settings.png" /></p>
+<h2 id="create-the-health-check">Create the health check</h2>
+<p>That Kubernetes recognized if the application is up and running we've to 
+create the health check we've already defined in the <code>web.xml</code>.</p>
+<pre><code>@Path(&quot;health&quot;)
+public class HealthResource {
+
+    @Dedicated
+    @Inject
+    ExecutorService healthPool;
+
+    @GET
+    public void getHealth(@Suspended AsyncResponse response) {
+        CompletableFuture
+                .supplyAsync(this::getHealthText, healthPool)
+                .thenAccept(response::resume);
+    }
+
+    public String getHealthText() {
+        return &quot;everything ok!&quot;;
+    }
+}
+</code></pre>
+
+<p>Now we can start the local Wildfly with the secured application.</p>
+<h2 id="secure-test-environment">Secure test environment</h2>
+<p>To let the application run in our test stage we've to make some adaptions
+to the <code>start.js</code> file from the start test environment project.
+First of all we've to change the test url from 
+<code>http://disruptor.ninja:31080/battleapp/resources/users</code> to
+<code>http://disruptor.ninja:31080/battleapp/resources/health</code>.<br />
+Then we've to add the two environment variables for Keycloak:</p>
+<pre><code>...
+var realmName = &quot;battleapp-test&quot;;
+var authServerUrl = &quot;https://disruptor.ninja:30182/auth&quot;;
+...
+dfw.write(&quot;        env:\n&quot;);
+dfw.write(&quot;        - name: REALM_NAME\n&quot;);
+dfw.write(&quot;          value: \&quot;&quot; + realmName + &quot;\&quot;\n&quot;);
+dfw.write(&quot;        - name: AUTH_SERVER_URL\n&quot;);
+dfw.write(&quot;          value: \&quot;&quot; + authServerUrl + &quot;\&quot;\n&quot;);
+...
+</code></pre>
+
+<p>Now the deployment on the test stage is secured.</p>
+<h2 id="secure-prod-environment">Secure prod environment</h2>
+<p>To let the application run in our prod stage we've to make some adaptions
+to the <code>start.js</code> file from the canary environment project.
+First of all we've to change the test url from 
+<code>http://disruptor.ninja:30080/battleapp/resources/users</code> to
+<code>http://disruptor.ninja:30080/battleapp/resources/health</code>.<br />
+Then we've to add the two environment variables for Keycloak:</p>
+<pre><code>...
+var realmName = &quot;battleapp&quot;;
+var authServerUrl = &quot;https://disruptor.ninja:30182/auth&quot;;
+...
+dfw.write(&quot;        env:\n&quot;);
+dfw.write(&quot;        - name: REALM_NAME\n&quot;);
+dfw.write(&quot;          value: \&quot;&quot; + realmName + &quot;\&quot;\n&quot;);
+dfw.write(&quot;        - name: AUTH_SERVER_URL\n&quot;);
+dfw.write(&quot;          value: \&quot;&quot; + authServerUrl + &quot;\&quot;\n&quot;);
+...
+</code></pre>
+
+<h2 id="system-test-of-the-secured-service">System test of the secured service</h2>
+<p>Our system test tries to test the secured <code>users</code> url. Therefore we've to
+tell the test how to access the secured endpoint.
+To access the service we need to add the <code>keycloak-wildfly-adapter</code>:</p>
+<pre><code>&lt;dependency&gt;
+    &lt;groupId&gt;org.keycloak&lt;/groupId&gt;
+    &lt;artifactId&gt;keycloak-wildfly-adapter&lt;/artifactId&gt;
+    &lt;version&gt;2.4.0.Final&lt;/version&gt;
+    &lt;scope&gt;test&lt;/scope&gt;
+&lt;/dependency&gt;
+</code></pre>
+
+<p>Now we can create a class that requests a token form the Keycloak server:</p>
+<pre><code>public class KeycloakHeaderCreater {
+
+    public static final String CLIENT_ID = &quot;battleapp-frontend&quot;;
+    public static final String REALM = System.getenv(&quot;REALM_NAME&quot;);
+    public static final String KEYCLOAK_URL = System.getenv(&quot;KEYCLOAK_URL&quot;);
+
+    public static AccessTokenResponse getTokenResponse(String user, String password) throws IOException {
+        HttpClient client = new HttpClientBuilder().disableTrustManager().build();
+        try {
+            HttpPost post = new HttpPost(KeycloakUriBuilder.fromUri(KEYCLOAK_URL)
+                    .path(ServiceUrlConstants.TOKEN_PATH).build(REALM));
+            List&lt;NameValuePair&gt; formparams = new ArrayList&lt;&gt;();
+            formparams.add(new BasicNameValuePair(OAuth2Constants.GRANT_TYPE, &quot;password&quot;));
+            formparams.add(new BasicNameValuePair(&quot;username&quot;, user));
+            formparams.add(new BasicNameValuePair(&quot;password&quot;, password));
+
+            formparams.add(new BasicNameValuePair(OAuth2Constants.CLIENT_ID, CLIENT_ID));
+
+            UrlEncodedFormEntity form = new UrlEncodedFormEntity(formparams, &quot;UTF-8&quot;);
+            post.setEntity(form);
+            HttpResponse response = client.execute(post);
+            int status = response.getStatusLine().getStatusCode();
+            HttpEntity entity = response.getEntity();
+            if (status != 200) {
+                throw new IOException(&quot;Bad status: &quot; + status);
+            }
+            if (entity == null) {
+                throw new IOException(&quot;No Entity&quot;);
+            }
+            InputStream is = entity.getContent();
+            try {
+                AccessTokenResponse tokenResponse = JsonSerialization.readValue(is, AccessTokenResponse.class);
+                return tokenResponse;
+            } finally {
+                try {
+                    is.close();
+                } catch (IOException ignored) {
+                }
+            }
+        } finally {
+            client.getConnectionManager().shutdown();
+        }
+    }
+
+}
+</code></pre>
+
+<p>We need a token when we request the users from the service:</p>
+<pre><code>@Test
+    public void shouldReturn200() throws IOException {
+        String token = KeycloakHeaderCreater
+                .getTokenResponse(
+                        System.getenv(&quot;APPLICATION_USER_NAME&quot;),
+                        System.getenv(&quot;APPLICATION_PASSWORD&quot;))
+                .getToken();
+        Response response = provider
+                .target()
+                .request()
+                .header(&quot;Authorization&quot;, &quot;Bearer &quot; + token)
+                .get();
+        assertThat(response.getStatus(), is(200));
+    }
+</code></pre>
+
+<p>You can run the test locally with the following command:</p>
+<pre><code>HOST=localhost PORT=8080 APPLICATION_USER_NAME=rob APPLICATION_PASSWORD=1234 REALM_NAME=battleapp-local KEYCLOAK_URL=http://localhost:8280/auth mvn clean install failsafe:integration-test failsafe:verify
+</code></pre>
+
+<p>Finally we've to add the environment variables in the pipeline project:</p>
+<pre><code>withEnv([   &quot;VERSION=1.0.${currentBuild.number}&quot;,
+            &quot;REGISTRY_EMAIL=brem_robert@hotmail.com&quot;,
+            &quot;KUBECTL=kubectl&quot;,
+            &quot;HOST=disruptor.ninja&quot;,
+            &quot;KEYCLOAK_URL=https://disruptor.ninja:30182/auth&quot;]) {
+
+  ...
+
+  stage &quot;system test&quot;
+  node {
+    git url: &quot;http://disruptor.ninja:30130/rob/battleapp-st&quot;
+    def mvnHome = tool 'M3'
+    sh &quot;PORT=31080 REALM_NAME=battleapp-test ${mvnHome}/bin/mvn clean install failsafe:integration-test failsafe:verify&quot;
+    step([$class: 'JUnitResultArchiver', testResults: '**/target/failsafe-reports/TEST-*.xml'])
+  }
+
+  ...
+
+</code></pre>
+
+<h2 id="ui-test-of-the-secured-service">UI test of the secured service</h2>
+<p>Our ui test tries to test the secured <code>users</code> url. Therefore we've to
+change the url to the <code>health</code> url.</p>
+<pre><code>@Location(&quot;http://disruptor.ninja:31080/battleapp/resources/health&quot;)
+public class BattleAppPage {
+}
+</code></pre>
+
+<p>And the expected text:</p>
+<pre><code>@RunAsClient
+@RunWith(Arquillian.class)
+public class BattleAppIT {
+
+    @Drone
+    WebDriver browser;
+
+    @Test
+    public void shouldContainRobert(@InitialPage BattleAppPage page) {
+        String expectedToContain = &quot;everything ok!&quot;;
+        String content = browser.getPageSource();
+        assertThat(content, containsString(expectedToContain));
+    }
+
+}
+</code></pre>
+
+<p>The test can locally be executed with the same run configuration like before.</p>
+<h2 id="last-test-of-the-secured-service">Last test of the secured service</h2>
+<p>Our last test tries to test the secured <code>users</code> url. Therefore we've to
+change the url to the <code>health</code> url inside the Jenkins pipeline:</p>
+<pre><code>  stage &quot;last test&quot;
+  node {
+    git url: &quot;https://github.com/robertBrem/BattleApp-LT&quot;
+    def mvnHome = tool 'M3'
+    sh &quot;${mvnHome}/bin/mvn clean verify -Dperformancetest.webservice.host=disruptor.ninja -Dperformancetest.webservice.port=31080 -Dperformancetest.webservice.threads=5 -Dperformancetest.webservice.iterations=500 -Dperformancetest.webservice.url=/battleapp/resources/health&quot;
+    archiveArtifacts artifacts: 'target/reports/*.*', fingerprint: true
+  }
+</code></pre>
+
+<p>The test can locally be executed with the following command:</p>
+<pre><code>mvn clean verify -Dperformancetest.webservice.host=localhost -Dperformancetest.webservice.port=8080 -Dperformancetest.webservice.threads=2 -Dperformancetest.webservice.iterations=50 -Dperformancetest.webservice.url=/battleapp/resources/health
+</code></pre>
+
+<h2 id="consumer-driven-contract-test-of-the-secured-service">Consumer driven contract test of the secured service</h2>
+<p>The consumer driven contract test has to be adapted exaclty the same way as
+the system test from before.</p>
+<pre><code>public class BattleAppIT {
+
+    @Rule
+    public JAXRSClientProvider provider = buildWithURI(&quot;http://&quot; + System.getenv(&quot;HOST&quot;) + &quot;:&quot; + System.getenv(&quot;PORT&quot;) + &quot;/battleapp/resources/users&quot;);
+
+    @Test
+    public void shouldReturnDan() throws IOException {
+        String expectedToContain = &quot;Dan&quot;;
+        String token = KeycloakTokenCreator
+                .getTokenResponse(
+                        System.getenv(&quot;APPLICATION_USER_NAME&quot;),
+                        System.getenv(&quot;APPLICATION_PASSWORD&quot;))
+                .getToken();
+        String response = provider
+                .target()
+                .request()
+                .header(&quot;Authorization&quot;, &quot;Bearer &quot; + token)
+                .get(String.class);
+        assertThat(response, containsString(expectedToContain));
+    }
+
+}
+</code></pre>
+
+<p>The test can be locally executed with the following command:</p>
+<pre><code>HOST=localhost PORT=8080 APPLICATION_USER_NAME=rob APPLICATION_PASSWORD=1234 REALM_NAME=battleapp-local KEYCLOAK_URL=http://localhost:8280/auth mvn clean install failsafe:integration-test failsafe:verify
+</code></pre>
+
+<p>The pipeline step has to be extended with the <code>REALM_NAME</code> as well as the
+system test was before.</p>
+<pre><code>stage &quot;consumer driven contract test&quot;
+node {
+  git url: &quot;http://disruptor.ninja:30130/rob/battleapp-cdct&quot;
+  def mvnHome = tool 'M3'
+  sh &quot;PORT=31080 REALM_NAME=battleapp-test ${mvnHome}/bin/mvn clean install failsafe:integration-test failsafe:verify&quot;
+  step([$class: 'JUnitResultArchiver', testResults: '**/target/failsafe-reports/TEST-*.xml'])
+}
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../04_Secure_frontend_service/" class="btn btn-neutral float-right" title="04 Secure frontend service">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../02_Initial_setup_of_Keycloak/" class="btn btn-neutral" title="Initial setup of Keycloak"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/robertBrem/Microservices_with_Kubernetes/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../02_Initial_setup_of_Keycloak/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../04_Secure_frontend_service/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/require.js"></script>
+      <script src="../../search/search.js"></script>
+
+</body>
+</html>
