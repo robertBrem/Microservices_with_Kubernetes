@@ -217,7 +217,7 @@ spec:
       - env:
         - name: ENABLE_AUTO_EXTEND
           value: "true"
-        - name: KAFKA_RESERVED_BROCKER_MAX_ID
+        - name: KAFKA_RESERVED_BROKER_MAX_ID
           value: "999999999"
         - name: KAFKA_AUTO_CREATE_TOPICS_ENABLE
           value: "true"
@@ -279,7 +279,7 @@ spec:
       - env:
         - name: ENABLE_AUTO_EXTEND
           value: "true"
-        - name: KAFKA_RESERVED_BROCKER_MAX_ID
+        - name: KAFKA_RESERVED_BROKER_MAX_ID
           value: "999999999"
         - name: KAFKA_AUTO_CREATE_TOPICS_ENABLE
           value: "true"
